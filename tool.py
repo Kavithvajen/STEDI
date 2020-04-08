@@ -53,7 +53,7 @@ def main():
     #The following line is to suppress a common warning message by the rdflib package.
     logging.getLogger("rdflib").setLevel(logging.ERROR)
 
-    option = input("\nStarted the tool successfully. Are all the input datasets in the \"Input\" folder? [Y/N]: ")
+    option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"Input\" folder? [Y/N]: ")
     if option == "Y" or option == "y":
         loadDatasets()
     elif option == "N" or option == "n":
