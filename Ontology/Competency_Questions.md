@@ -12,6 +12,7 @@
     * Behavioural data is present
     * Demographic data is present
     * Ethnicity data is present
+    * Is the data subject an immigrant/ has immigrant parents?
     * Medical Health data is present
     * Physical characterisitics (such as tattoos, piercing, hair color and skin tone) is present
     * Sexual life related data is present
