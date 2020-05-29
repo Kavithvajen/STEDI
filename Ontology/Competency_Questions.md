@@ -21,6 +21,9 @@
     * Contents of communications are present
     * Criminal records are present
     * Tracking data is present
+        - hasWebsitesVisitedData
+	    - hasTimeSpentOnWebsites
+	    - hasLinksClickedOn
 
 4. Does the data pertain to children? If it's just some individual related data, then is their age below 18?
 
