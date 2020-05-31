@@ -3,6 +3,7 @@
 1. If a dataset contains information regarding individuals, how many datapoints are provided? Is that too much information regarding a single person even if it is non-PII? (Data minimisation)
 
 2. Does the dataset contain any PII information?
+    * Includes any PII that maybe present in an attached documentation.
 
 3. Does the dataset have any of the following issues (Based on DPV):
     * A Non-Disclosure Agreement
