@@ -45,11 +45,10 @@ def predicate_issues():
     os.chdir("Input")
     nlp = spacy.load("en_core_web_lg")
     dataset = "TestDataset.owl"
-
     g = rdflib.Graph()
     g.parse(dataset, format = rdflib.util.guess_format("/"+dataset))
 
-    for s, p, o in g:
+    for p in g.predicates():
         predicate_parts = p.split("/")
         predicate = predicate_parts[-1]
         predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
@@ -68,15 +67,20 @@ def predicate_issues():
                 if token.similarity(nlp(issue)) > 0.5:
                     print(f"Contains {issue} related data!")
 
-def main():
+def object_issues(nlp, g):
+    for o in g.objects():
+        print(f"\nObject: {o}")
 
+def main():
     #The following line is to suppress a common warning message by the rdflib package.
     logging.getLogger("rdflib").setLevel(logging.ERROR)
 
     option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"Input\" folder? [Y/N]: ")
     if option == "Y" or option == "y":
         load_datasets()
-        #predicate_issues()
+        os.chdir("..")
+        predicate_issues()
+
     elif option == "N" or option == "n":
         print("Okay! Make sure all the input datasets are in the \"Input\" folder and then start the tool.")
         sys.exit()
