@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://localhost:8080/"
+     xml:base="http://localhost:8080/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:wot="http://xmlns.com/wot/0.1/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/spec/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf1="http://xmlns.com/foaf/0.1/"
+     xmlns:localhost="http://localhost:8080/">
+    <owl:Ontology rdf:about="http://localhost:8080/">
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:8080/adTrackingID -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:8080/adTrackingID">
+        <rdfs:domain rdf:resource="http://schema.org/Person"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:label>Ad Tracking ID</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:8080/firstLanguage -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:8080/firstLanguage">
+        <rdfs:domain rdf:resource="http://schema.org/Person"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:label>First Language</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost:8080/salary -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost:8080/salary">
+        <rdfs:domain rdf:resource="http://schema.org/Person"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:label>Salary</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:8080/GaryPhelan -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/GaryPhelan">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <adTrackingID>Amazon: OtL6cU1g1ee5i0dqPIUP</adTrackingID>
+        <adTrackingID>Google: xT6mjzCpMTGuwgzkqgdK</adTrackingID>
+        <firstLanguage>English</firstLanguage>
+        <foaf1:accountName>GP_Racer123</foaf1:accountName>
+        <foaf1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</foaf1:age>
+        <foaf1:birthday>02-03-2005</foaf1:birthday>
+        <foaf1:family_name>Phelan</foaf1:family_name>
+        <foaf1:firstName>Gary</foaf1:firstName>
+        <foaf1:gender>Male</foaf1:gender>
+        <foaf1:givenName>Gary Phelan</foaf1:givenName>
+        <foaf1:lastName>Phelan</foaf1:lastName>
+        <foaf1:myersBriggs>INFP</foaf1:myersBriggs>
+        <foaf1:skypeID>GP_Racer123</foaf1:skypeID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/JohnRamsay -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/JohnRamsay">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <salary>40,000 EUR</salary>
+        <foaf1:accountName>johnr_1989</foaf1:accountName>
+        <foaf1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31</foaf1:age>
+        <foaf1:birthday>18-12-1989</foaf1:birthday>
+        <foaf1:dnaChecksum>DN8uV56*KlvKUUo65D4FFe6th</foaf1:dnaChecksum>
+        <foaf1:familyName>Ramsay</foaf1:familyName>
+        <foaf1:family_name>Ramsay</foaf1:family_name>
+        <foaf1:firstName>John</foaf1:firstName>
+        <foaf1:gender>Male</foaf1:gender>
+        <foaf1:givenName>John Ramsay</foaf1:givenName>
+        <foaf1:lastName>Ramsay</foaf1:lastName>
+        <foaf1:myersBriggs>ESTJ</foaf1:myersBriggs>
+        <foaf1:name>John Ramsay</foaf1:name>
+        <foaf1:skypeID>JohnR_1989</foaf1:skypeID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/RachelBriggs -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/RachelBriggs">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <adTrackingID>Google: XYsa1JUIis9QRiFVY0ck</adTrackingID>
+        <firstLanguage>Polish</firstLanguage>
+        <salary>70,000 EUR</salary>
+        <foaf1:accountName>RachGG_95</foaf1:accountName>
+        <foaf1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</foaf1:age>
+        <foaf1:family_name>Briggs</foaf1:family_name>
+        <foaf1:firstName>Rachel</foaf1:firstName>
+        <foaf1:gender>Female</foaf1:gender>
+        <foaf1:givenName>Rachel Briggs</foaf1:givenName>
+        <foaf1:myersBriggs>INFP</foaf1:myersBriggs>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

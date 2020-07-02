@@ -1,8 +1,13 @@
 import rdflib
-import requests, json
-import sys, os, logging
+import requests
+import json
+import sys
+import os
+import logging
+import spacy
+import re
 
-def checkVocab(vocab):
+def check_vocab(vocab):
     URL = "https://lov.linkeddata.es/dataset/lov/api/v2/vocabulary/info?"
     PARAMS = {"vocab" : vocab}
 
@@ -17,36 +22,51 @@ def checkVocab(vocab):
     except json.decoder.JSONDecodeError:
         return
 
+    sensitive_namespaces = ["Geography", "Society", "People", "Health", "Biology", "Government", "Environment"]
+
     for tag in data["tags"]:
-        if tag == "Geography":
-            print("\nNOTE: This dataset probably contains location related data as it uses the {} namespace!".format(data["prefix"]))
-        elif tag == "Society":
-            print("\nNOTE: This dataset probably contains society related data as it uses the {} namespace!".format(data["prefix"]))
-        elif tag == "People":
-            print("\nNOTE: This dataset probably contains people related data as it uses the {} namespace!".format(data["prefix"]))
-        elif tag == "Health":
-            print("\nNOTE: This dataset probably contains health related data as it uses the {} namespace!".format(data["prefix"]))
-        elif tag == "Biology":
-            print("\nNOTE: This dataset probably contains biology related data as it uses the {} namespace!".format(data["prefix"]))
-        elif tag == "Government":
-            print("\nNOTE: This dataset probably contains government related data as it uses the {} namespace!".format(data["prefix"]))
-        elif tag == "Environment":
-            print("\nNOTE: This dataset probably contains environment related data as it uses the {} namespace!".format(data["prefix"]))
-        else:
-            pass
+        for namespace in sensitive_namespaces:
+            if tag == namespace:
+                print(f"\nNOTE: This dataset probably contains {namespace} related data as it uses the {data['prefix']} namespace!")
 
-def loadDatasets():
+def load_datasets():
     os.chdir("Input")
-    datasetList = os.listdir()
+    dataset_list = [f for f in os.listdir() if not f.startswith('.')]
+    graph_list = []
 
-    graphList = []
-
-    for dataset in datasetList:
-        graphList.append(rdflib.Graph())
-        graphList[-1].parse(dataset, format = rdflib.util.guess_format("/"+dataset))
+    for dataset in dataset_list:
+        graph_list.append(rdflib.Graph())
+        graph_list[-1].parse(dataset, format = rdflib.util.guess_format("/"+dataset))
         print("\nSuccessfully loaded the \"{}\" dataset. \nNow checking the vocabulary used in the dataset to find potential issues.".format(dataset))
-        for vocab in graphList[-1].namespace_manager.namespaces():
-            checkVocab(vocab[0])
+        for vocab in graph_list[-1].namespace_manager.namespaces():
+            check_vocab(vocab[0])
+
+def predicate_issues():
+    os.chdir("Input")
+    nlp = spacy.load("en_core_web_lg")
+    dataset = "TestDataset.owl"
+
+    g = rdflib.Graph()
+    g.parse(dataset, format = rdflib.util.guess_format("/"+dataset))
+
+    for s, p, o in g:
+        predicate_parts = p.split("/")
+        predicate = predicate_parts[-1]
+        predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
+        predicate = re.sub(r"([A-Z])", r" \1", predicate)
+
+        predicate_tokens = nlp(predicate)
+        issue_tokens = ["gender", "age", "behaviour", "personality", "myers",
+            "body", "contact", "phone", "email", "criminal", "birthday", "doctor",
+            "ethnicity", "health", "income", "salary", "loan", "location", "address",
+            "resident", "city", "name", "characteristics", "politics", "opinion",
+            "religion", "language", "race", "community", "sexuality", "sexual",
+            "tracking", "ad", "advertisement"]
+
+        for token in predicate_tokens:
+            for issue in issue_tokens:
+                if token.similarity(nlp(issue)) > 0.5:
+                    print(f"Contains {issue} related data!")
 
 def main():
 
@@ -55,7 +75,8 @@ def main():
 
     option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"Input\" folder? [Y/N]: ")
     if option == "Y" or option == "y":
-        loadDatasets()
+        load_datasets()
+        #predicate_issues()
     elif option == "N" or option == "n":
         print("Okay! Make sure all the input datasets are in the \"Input\" folder and then start the tool.")
         sys.exit()

@@ -166,13 +166,6 @@ Ethicity data is any data that involves the data subject's ethnic origin, native
                rdfs:seeAlso "https://www.w3.org/ns/dpv#income" .
 
 
-###  https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasLastName
-:hasLastName rdf:type owl:DatatypeProperty ;
-             rdfs:domain :Individual ;
-             rdfs:range xsd:boolean ;
-             rdfs:comment "An individual's last name is present. In some cases it can be used to identify the caste, race, religion, or country the individual belongs too."@en .
-
-
 ###  https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasLoanRecords
 :hasLoanRecords rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Group ,
@@ -195,7 +188,9 @@ Ethicity data is any data that involves the data subject's ethnic origin, native
 :hasName rdf:type owl:DatatypeProperty ;
          rdfs:domain :Individual ;
          rdfs:range xsd:boolean ;
-         rdfs:comment "Information about the data subject's name is present. This data property was inspired by the \"dpv:Name\" class in the Data Privacy Vocabulary (DPV)."@en ;
+         rdfs:comment """Information about the data subject's name is present. This data property was inspired by the \"dpv:Name\" class in the Data Privacy Vocabulary (DPV).
+
+In some cases, an individual's name can be used to identify the caste, race, religion, or country the individual belongs too."""@en ;
          rdfs:seeAlso "https://www.w3.org/ns/dpv#dpv:Name" .
 
 
