@@ -42,7 +42,7 @@ def load_datasets():
             check_vocab(vocab[0])
 
 def predicate_issues():
-    os.chdir("Input")
+    #os.chdir("Input")
     nlp = spacy.load("en_core_web_lg")
     dataset = "TestDataset.owl"
     g = rdflib.Graph()
@@ -67,18 +67,24 @@ def predicate_issues():
                 if token.similarity(nlp(issue)) > 0.5:
                     print(f"Contains {issue} related data!")
 
-def object_issues(nlp, g):
-    for o in g.objects():
-        print(f"\nObject: {o}")
-
 def main():
     #The following line is to suppress a common warning message by the rdflib package.
     logging.getLogger("rdflib").setLevel(logging.ERROR)
 
     option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"Input\" folder? [Y/N]: ")
     if option == "Y" or option == "y":
-        load_datasets()
-        os.chdir("..")
+        os.chdir("Input")
+        dataset_list = [f for f in os.listdir() if not f.startswith('.')]
+        graph_list = []
+
+        for dataset in dataset_list:
+            graph_list.append(rdflib.Graph())
+            graph_list[-1].parse(dataset, format = rdflib.util.guess_format(f"/{dataset}"))
+            graph_list[-1].serialize(format="xml")
+            print("\nSuccessfully loaded the \"{}\" dataset. \nNow checking the vocabulary used in the dataset to find potential issues.".format(dataset))
+            for vocab in graph_list[-1].namespace_manager.namespaces():
+                check_vocab(vocab[0])
+
         predicate_issues()
 
     elif option == "N" or option == "n":
