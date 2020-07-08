@@ -48,6 +48,13 @@ def predicate_issues(graph):
             "religion", "language", "race", "community", "sexual", "tracking",
             "advertisement"]
 
+        ethics_ontology = {"age": False, "behaviour": False, "body": False, "contact": False,
+            "criminal": False, "dob": False, "doctor": False, "ethic": False, "files": False,
+            "health": False, "income": False, "loan": False, "location": False, "name": False,
+            "physical": False, "politics": False, "religion": False, "sexual": False, "nda": False,
+            "data_controller": False, "too_much_data": False, "tracking": False, "child": False,
+            "valid_processing": False}
+
         common_words_to_ignore = ["syntax", "same", "as", "spatial"]
 
         for token in predicate_tokens:
