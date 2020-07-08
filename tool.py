@@ -29,18 +29,6 @@ def check_vocab(vocab):
             if tag == namespace:
                 print(f"\nNOTE: This dataset probably contains {namespace} related data as it uses the {data['prefix']} namespace!")
 
-def load_datasets():
-    os.chdir("Input")
-    dataset_list = [f for f in os.listdir() if not f.startswith('.')]
-    graph_list = []
-
-    for dataset in dataset_list:
-        graph_list.append(rdflib.Graph())
-        graph_list[-1].parse(dataset, format = rdflib.util.guess_format("/"+dataset))
-        print("\nSuccessfully loaded the \"{}\" dataset. \nNow checking the vocabulary used in the dataset to find potential issues.".format(dataset))
-        for vocab in graph_list[-1].namespace_manager.namespaces():
-            check_vocab(vocab[0])
-
 def predicate_issues():
     #os.chdir("Input")
     nlp = spacy.load("en_core_web_lg")
@@ -55,17 +43,24 @@ def predicate_issues():
         predicate = re.sub(r"([A-Z])", r" \1", predicate)
 
         predicate_tokens = nlp(predicate)
-        issue_tokens = ["gender", "age", "behaviour", "personality", "myers",
-            "body", "contact", "phone", "email", "criminal", "birthday", "doctor",
-            "ethnicity", "health", "income", "salary", "loan", "location", "address",
-            "resident", "city", "name", "characteristics", "politics", "opinion",
-            "religion", "language", "race", "community", "sexuality", "sexual",
-            "tracking", "ad", "advertisement"]
+        issue_tokens = ["gender", "age", "behaviour", "personality", "myers", "body",
+            "contact", "phone", "email", "criminal", "birthday", "doctor", "name",
+            "health", "salary", "loan", "location", "address", "history", "search",
+            "resident", "city", "characteristics", "politics", "opinion",
+            "religion", "language", "race", "community", "sexual", "tracking",
+            "advertisement"]
 
         for token in predicate_tokens:
-            for issue in issue_tokens:
-                if token.similarity(nlp(issue)) > 0.5:
-                    print(f"Contains {issue} related data!")
+            if token.text == "syntax":
+                continue
+            else:
+                for issue in issue_tokens:
+                    if token.similarity(nlp(issue)) > 0.5:
+                        print(f"Contains {issue} related data! -> {token}")
+
+def integration_issues():
+    pass
+
 
 def main():
     #The following line is to suppress a common warning message by the rdflib package.
@@ -76,16 +71,16 @@ def main():
         os.chdir("Input")
         dataset_list = [f for f in os.listdir() if not f.startswith('.')]
         graph_list = []
-
         for dataset in dataset_list:
             graph_list.append(rdflib.Graph())
             graph_list[-1].parse(dataset, format = rdflib.util.guess_format(f"/{dataset}"))
             graph_list[-1].serialize(format="xml")
             print("\nSuccessfully loaded the \"{}\" dataset. \nNow checking the vocabulary used in the dataset to find potential issues.".format(dataset))
             for vocab in graph_list[-1].namespace_manager.namespaces():
-                check_vocab(vocab[0])
+               check_vocab(vocab[0])
 
         predicate_issues()
+        integration_issues()
 
     elif option == "N" or option == "n":
         print("Okay! Make sure all the input datasets are in the \"Input\" folder and then start the tool.")
