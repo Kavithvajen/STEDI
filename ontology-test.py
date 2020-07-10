@@ -19,3 +19,9 @@ ont_graph.add((one, RDF.type, OWL.NamedIndividual))
 for p,o in ont_graph.predicate_objects(one):
     print("IN")
     print(f"\nSUBJECT: {one}\nPREDICATE: {p}\nOBJECT: {o}\n")
+
+print("Writing to a file")
+
+ont_graph.serialize(destination='output.owl', format='xml')
+
+print("Done")
