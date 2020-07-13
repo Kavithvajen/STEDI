@@ -40,13 +40,12 @@ def predicate_issues(graph):
             'politics', 'race', 'religion', 'resident', 'salary', 'search', 'size', 'skin', 'tattoos','tracking',
             'weight']
 
-    ethics_ontology_dictionary = {"hasAge": False, "hasBehaviourData": False, "hasBodyStatistics": False,
-            "isChild": False, "hasContactInformation": False, "hasCriminalActivity": False,
-            "hasDataControllerName": False, "hasDoctorConsultationsData": False, "hasEthnicityData": False,
-            "hasFilesWithPIIAttached": False, "hasHealthData": False, "hasIncomeData": False,
-            "hasLoanRecords": False, "hasLocationData": False, "hasName": False, "hasSignedNDA": False,
-            "hasPhysicalCharacteristics": False, "hasPoliticalOpinions": False, "hasReligion": False,
-            "hasTooManyDataPoints": False, "hasUserTrackingData": False, "isValidForProcessing": False}
+    ethics_ontology_dictionary = {"hasAge": False, "hasBehaviourData": False, "hasContactInformation": False,
+            "hasCriminalActivity": False, "hasDataControllerName": False, "hasEthnicityData": False,
+            "hasFilesWithPIIAttached": False, "hasHealthData": False, "hasIncomeData": False, "hasLoanRecords": False,
+            "hasLocationData": False, "hasName": False, "hasPhysicalCharacteristics": False, "hasPoliticalOpinions": False,
+            "hasReligion": False, "hasSignedNDA": False,"hasTooManyDataPoints": False, "hasUserTrackingData": False,
+            "isChild": False, "isValidForProcessing": False}
 
     common_words_to_ignore = ["syntax", "same", "as", "spatial"]
 
@@ -58,22 +57,16 @@ def predicate_issues(graph):
         "behaviour_words" : (("behaviour", "personality", "myers", "opinion"),
                         "hasBehaviourData"),
 
-        "body_words" : (("body", "height", "weight", "size"),
-                        "hasBodyStatistics"),
-
         "contact_words" : (("contact", "phone", "email"),
                         "hasContactInformation"),
 
         "criminal_words" : (("criminal", "jail"),
                         "hasCriminalActivity"),
 
-        "doctor_words" : (("doctor", "consult"),
-                        "hasDoctorConsultationsData"),
-
         "ethnic_words" : (("language", "race", "community", "accent", "dialect", "immigrant", "religion"),
                         "hasEthnicityData"),
 
-        "health_words" : (("health", "medical"),
+        "health_words" : (("health", "medical", "doctor", "consult"),
                         "hasHealthData"),
 
         "income_words" : (("income", "salary"),
@@ -88,7 +81,8 @@ def predicate_issues(graph):
         "name_words" : (("name"),
                         "hasName"),
 
-        "physical_words" : (("gender", "disability", "colour", "skin", "hair", "tattoos", "piercings"),
+        "physical_words" : (("gender", "disability", "colour", "skin", "hair", "tattoos", "piercings",
+                        "body", "height", "weight", "size"),
                         "hasPhysicalCharacteristics"),
 
         "politics_words" : (("politics"),
@@ -105,6 +99,7 @@ def predicate_issues(graph):
         predicate_parts = p.split("/")
         predicate = predicate_parts[-1]
         predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
+        # To split camel case
         predicate = re.sub(r"([A-Z])", r" \1", predicate)
         predicate = predicate.lower()
 
@@ -169,7 +164,7 @@ def start_execution():
         ethics_ontology = fill_ethics_ontology(dataset, ethics_ontology, ethics_ontology_dictionary)
 
     ethics_ontology.serialize(destination='Output/Updated_Ethics_Ontology.owl', format='xml')
-    print("Output - Updated Ethics Ontology created")
+    print("\nOutput - Updated Ethics Ontology created")
 
     # integration_issues()
 
