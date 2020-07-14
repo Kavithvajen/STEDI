@@ -84,27 +84,43 @@ def questionnaire(organisation_name, dataset, ethics_ontology_dictionary):
 
     return ethics_ontology_dictionary
 
-def check_vocab(vocab):
+def check_vocab(vocab, ethics_ontology_dictionary):
     URL = "https://lov.linkeddata.es/dataset/lov/api/v2/vocabulary/info?"
     PARAMS = {"vocab" : vocab}
+    network_error = False
 
     try:
         response = requests.get(url = URL, params = PARAMS)
+        response.raise_for_status()
         data = response.json()
 
-    except requests.exceptions.RequestException as e:
-        print("\nAborting due to network issue. Here's the error message: " + e)
+    except requests.exceptions.HTTPError as e:
+        if response.status_code == 503:
+            print(f"\nThe vocabulary API service is temporarily down. The program will still continue in offline mode!")
+            network_error = True
+            return (ethics_ontology_dictionary, network_error)
+        else:
+            print(f"\nThere seems to be some unknown error with the API. The program will still continue in offline mode!\nError message received from server: \n{e}")
+            network_error = True
+            return (ethics_ontology_dictionary, network_error)
+
+    except ValueError as e:
+            print(f"\nJSON Decoding error. The program will still continue!\nError:\n{e}")
+            return (ethics_ontology_dictionary, network_error)
+
+    except Exception as e:
+        print(f"\nThere seems to be an unexpected error. Quitting program for now. Copy the error message displayed below and contact your system administrator!\n{e}")
         sys.exit()
 
-    except json.decoder.JSONDecodeError:
-        return
-
-    sensitive_namespaces = ["Geography", "Society", "People", "Health", "Biology", "Government", "Environment"]
+    sensitive_namespaces = (("Geography", "hasLocationData"), ("Society", "hasEthnicityData"), ("Health", "hasHealthData"), ("Biology", "hasHealthData"), ("Government", "hasPoliticalOpinions"))
 
     for tag in data["tags"]:
         for namespace in sensitive_namespaces:
-            if tag == namespace:
-                print(f"\nNOTE: This dataset probably contains {namespace} related data as it uses the {data['prefix']} namespace!")
+            if tag == namespace[0]:
+                # print(f"\nNOTE: This dataset probably contains {namespace} related data as it uses the {data['prefix']} namespace!")
+                ethics_ontology_dictionary[namespace[1]] = True
+
+    return (ethics_ontology_dictionary, network_error)
 
 def predicate_issues(graph, ethics_ontology_dictionary):
     nlp = spacy.load("en_core_web_lg")
@@ -249,7 +265,12 @@ def start_execution(organisation_name):
         print(f"\n* Checking the vocabulary used in dataset - {ctr} for potential ethics issues.")
 
         for vocab in graph_list[-1].namespace_manager.namespaces():
-            check_vocab(vocab[0])
+            #ethics_ontology_dictionary = check_vocab(vocab[0], ethics_ontology_dictionary)
+            ethics_ontology_dictionary, network_error = check_vocab(vocab[0], ethics_ontology_dictionary)
+
+            # To stop hitting the unresponsive server again and again!
+            if network_error:
+                break
 
         print(f"\n* Checking for possbile ethical issues in the predicates of dataset - {ctr}")
         ethics_ontology_dictionary = predicate_issues(graph_list[-1], ethics_ontology_dictionary)
