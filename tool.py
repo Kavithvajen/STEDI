@@ -99,6 +99,9 @@ def check_vocab(vocab, ethics_ontology_dictionary):
             print(f"\nThe vocabulary API service is temporarily down. The program will still continue in offline mode!")
             network_error = True
             return (ethics_ontology_dictionary, network_error)
+        elif response.status_code == 404:
+            print(f"No data found for namespace {vocab}")
+            return (ethics_ontology_dictionary, network_error)
         else:
             print(f"\nThere seems to be some unknown error with the API. The program will still continue in offline mode!\nError message received from server: \n{e}")
             network_error = True
