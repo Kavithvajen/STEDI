@@ -30,7 +30,7 @@ class Dataset():
 
 
     def load_dataset(self):
-        self.graph.parse(f"Input/{self.dataset_name}", format = rdflib.util.guess_format(f"/Input/{self.dataset_name}"))
+        self.graph.parse(f"input/{self.dataset_name}", format = rdflib.util.guess_format(f"/input/{self.dataset_name}"))
         self.graph.serialize(format="xml")
         print(f"\nSUCCESSFULLY LOADED DATASET - {Dataset.number_of_datasets}: {self.dataset_name}\n")
 
@@ -285,12 +285,13 @@ class Dataset():
 
         #print(f"Ethics Ontology Dictionary for dataset - {Dataset.number_of_datasets}: {self.dataset_name}\n{self.ethics_ontology_dictionary}\n\n")
 
+
 def start_execution():
     organisation_name = input("\nPlease input the name of your organisation: ")
 
     # Importing the ethics ontology
     ethics_ontology = rdflib.Graph()
-    ethics_ontology.parse("Ontology/EthicsOntology.owl", format = rdflib.util.guess_format('/Ontology/EthicsOntology.owl'))
+    ethics_ontology.parse("ontology/EthicsOntology.owl", format = rdflib.util.guess_format('/ontology/EthicsOntology.owl'))
 
     # Importing the input datasets
     dataset_list = [f for f in os.listdir("Input") if not f.startswith(".")]
@@ -301,20 +302,21 @@ def start_execution():
         dataset_object.start_processing(organisation_name, ethics_ontology)
         dataset_objects_list.append(dataset_object)
 
-    ethics_ontology.serialize(destination='Output/Updated_Ethics_Ontology.owl', format='xml')
+    ethics_ontology.serialize(destination='output/Updated_Ethics_Ontology.owl', format='xml')
     print("\nOutput - Updated Ethics Ontology created")
 
     # integration_issues()
+
 
 def main():
     #The following line is to suppress a common warning message by the rdflib package.
     logging.getLogger("rdflib").setLevel(logging.ERROR)
 
-    option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"Input\" folder? [Y/N]: ")
+    option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"input\" folder? [Y/N]: ")
     if option in yes:
         start_execution()
     elif option in no:
-        print("\nOkay! Make sure all the input datasets are in the \"Input\" folder and then start the tool.")
+        print("\nOkay! Make sure all the input datasets are in the \"input\" folder and then start the tool.")
         sys.exit()
     else:
         print("Wrong option. Aborting program!")
