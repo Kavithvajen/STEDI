@@ -320,7 +320,7 @@ def main():
         print("Wrong option. Aborting program!")
         sys.exit()
 
-    print("\nTool finished running.\n")
+    print("\nTool finished running.")
 
 
 if __name__ == "__main__":
