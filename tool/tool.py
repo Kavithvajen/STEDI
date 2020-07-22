@@ -314,6 +314,7 @@ def main():
 
     option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"input\" folder? [Y/N]: ")
     if option in yes:
+        print("Yes")
         start_execution()
     elif option in no:
         print("\nOkay! Make sure all the input datasets are in the \"input\" folder and then start the tool.")
