@@ -166,9 +166,10 @@ Ethicity data is any data that involves the data subject&apos;s ethnic origin, n
     <!-- https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasFilesWithPIIAttached -->
 
     <owl:DatatypeProperty rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasFilesWithPIIAttached">
+        <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
         <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-        <rdfs:comment xml:lang="en">Files with the data subject&apos;s personally identifiable information (PII) is attached to the dataset. Example: Resume, photos, scanned financial documents, scanned doctor&apos;s report.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Files with the data subject&apos;s personally identifiable information (PII) is attached to the dataset. Example: Resume, photos, scanned financial documents, scanned doctor&apos;s report, PDF containing sensitive details about the members of a group.</rdfs:comment>
     </owl:DatatypeProperty>
     
 
