@@ -5,6 +5,16 @@ import unittest
 from unittest import mock
 import io
 
+import rdflib
+from rdflib.namespace import RDF, OWL
+import requests
+import json
+import sys
+import os
+import logging
+import spacy
+import re
+
 class TestMainFunction(unittest.TestCase):
 
     def runTest(self, return_value, method_to_be_called):
@@ -26,6 +36,17 @@ class TestMainFunction(unittest.TestCase):
         other = ("k", "1", " ", "", "blah", "%", "yn", "Yes No")
         for option in other:
             self.runTest(option, "sys.exit")
+
+#     def test_start_processing(self):
+#         os.chdir("../tool/")
+#         dataset_name = "TestDataset.owl"
+#         dataset_object = tool.Dataset(dataset_name)
+#         organisation_name = "Test"
+#         ethics_ontology = rdflib.Graph()
+#         ethics_ontology.parse("ontology/EthicsOntology.owl", format = rdflib.util.guess_format('ontology/EthicsOntology.owl'))
+
+#         dataset_object.start_processing(organisation_name, ethics_ontology)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -22,5 +22,5 @@ jobs:
       - name: Test with unittest
         run: |
           cd tests
-          python test_main_function.py
+          python test_tool.py
           python -m spacy download en_core_web_sm

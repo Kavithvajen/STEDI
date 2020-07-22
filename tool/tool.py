@@ -40,6 +40,7 @@ class Dataset():
         # To check if the data subject has provided the data controller consent to process their data.
         print(f"\n* Please answer the following questionnaire about dataset - {self.number_of_datasets}.")
         data_controller = input("\nEnter the name of the data controller that the data subject originally agreed to share their data with: ")
+        self.ethics_ontology_dictionary["hasDataControllerName"] = data_controller
         if organisation_name.lower() == data_controller.lower():
             self.ethics_ontology_dictionary["isValidForProcessing"] = True
 
@@ -250,6 +251,12 @@ class Dataset():
         # Ethics Ontology Namespace
         EONS = rdflib.Namespace("https://www.scss.tcd.ie/~kamarajk/EthicsOntology#")
 
+        # GConsent Namespace
+        GC = rdflib.Namespace("https://w3id.org/GConsent#")
+
+        # DPV Namespace
+        DPV = rdflib.Namespace("https://w3.org/ns/dpv#")
+
         # Cleaning up dataset_name so the individuals of the ethics ontology follow a consistent naming convention.
         dataset_name = self.dataset_name.split('.')[0]
         dataset_name = re.sub("[^A-Za-z0-9 ]+", " ", dataset_name)
@@ -314,7 +321,6 @@ def main():
 
     option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"input\" folder? [Y/N]: ")
     if option in yes:
-        print("Yes")
         start_execution()
     elif option in no:
         print("\nOkay! Make sure all the input datasets are in the \"input\" folder and then start the tool.")
