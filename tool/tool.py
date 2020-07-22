@@ -1,5 +1,5 @@
 import rdflib
-from rdflib.namespace import RDF, OWL
+from rdflib.namespace import RDF, RDFS, OWL
 import requests
 import json
 import sys
@@ -8,16 +8,17 @@ import logging
 import spacy
 import re
 
-# Using global lists for code minification
+# Using these global lists for code simplification
 yes = ("Y", "y", "yes", "Yes", "YES")
 no = ("N", "n", "no", "No", "NO")
 
 class Dataset():
 
     number_of_datasets = 0
+    # To be able to effectively ignore these common predictes while processing the dataset.
+    common_schema_predicates = (RDF.type, RDFS.range, RDFS.domain, RDFS.label, OWL.imports)
 
     def __init__(self, dataset_name):
-
         Dataset.number_of_datasets += 1
         self.dataset_name = dataset_name
         self.graph = rdflib.Graph()
@@ -35,8 +36,25 @@ class Dataset():
         print(f"\nSUCCESSFULLY LOADED DATASET - {Dataset.number_of_datasets}: {self.dataset_name}\n")
 
 
-    def questionnaire(self, organisation_name):
+    def check_too_many_data_points(self):
+        subjects = []
+        for s in self.graph.subjects():
+            if s not in subjects:
+                subjects.append(s)
 
+        for s in subjects:
+            no_of_data_points = 0
+            for p in self.graph.predicates(subject=s):
+                if p not in Dataset.common_schema_predicates:
+                    no_of_data_points += 1
+            # No reason why having 10 data points is high.
+            # Maybe if some research was conducted in this field, it'll be useful.
+            if no_of_data_points >= 10:
+                self.ethics_ontology_dictionary["hasTooManyDataPoints"] = True
+                break
+
+
+    def questionnaire(self, organisation_name):
         # To check if the data subject has provided the data controller consent to process their data.
         print(f"\n* Please answer the following questionnaire about dataset - {self.number_of_datasets}.")
         data_controller = input("\nEnter the name of the data controller that the data subject originally agreed to share their data with: ")
@@ -106,9 +124,11 @@ class Dataset():
                 else:
                     print(f"{nda_status} is invalid input. Try again!\n")
 
+            # Too many data points about a single individual might be an ethics issue.
+            self.check_too_many_data_points()
+
 
     def check_vocab(self):
-
         print(f"\n* Checking for potential ethics issues in the namespaces used for dataset - {self.number_of_datasets}")
 
         URL = "https://lov.linkeddata.es/dataset/lov/api/v2/vocabulary/info?"
@@ -162,8 +182,7 @@ class Dataset():
                             self.ethics_ontology_dictionary[namespace[1]] = True
 
 
-    def predicate_issues(self):
-
+    def check_predicate_issues(self):
         print(f"\n* Checking for potential ethics issues in the predicates of dataset - {self.number_of_datasets}")
 
         nlp = spacy.load("en_core_web_lg")
@@ -220,42 +239,36 @@ class Dataset():
         }
 
         for p in self.graph.predicates():
-            predicate_parts = p.split("/")
-            predicate = predicate_parts[-1]
-            predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
-            # To split camel case
-            predicate = re.sub(r"([A-Z])", r" \1", predicate)
-            predicate = predicate.lower()
+            if p not in Dataset.common_schema_predicates:
+                predicate_parts = p.split("/")
+                predicate = predicate_parts[-1]
+                predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
+                # To split camel case
+                predicate = re.sub(r"([A-Z])", r" \1", predicate)
+                predicate = predicate.lower()
 
-            predicate_tokens = nlp(predicate)
+                predicate_tokens = nlp(predicate)
 
-            for token in predicate_tokens:
-                if token.text in common_words_to_ignore:
-                    continue
-                else:
-                    for word_list in word_lists.values():
-                        for issue in word_list[0]:
-                            # To avoid checking similarity for empty vectors.
-                            if token.has_vector and token.similarity(nlp(issue)) > 0.5:
-                                # A complex shorthand but saves a lot of if-else conditions.
-                                # It basically searches for the issue in every tuple in the word_lists dictionary.
-                                # It also assigns the appropriate key names of the ethics ontology dictionary.
-                                data_property = [word_tuple[1] for word_tuple in word_lists.values() if issue in word_tuple[0]][0]
-                                self.ethics_ontology_dictionary[data_property] = True
+                for token in predicate_tokens:
+                    if token.text in common_words_to_ignore:
+                        continue
+                    else:
+                        for word_list in word_lists.values():
+                            for issue in word_list[0]:
+                                # To avoid checking similarity for empty vectors.
+                                if token.has_vector and token.similarity(nlp(issue)) > 0.5:
+                                    # A complex shorthand but saves a lot of if-else conditions.
+                                    # It basically searches for the issue in every tuple in the word_lists dictionary.
+                                    # It also assigns the appropriate key names of the ethics ontology dictionary.
+                                    data_property = [word_tuple[1] for word_tuple in word_lists.values() if issue in word_tuple[0]][0]
+                                    self.ethics_ontology_dictionary[data_property] = True
 
 
     def fill_ethics_ontology(self, ethics_ontology):
-
         print(f"\n* Filling the ethics ontology for dataset - {self.number_of_datasets}")
 
         # Ethics Ontology Namespace
         EONS = rdflib.Namespace("https://www.scss.tcd.ie/~kamarajk/EthicsOntology#")
-
-        # GConsent Namespace
-        GC = rdflib.Namespace("https://w3id.org/GConsent#")
-
-        # DPV Namespace
-        DPV = rdflib.Namespace("https://w3.org/ns/dpv#")
 
         # Cleaning up dataset_name so the individuals of the ethics ontology follow a consistent naming convention.
         dataset_name = self.dataset_name.split('.')[0]
@@ -282,11 +295,10 @@ class Dataset():
 
 
     def start_processing(self, organisation_name, ethics_ontology):
-
         self.load_dataset()
         self.questionnaire(organisation_name)
         self.check_vocab()
-        self.predicate_issues()
+        self.check_predicate_issues()
         self.fill_ethics_ontology(ethics_ontology)
         print(f"\nDONE PROCESSING DATASET - {self.number_of_datasets}: {self.dataset_name}\n")
 
@@ -319,7 +331,7 @@ def main():
     #The following line is to suppress a common warning message by the rdflib package.
     logging.getLogger("rdflib").setLevel(logging.ERROR)
 
-    option = input("\nStarted the tool successfully.\nAre all the input datasets in the \"input\" folder? [Y/N]: ")
+    option = input("\nStarted the tool successfully.\n\nAre all the input datasets in the \"input\" folder? [Y/N]: ")
     if option in yes:
         start_execution()
     elif option in no:

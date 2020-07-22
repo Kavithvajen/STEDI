@@ -23,3 +23,4 @@ tqdm==4.47.0
 urllib3==1.25.9
 wasabi==0.7.0
 zipp==3.1.0
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz
