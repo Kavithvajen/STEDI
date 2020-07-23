@@ -12,11 +12,15 @@ import re
 yes = ("Y", "y", "yes", "Yes", "YES")
 no = ("N", "n", "no", "No", "NO")
 
+# Globally loading the language model to avoid loading it everytime it's used
+nlp = spacy.load("en_core_web_lg")
+
 class Dataset():
 
     number_of_datasets = 0
-    # To be able to effectively ignore these common predictes while processing the dataset.
+    # To be able to effectively ignore these common predictes and tokens while processing the dataset.
     common_schema_predicates = (RDF.type, RDFS.range, RDFS.domain, RDFS.label, OWL.imports)
+    common_words_to_ignore = ["as", "the", "is", "of", "has"]
 
     def __init__(self, dataset_name):
         Dataset.number_of_datasets += 1
@@ -27,16 +31,42 @@ class Dataset():
         "hasFilesWithPIIAttached": False, "hasHealthData": False, "hasIncomeData": False, "hasLoanRecords": False,
         "hasLocationData": False, "hasName": False, "hasPhysicalCharacteristics": False, "hasPoliticalOpinions": False,
         "hasReligion": False, "hasSignedNDA": False,"hasTooManyDataPoints": False, "hasUserTrackingData": False,
-        "isChild": False, "isValidForProcessing": False, "representsGroups": False, "representsIndividuals": False}
+        "hasChildData": False, "isValidForProcessing": False, "representsGroups": False, "representsIndividuals": False}
 
 
     def load_dataset(self):
-        self.graph.parse(f"input/{self.dataset_name}", format = rdflib.util.guess_format(f"/input/{self.dataset_name}"))
+        self.graph.parse(f"input/{self.dataset_name}", format=rdflib.util.guess_format(f"/input/{self.dataset_name}"))
         self.graph.serialize(format="xml")
         print(f"\nSUCCESSFULLY LOADED DATASET - {Dataset.number_of_datasets}: {self.dataset_name}\n")
 
 
-    def check_too_many_data_points(self):
+    def predicate_processor(self, word_lists_dict):
+        for p in self.graph.predicates():
+            if p not in Dataset.common_schema_predicates:
+                predicate_parts = p.split("/")
+                predicate = predicate_parts[-1]
+                predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
+                # To split camel case
+                predicate = re.sub(r"([A-Z])", r" \1", predicate)
+                predicate = predicate.lower()
+
+                predicate_tokens = nlp(predicate)
+
+                for token in predicate_tokens:
+                    if token.text not in Dataset.common_words_to_ignore:
+                        for word_list in word_lists_dict.values():
+                            for issue in word_list[0]:
+                                # 1st condition checks if its the same thing, this eliminates the unnecessary use of NLP.
+                                # 2nd condition avoids checking similarity for empty vectors first and then does the similarity check.
+                                # "0.5" allowed a wider range of words to creep in as issues, so after trial and error I settled on "0.6".
+                                if (str(token).lower() == issue.lower()) or (token.has_vector and token.similarity(nlp(issue)) > 0.6) :
+                                    data_property = [word_list[1]][0]
+                                    print(f"Token : {str(token)} | Issue : {issue} | Property : {data_property}")
+                                    self.ethics_ontology_dictionary[data_property] = True
+
+
+    def check_individual_specific_issues(self):
+        # Checking if any individual in the dataset has too many data points.
         subjects = []
         for s in self.graph.subjects():
             if s not in subjects:
@@ -48,10 +78,24 @@ class Dataset():
                 if p not in Dataset.common_schema_predicates:
                     no_of_data_points += 1
             # No reason why having 10 data points is high.
-            # Maybe if some research was conducted in this field, it'll be useful.
+            # A number can be fixed if extensive research was conducted in this exact area.
             if no_of_data_points >= 10:
                 self.ethics_ontology_dictionary["hasTooManyDataPoints"] = True
                 break
+
+        # Checking if the individual has signed an NDA, or if their name or contact information is present in the dataset.
+        word_lists_dict = {
+            "contact_words" : (["contact", "phone", "email", "account", "skype", ],
+                            "hasContactInformation"),
+
+            "name_words" : (["name"],
+                            "hasName"),
+
+            "nda_words" : (["NDA", "non-disclosure", "nondisclosure", "confidential", "secrecy", "agreement"],
+                            "hasSignedNDA")
+        }
+
+        self.predicate_processor(word_lists_dict)
 
 
     def questionnaire(self, organisation_name):
@@ -67,21 +111,17 @@ class Dataset():
             attached_files = input("\nAre there any files attached in this database? [Y/N]: ")
             if attached_files in yes:
                 file_name = input("\nEnter name of file or keyword(s) describing the file (E.g: \"resume\"): ")
-                nlp = spacy.load("en_core_web_lg")
-
-                issue_tokens = ("resume", "cv","photo", "scan", "finance", "doctor", "personal", "certificate", "proof", "record")
-
                 file_name = file_name.lower()
                 file_name = re.sub("[^a-z ]+", " ", file_name)
+
+                issue_tokens = ("resume", "cv","photo", "scan", "finance", "doctor", "personal", "certificate", "proof", "record")
 
                 file_name_tokens = nlp(file_name)
 
                 for token in file_name_tokens:
                     for issue in issue_tokens:
-                        # print(f"Token: {token}\nIssue: {issue}\n")
                         # To avoid checking similarity for empty vectors.
                         if token.has_vector and token.similarity(nlp(issue)) > 0.5:
-                            # print(f"\nHAS ISSUE {issue} -> {token}")
                             self.ethics_ontology_dictionary["hasFilesWithPIIAttached"] = True
                 break
 
@@ -101,31 +141,6 @@ class Dataset():
                 break
             else:
                 print(f"{data_subject} is an invalid input. Try again!\n")
-
-        # If the dataset represents individuals then the following questions need to be answered.
-        if data_subject == "I" or data_subject == "i":
-            while True:
-                child_status = input("\nCould any of the individuals in the dataset be children? [Y/N]: ")
-                if child_status in yes:
-                    self.ethics_ontology_dictionary["isChild"] = True
-                    break
-                elif child_status in no:
-                    break
-                else:
-                    print(f"{child_status} is an invalid input. Try again!\n")
-
-            while True:
-                nda_status = input("\nHave the individuals signed a non-disclosure agreement (NDA) [Y/N]: ")
-                if nda_status in yes:
-                    self.ethics_ontology_dictionary["hasSignedNDA"] = True
-                    break
-                elif nda_status in no:
-                    break
-                else:
-                    print(f"{nda_status} is invalid input. Try again!\n")
-
-            # Too many data points about a single individual might be an ethics issue.
-            self.check_too_many_data_points()
 
 
     def check_vocab(self):
@@ -185,23 +200,22 @@ class Dataset():
     def check_predicate_issues(self):
         print(f"\n* Checking for potential ethics issues in the predicates of dataset - {self.number_of_datasets}")
 
-        nlp = spacy.load("en_core_web_lg")
+        # Seperately checking for the individual specific ethics issues
+        if self.ethics_ontology_dictionary["representsIndividuals"] == True:
+            self.check_individual_specific_issues()
 
-        common_words_to_ignore = ["syntax", "same", "as", "spatial"]
-
-        # Cheekily tried to fit in the mapping of the word lists to the key names of the ethics ontology.
         # Using list inside of the tuple to keep the list of words as an iterable objects when unpacking the tuple.
         # If it were a tuple inside a tuple, then when only a single object (name, politics, etc) is present, the word
         # itself will be iterated upon. Thereby loosing meaning and only a bunch of characters will be present.
-        word_lists = {
+        word_lists_dict = {
             "age_words" : (["age", "birthday", "dob"],
                             "hasAge"),
 
             "behaviour_words" : (["behaviour", "personality", "myers", "opinion"],
                             "hasBehaviourData"),
 
-            "contact_words" : (["contact", "phone", "email"],
-                            "hasContactInformation"),
+            "child_words" : (["child", "kid", "baby", "minor", "juvenile", "teenager", "youngster"],
+                            "hasChildData"),
 
             "criminal_words" : (["criminal", "jail"],
                             "hasCriminalActivity"),
@@ -209,7 +223,7 @@ class Dataset():
             "ethnic_words" : (["language", "race", "community", "accent", "dialect", "immigrant", "religion"],
                             "hasEthnicityData"),
 
-            "health_words" : (["health", "medical", "doctor", "consult"],
+            "health_words" : (["health", "medical", "doctor", "consult", "DNA"],
                             "hasHealthData"),
 
             "income_words" : (["income", "salary"],
@@ -218,11 +232,8 @@ class Dataset():
             "loan_words" : (["loan"],
                             "hasLoanRecords"),
 
-            "location_words" : (["address", "city", "location", "resident"],
+            "location_words" : (["address", "city", "location", "resident", "area", "zip-code", "postal"],
                             "hasLocationData"),
-
-            "name_words" : (["name"],
-                            "hasName"),
 
             "physical_words" : (["gender", "disability", "colour", "skin", "hair", "tattoos", "piercings",
                             "body", "height", "weight", "size"],
@@ -231,37 +242,14 @@ class Dataset():
             "politics_words" : (["politics"],
                             "hasPoliticalOpinions"),
 
-            "religion_words" : (["religion"],
+            "religion_words" : (["religion", "faith", "worship", "divinity"],
                             "hasReligion"),
 
             "tracking_words" : (["advertisement", "history", "browser", "search", "tracking"],
                             "hasUserTrackingData")
         }
 
-        for p in self.graph.predicates():
-            if p not in Dataset.common_schema_predicates:
-                predicate_parts = p.split("/")
-                predicate = predicate_parts[-1]
-                predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
-                # To split camel case
-                predicate = re.sub(r"([A-Z])", r" \1", predicate)
-                predicate = predicate.lower()
-
-                predicate_tokens = nlp(predicate)
-
-                for token in predicate_tokens:
-                    if token.text in common_words_to_ignore:
-                        continue
-                    else:
-                        for word_list in word_lists.values():
-                            for issue in word_list[0]:
-                                # To avoid checking similarity for empty vectors.
-                                if token.has_vector and token.similarity(nlp(issue)) > 0.5:
-                                    # A complex shorthand but saves a lot of if-else conditions.
-                                    # It basically searches for the issue in every tuple in the word_lists dictionary.
-                                    # It also assigns the appropriate key names of the ethics ontology dictionary.
-                                    data_property = [word_tuple[1] for word_tuple in word_lists.values() if issue in word_tuple[0]][0]
-                                    self.ethics_ontology_dictionary[data_property] = True
+        self.predicate_processor(word_lists_dict)
 
 
     def fill_ethics_ontology(self, ethics_ontology):
