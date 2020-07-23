@@ -13,7 +13,7 @@ yes = ("Y", "y", "yes", "Yes", "YES")
 no = ("N", "n", "no", "No", "NO")
 
 # Globally loading the language model to avoid loading it everytime it's used
-nlp = spacy.load("en_core_web_lg")
+nlp = spacy.load("en_core_web_md")
 
 class Dataset():
 
@@ -61,7 +61,7 @@ class Dataset():
                                 # "0.5" allowed a wider range of words to creep in as issues, so after trial and error I settled on "0.6".
                                 if (str(token).lower() == issue.lower()) or (token.has_vector and token.similarity(nlp(issue)) > 0.6) :
                                     data_property = [word_list[1]][0]
-                                    print(f"Token : {str(token)} | Issue : {issue} | Property : {data_property}")
+                                    # print(f"Token : {str(token)} | Issue : {issue} | Property : {data_property}")
                                     self.ethics_ontology_dictionary[data_property] = True
 
 
