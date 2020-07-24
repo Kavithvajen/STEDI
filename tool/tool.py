@@ -1,5 +1,5 @@
 import rdflib
-from rdflib.namespace import RDF, RDFS, OWL
+from rdflib.namespace import RDF, RDFS, OWL, XSD
 import requests
 import json
 import sys
@@ -15,15 +15,16 @@ no = ("N", "n", "no", "No", "NO")
 # Globally loading the language model to avoid loading it everytime it's used
 nlp = spacy.load("en_core_web_md")
 
-class Dataset():
+ # Ethics Ontology Namespace
+EONS = rdflib.Namespace("https://www.scss.tcd.ie/~kamarajk/EthicsOntology#")
 
-    number_of_datasets = 0
+
+class Dataset():
     # To be able to effectively ignore these common predictes and tokens while processing the dataset.
     common_schema_predicates = (RDF.type, RDFS.range, RDFS.domain, RDFS.label, OWL.imports)
     common_words_to_ignore = ["as", "the", "is", "of", "has"]
 
     def __init__(self, dataset_name):
-        Dataset.number_of_datasets += 1
         self.dataset_name = dataset_name
         self.graph = rdflib.Graph()
         self.ethics_ontology_dictionary = {"hasAge": False, "hasBehaviourData": False, "hasContactInformation": False,
@@ -33,12 +34,21 @@ class Dataset():
         "hasReligion": False, "hasSignedNDA": False,"hasTooManyDataPoints": False, "hasUserTrackingData": False,
         "hasChildData": False, "isValidForProcessing": False, "representsGroups": False, "representsIndividuals": False}
 
+    def list_individuals(self):
+        individuals = [subject for subject in self.graph.subjects(predicate=RDF.type, object=OWL.NamedIndividual)]
+        return individuals
 
-    def load_dataset(self):
-        self.graph.parse(f"input/{self.dataset_name}", format=rdflib.util.guess_format(f"/input/{self.dataset_name}"))
+    def load_dataset(self, folder):
+        self.graph.parse(f"{folder}/{self.dataset_name}", format=rdflib.util.guess_format(f"/{folder}/{self.dataset_name}"))
         self.graph.serialize(format="xml")
-        print(f"\nSUCCESSFULLY LOADED DATASET - {Dataset.number_of_datasets}: {self.dataset_name}\n")
 
+
+class InputDataset(Dataset):
+    number_of_datasets = 0
+
+    def __init__(self, dataset_name):
+        super().__init__(dataset_name)
+        InputDataset.number_of_datasets += 1
 
     def predicate_processor(self, word_lists_dict):
         for p in self.graph.predicates():
@@ -53,7 +63,7 @@ class Dataset():
                 predicate_tokens = nlp(predicate)
 
                 for token in predicate_tokens:
-                    if token.text not in Dataset.common_words_to_ignore:
+                    if token.text not in InputDataset.common_words_to_ignore:
                         for word_list in word_lists_dict.values():
                             for issue in word_list[0]:
                                 # 1st condition checks if its the same thing, this eliminates the unnecessary use of NLP.
@@ -64,19 +74,16 @@ class Dataset():
                                     # print(f"Token : {str(token)} | Issue : {issue} | Property : {data_property}")
                                     self.ethics_ontology_dictionary[data_property] = True
 
-
     def check_individual_specific_issues(self):
         # Checking if any individual in the dataset has too many data points.
-        subjects = []
-        for s in self.graph.subjects():
-            if s not in subjects:
-                subjects.append(s)
+        individuals = self.list_individuals()
 
-        for s in subjects:
+        for i in individuals:
             no_of_data_points = 0
-            for p in self.graph.predicates(subject=s):
+            for p in self.graph.predicates(subject=i):
                 if p not in Dataset.common_schema_predicates:
                     no_of_data_points += 1
+
             # No reason why having 10 data points is high.
             # A number can be fixed if extensive research was conducted in this exact area.
             if no_of_data_points >= 10:
@@ -96,7 +103,6 @@ class Dataset():
         }
 
         self.predicate_processor(word_lists_dict)
-
 
     def questionnaire(self, organisation_name):
         # To check if the data subject has provided the data controller consent to process their data.
@@ -141,7 +147,6 @@ class Dataset():
                 break
             else:
                 print(f"{data_subject} is an invalid input. Try again!\n")
-
 
     def check_vocab(self):
         print(f"\n* Checking for potential ethics issues in the namespaces used for dataset - {self.number_of_datasets}")
@@ -195,7 +200,6 @@ class Dataset():
                         if tag == namespace[0]:
                             # print(f"\nNOTE: This dataset probably contains {namespace} related data as it uses the {data['prefix']} namespace!")
                             self.ethics_ontology_dictionary[namespace[1]] = True
-
 
     def check_predicate_issues(self):
         print(f"\n* Checking for potential ethics issues in the predicates of dataset - {self.number_of_datasets}")
@@ -251,12 +255,8 @@ class Dataset():
 
         self.predicate_processor(word_lists_dict)
 
-
     def fill_ethics_ontology(self, ethics_ontology):
         print(f"\n* Filling the ethics ontology for dataset - {self.number_of_datasets}")
-
-        # Ethics Ontology Namespace
-        EONS = rdflib.Namespace("https://www.scss.tcd.ie/~kamarajk/EthicsOntology#")
 
         # Cleaning up dataset_name so the individuals of the ethics ontology follow a consistent naming convention.
         dataset_name = self.dataset_name.split('.')[0]
@@ -281,9 +281,9 @@ class Dataset():
         for key, value in self.ethics_ontology_dictionary.items():
             ethics_ontology.add((EONS[dataset_name], EONS[key], rdflib.term.Literal(value)))
 
-
     def start_processing(self, organisation_name, ethics_ontology):
-        self.load_dataset()
+        self.load_dataset("input")
+        print(f"\nSUCCESSFULLY LOADED DATASET - {InputDataset.number_of_datasets}: {self.dataset_name}\n")
         self.questionnaire(organisation_name)
         self.check_vocab()
         self.check_predicate_issues()
@@ -291,6 +291,38 @@ class Dataset():
         print(f"\nDONE PROCESSING DATASET - {self.number_of_datasets}: {self.dataset_name}\n")
 
         #print(f"Ethics Ontology Dictionary for dataset - {Dataset.number_of_datasets}: {self.dataset_name}\n{self.ethics_ontology_dictionary}\n\n")
+
+
+class OutputDataset(Dataset):
+    def __init__(self, dataset_name):
+        super().__init__(dataset_name)
+
+    def reset_ethics_ontology_dictionary(self):
+        for key in self.ethics_ontology_dictionary.keys():
+            self.ethics_ontology_dictionary[key] = False
+
+    def querying_service(self):
+        print("\n*Querying Ethics Ontology")
+        individuals = self.list_individuals()
+
+        for individual in individuals:
+            for predicate in self.ethics_ontology_dictionary.keys():
+                if (individual, EONS[predicate], rdflib.term.Literal(True)) in self.graph:
+                    self.ethics_ontology_dictionary[predicate] = True
+
+                if (individual, RDF.type, EONS.Individual) in self.graph:
+                    self.ethics_ontology_dictionary["representsIndividuals"] = True
+                else:
+                    self.ethics_ontology_dictionary["representsGroups"] = True
+
+                self.ethics_ontology_dictionary["hasDataControllerName"] = str(self.graph.value(subject=individual, predicate=EONS.hasDataControllerName))
+
+            print(f"\n\nEthics ontology dictionary for {individual}:\n{self.ethics_ontology_dictionary}")
+            self.reset_ethics_ontology_dictionary()
+
+    def start_processing(self):
+        self.load_dataset("output")
+        self.querying_service()
 
 
 def start_execution():
@@ -305,14 +337,16 @@ def start_execution():
     dataset_objects_list = []
 
     for dataset in dataset_list:
-        dataset_object = Dataset(dataset)
+        dataset_object = InputDataset(dataset)
         dataset_object.start_processing(organisation_name, ethics_ontology)
         dataset_objects_list.append(dataset_object)
 
-    ethics_ontology.serialize(destination='output/Updated_Ethics_Ontology.owl', format='xml')
+    output_ontology_name = "Updated_Ethics_Ontology.owl"
+    ethics_ontology.serialize(destination=f"output/{output_ontology_name}", format='xml')
     print("\nOutput - Updated Ethics Ontology created")
 
-    # integration_issues()
+    output_ontology_object = OutputDataset(output_ontology_name)
+    output_ontology_object.start_processing()
 
 
 def main():
