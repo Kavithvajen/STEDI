@@ -1,0 +1,51 @@
+
+
+ETHICS REPORT FOR HTTPS://WWW.SCSS.TCD.IE/~KAMARAJK/ETHICSONTOLOGY#VOCAB_TESTDATASET
+
+hasAge : False
+hasBehaviourData : False
+hasContactInformation : False
+hasCriminalActivity : False
+hasDataControllerName : yet
+hasEthnicityData : False
+hasFilesWithPIIAttached : True
+hasHealthData : True
+hasIncomeData : False
+hasLoanRecords : False
+hasLocationData : True
+hasName : False
+hasPhysicalCharacteristics : False
+hasPoliticalOpinions : False
+hasReligion : False
+hasSignedNDA : False
+hasTooManyDataPoints : False
+hasUserTrackingData : False
+hasChildData : False
+isValidForProcessing : False
+representsGroups : True
+representsIndividuals : False
+
+ETHICS REPORT FOR HTTPS://WWW.SCSS.TCD.IE/~KAMARAJK/ETHICSONTOLOGY#TESTDATASET
+
+hasAge : True
+hasBehaviourData : True
+hasContactInformation : True
+hasCriminalActivity : False
+hasDataControllerName : test
+hasEthnicityData : True
+hasFilesWithPIIAttached : False
+hasHealthData : True
+hasIncomeData : True
+hasLoanRecords : False
+hasLocationData : False
+hasName : True
+hasPhysicalCharacteristics : True
+hasPoliticalOpinions : False
+hasReligion : False
+hasSignedNDA : False
+hasTooManyDataPoints : True
+hasUserTrackingData : True
+hasChildData : False
+isValidForProcessing : True
+representsGroups : False
+representsIndividuals : True

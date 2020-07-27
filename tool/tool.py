@@ -294,8 +294,18 @@ class InputDataset(Dataset):
 
 
 class OutputDataset(Dataset):
+    ethics_report_name = "Ethics_Report.txt"
     def __init__(self, dataset_name):
         super().__init__(dataset_name)
+        # Removing previous reports.
+        if os.path.exists(f"output/{OutputDataset.ethics_report_name}"):
+            os.remove(f"output/{OutputDataset.ethics_report_name}")
+
+    def report_generation_service(self, individual):
+        with open(f"output/{OutputDataset.ethics_report_name}", "a") as writer:
+            writer.write(f"\n\nETHICS REPORT FOR {individual.upper()}\n")
+            for key, value in self.ethics_ontology_dictionary.items():
+                writer.write(f"\n{key} : {value}")
 
     def reset_ethics_ontology_dictionary(self):
         for key in self.ethics_ontology_dictionary.keys():
@@ -317,7 +327,8 @@ class OutputDataset(Dataset):
 
                 self.ethics_ontology_dictionary["hasDataControllerName"] = str(self.graph.value(subject=individual, predicate=EONS.hasDataControllerName))
 
-            print(f"\n\nEthics ontology dictionary for {individual}:\n{self.ethics_ontology_dictionary}")
+            # print(f"\n\nEthics ontology dictionary for {individual}:\n{self.ethics_ontology_dictionary}")
+            self.report_generation_service(individual)
             self.reset_ethics_ontology_dictionary()
 
     def start_processing(self):
