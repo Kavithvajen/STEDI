@@ -295,15 +295,15 @@ class InputDataset(Dataset):
 
 class OutputDataset(Dataset):
     ethics_report_name = "Ethics_Report.txt"
-    def __init__(self, dataset_name):
+    def __init__(self, dataset_name):# Name of the ethics ontology itself. i.e., UPDATED_ETHICS_ONTOLOGY.OWL
         super().__init__(dataset_name)
         # Removing previous reports.
         if os.path.exists(f"output/{OutputDataset.ethics_report_name}"):
             os.remove(f"output/{OutputDataset.ethics_report_name}")
 
-    def report_generation_service(self, individual):
+    def report_generation_service(self, dataset):
         with open(f"output/{OutputDataset.ethics_report_name}", "a") as writer:
-            writer.write(f"\n\nETHICS REPORT FOR {individual.upper()}\n")
+            writer.write(f"\n\nETHICS REPORT FOR {dataset.upper()}\n")
             for key, value in self.ethics_ontology_dictionary.items():
                 writer.write(f"\n{key} : {value}")
 
@@ -327,8 +327,13 @@ class OutputDataset(Dataset):
 
                 self.ethics_ontology_dictionary["hasDataControllerName"] = str(self.graph.value(subject=individual, predicate=EONS.hasDataControllerName))
 
+            # Extracting the name of the dataset from the individual URL
+            # (E.g.: www.scss.tcs.ie/~kamarajk/Vovab-Dataset) -> Vocab-Dataset
+            individual_parts = individual.split("#")
+            dataset = individual_parts[-1]
+
             # print(f"\n\nEthics ontology dictionary for {individual}:\n{self.ethics_ontology_dictionary}")
-            self.report_generation_service(individual)
+            self.report_generation_service(dataset)
             self.reset_ethics_ontology_dictionary()
 
     def start_processing(self):

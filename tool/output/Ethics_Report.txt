@@ -1,6 +1,6 @@
 
 
-ETHICS REPORT FOR HTTPS://WWW.SCSS.TCD.IE/~KAMARAJK/ETHICSONTOLOGY#VOCAB_TESTDATASET
+ETHICS REPORT FOR VOCAB_TESTDATASET
 
 hasAge : False
 hasBehaviourData : False
@@ -25,7 +25,7 @@ isValidForProcessing : False
 representsGroups : True
 representsIndividuals : False
 
-ETHICS REPORT FOR HTTPS://WWW.SCSS.TCD.IE/~KAMARAJK/ETHICSONTOLOGY#TESTDATASET
+ETHICS REPORT FOR TESTDATASET
 
 hasAge : True
 hasBehaviourData : True
