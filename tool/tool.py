@@ -7,6 +7,7 @@ import os
 import logging
 import spacy
 import re
+import copy
 
 # Using these global lists for code simplification
 yes = ("Y", "y", "yes", "Yes", "YES")
@@ -14,8 +15,7 @@ no = ("N", "n", "no", "No", "NO")
 
 # Globally loading the language model to avoid loading it everytime it's used
 nlp = spacy.load("en_core_web_md")
-
- # Ethics Ontology Namespace
+# Ethics Ontology Namespace
 EONS = rdflib.Namespace("https://www.scss.tcd.ie/~kamarajk/EthicsOntology#")
 
 
@@ -294,7 +294,9 @@ class InputDataset(Dataset):
 
 
 class OutputDataset(Dataset):
+    ethics_dicts_dict = {}
     ethics_report_name = "Ethics_Report.txt"
+
     def __init__(self, dataset_name):# Name of the ethics ontology itself. i.e., UPDATED_ETHICS_ONTOLOGY.OWL
         super().__init__(dataset_name)
         # Removing previous reports.
@@ -332,6 +334,7 @@ class OutputDataset(Dataset):
             individual_parts = individual.split("#")
             dataset = individual_parts[-1]
 
+            OutputDataset.ethics_dicts_dict[dataset] = copy.deepcopy(self.ethics_ontology_dictionary)
             # print(f"\n\nEthics ontology dictionary for {individual}:\n{self.ethics_ontology_dictionary}")
             self.report_generation_service(dataset)
             self.reset_ethics_ontology_dictionary()
@@ -378,6 +381,8 @@ def main():
     else:
         print("Wrong option. Aborting program!")
         sys.exit()
+
+    print(f"\n\nOutputDataset.ethics_dicts_dict: \n\n {OutputDataset.ethics_dicts_dict}")
 
     print("\nTool finished running.\n")
 
