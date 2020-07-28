@@ -27,12 +27,14 @@ class Dataset():
     def __init__(self, dataset_name):
         self.dataset_name = dataset_name
         self.graph = rdflib.Graph()
-        self.ethics_ontology_dictionary = {"hasAge": False, "hasBehaviourData": False, "hasContactInformation": False,
-        "hasCriminalActivity": False, "hasDataControllerName": False, "hasEthnicityData": False,
-        "hasFilesWithPIIAttached": False, "hasHealthData": False, "hasIncomeData": False, "hasLoanRecords": False,
-        "hasLocationData": False, "hasName": False, "hasPhysicalCharacteristics": False, "hasPoliticalOpinions": False,
-        "hasReligion": False, "hasSignedNDA": False,"hasTooManyDataPoints": False, "hasUserTrackingData": False,
-        "hasChildData": False, "isValidForProcessing": False, "representsGroups": False, "representsIndividuals": False}
+        self.ethics_ontology_dictionary = {
+            "hasAge": False, "hasBehaviourData": False, "hasChildData": False, "hasContactInformation": False,
+            "hasCriminalActivity": False, "hasDataControllerName": False, "hasEthnicityData": False,
+            "hasFilesWithPIIAttached": False, "hasHealthData": False, "hasIncomeData": False, "hasLoanRecords": False,
+            "hasLocationData": False, "hasName": False, "hasPhysicalCharacteristics": False, "hasPoliticalOpinions": False,
+            "hasReligion": False, "hasSignedNDA": False, "hasTooManyDataPoints": False, "hasUserTrackingData": False,
+            "isValidForProcessing": False, "representsGroups": False, "representsIndividuals": False
+        }
 
     def list_individuals(self):
         individuals = [subject for subject in self.graph.subjects(predicate=RDF.type, object=OWL.NamedIndividual)]
@@ -221,7 +223,7 @@ class InputDataset(Dataset):
             "child_words" : (["child", "kid", "baby", "minor", "juvenile", "teenager", "youngster"],
                             "hasChildData"),
 
-            "criminal_words" : (["criminal", "jail"],
+            "criminal_words" : (["criminal", "jail", "felony", "prison"],
                             "hasCriminalActivity"),
 
             "ethnic_words" : (["language", "race", "community", "accent", "dialect", "immigrant", "religion"],
@@ -294,27 +296,105 @@ class InputDataset(Dataset):
 
 
 class OutputDataset(Dataset):
-    ethics_dicts_dict = {}
-    ethics_report_name = "Ethics_Report.txt"
-
     def __init__(self, dataset_name):# Name of the ethics ontology itself. i.e., UPDATED_ETHICS_ONTOLOGY.OWL
         super().__init__(dataset_name)
-        # Removing previous reports.
-        if os.path.exists(f"output/{OutputDataset.ethics_report_name}"):
-            os.remove(f"output/{OutputDataset.ethics_report_name}")
 
-    def report_generation_service(self, dataset):
-        with open(f"output/{OutputDataset.ethics_report_name}", "a") as writer:
-            writer.write(f"\n\nETHICS REPORT FOR {dataset.upper()}\n")
-            for key, value in self.ethics_ontology_dictionary.items():
-                writer.write(f"\n{key} : {value}")
+        self.ethics_dicts_dict = {} # A master dictionary to hold all the ethics_dictionary values of every dataset
+        self.ethics_report_name = f"Ethics_Report-{self.dataset_name}.txt"
+
+        self.scenario_1_issues = {
+            "hasCriminalActivity":  False,
+            "hasEthnicityData": False,
+            "hasLocationData": False,
+            "hasReligion": False
+        }
+
+        self.scenario_2_issues = {
+            "hasBehaviourData": False,
+            "hasLoanRecords": False,
+            "hasUserTrackingData": False
+        }
+
+        self.scenario_3_issues = {
+            "hasUserTrackingData": False,
+            "hasName": False,
+            "hasBehaviourData": False,
+            "hasLocationData": False
+        }
+
+        self.scenario_4_issues = {
+            "hasAge": False,
+            "hasBehaviourData": False,
+            "hasEthnicityData": False,
+            "hasIncomeData": False,
+            "hasLocationData": False,
+            "hasPoliticalOpinions": False,
+            "hasReligion": False
+        }
+
+        # Removing previous reports.
+        if os.path.exists(f"output/{self.ethics_report_name}"):
+            os.remove(f"output/{self.ethics_report_name}")
+
+    def report_writer(self, text):
+        with open(f"output/{self.ethics_report_name}", "a") as writer:
+            writer.write(f"\n + {text}")
+
+    def report_generation_service(self):
+        with open(f"output/{self.ethics_report_name}", "a") as writer:
+            for dataset, e_dict in self.ethics_dicts_dict.items():
+                writer.write(f"\n\nETHICS REPORT FOR INDIVIDUAL DATASET - {dataset.upper()}\n")
+                for key, value in e_dict.items():
+                    writer.write(f"\n{key} : {value}")
+
+            writer.write(f"\n\n\n\nETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS")
+
+        # Scenario-1 report
+        if self.scenario_1_issues["hasLocationData"] == True and self.scenario_1_issues["hasCriminalActivity"] == True:
+            if self.scenario_1_issues["hasReligion"] == True:
+                self.report_writer("Locations can be linked and certain races can be unethically claimed as more inclined to be criminals.")
+            if self.scenario_1_issues["hasEthnicityData"] == True:
+                self.report_writer("Location can be linked and certain ethnic groups can be unethically claimed as more inclined to be criminals.")
+            self.report_writer("Since locations can be linked and criminal data is involved, any datapoint from any of the datasets can be used to make ethically wrong assumptions. ")
+
+        # Scenario-2 report
+        if self.scenario_2_issues["hasUserTrackingData"] == True and self.scenario_2_issues["hasLoanRecords"] == True:
+            if self.scenario_2_issues["hasBehaviourData"] == True:
+                self.report_writer("By cross-site tracking a user, unethical assumptions can be made with regards to their loan repayment capabiltiies and their general interest/behaviour.")
+            self.report_writer("Cross-site tracking can be linked with the user's loan records to make any unethical assumption regarding the user.")
+
+        # Scenario-3 report
+        if self.scenario_3_issues["hasBehaviourData"] == True:
+            if self.scenario_3_issues["hasUserTrackingData"] == True:
+                self.report_writer("Based on cross-site tracking data and the behavioural data of a user, unethical assumptions can be made about the user's activities thereby manipulating insurance rates.")
+                self.report_writer("Unethical assumption can also be made about the activities of the user's connections (friends, family, followers) on social media accounts.")
+                self.report_writer("Online tracking details of a user is very sensitive. It can be combined with any other data about the individual to gain extra information that the user did not consent to originally.")
+            if self.scenario_3_issues["hasName"] == True:
+                self.report_writer("A user's name & behaviour can be combined to accordingly hike insurance rates. Combined with other data like cross-site tracking, a lot of unethical assumptions can be made about the user and the people in their life.")
+            if self.scenario_3_issues["hasLocationData"] == True:
+                self.report_writer("Residents of certain localities might have to pay higher insurance rates due to unethical assumptions that link behaviour and location of people.")
+
+        # Scenario-4 report
+        if self.scenario_4_issues["hasPoliticalOpinions"] == True:
+            if self.scenario_4_issues["hasAge"] == True:
+                self.report_writer("Certain users can be unethically targeted with others' political opinions just because they belong to the same age group.")
+            if self.scenario_4_issues["hasBehaviourData"] == True:
+                self.report_writer("Certain users can be unethically targeted with others' political opinions just because they exhibit similar behaviour.")
+            if self.scenario_4_issues["hasEthnicityData"] == True:
+                self.report_writer("Certain users can be unethically targeted with others' political opinions just because they belong to the same ethnic group.")
+            if self.scenario_4_issues["hasIncomeData"] == True:
+                self.report_writer("Certain users can be unethically targeted with others' political opinions just because they belong to the same income bracket.")
+            if self.scenario_4_issues["hasLocationData"] == True:
+                self.report_writer("Certain users can be unethically targeted with others' political opinions just because they reside in the same area.")
+            if self.scenario_4_issues["hasReligion"] == True:
+                self.report_writer("Certain users can be unethically targeted with others' political opinions just because they believe in the same religion.")
 
     def reset_ethics_ontology_dictionary(self):
         for key in self.ethics_ontology_dictionary.keys():
             self.ethics_ontology_dictionary[key] = False
 
     def querying_service(self):
-        print("\n*Querying Ethics Ontology")
+        print("\n* Querying the ethics ontology")
         individuals = self.list_individuals()
 
         for individual in individuals:
@@ -334,14 +414,59 @@ class OutputDataset(Dataset):
             individual_parts = individual.split("#")
             dataset = individual_parts[-1]
 
-            OutputDataset.ethics_dicts_dict[dataset] = copy.deepcopy(self.ethics_ontology_dictionary)
+            self.ethics_dicts_dict[dataset] = copy.deepcopy(self.ethics_ontology_dictionary)
             # print(f"\n\nEthics ontology dictionary for {individual}:\n{self.ethics_ontology_dictionary}")
-            self.report_generation_service(dataset)
+            # self.report_generation_service(dataset)
             self.reset_ethics_ontology_dictionary()
+
+    def quick_issue_checker(self, issue, dataset):
+        # A method to just check for specific issues to see if they can be a linking point.
+        for d, e_dict in self.ethics_dicts_dict.items():
+            if d != dataset and e_dict[issue] == True:
+                return True
+
+        return False
+
+    def check_integration_issue_scenarios(self):
+        for dataset, ethics_dict in self.ethics_dicts_dict.items():
+            # Scenario-1 : Check for ethnicity-criminal associations being made.
+            for issue in self.scenario_1_issues.keys():
+                if ethics_dict[issue] == True:
+                    if issue == "hasLocationData": # A minimum of 2 datasets need have location data to provide linkage between the datasets.
+                        self.scenario_1_issues[issue] = self.quick_issue_checker(issue, dataset)
+                    else:
+                        self.scenario_1_issues[issue] = True
+
+            # Scenario-2 : Check for behaviour-loan repayment associations being made.
+            for issue in self.scenario_2_issues.keys():
+                if ethics_dict[issue] == True:
+                    if issue == "hasUserTrackingData": # A minimum of 2 datasets need have tracking data to provide linkage between the datasets.
+                        self.scenario_2_issues[issue] = self.quick_issue_checker(issue, dataset)
+                    else:
+                        self.scenario_2_issues[issue] = True
+
+            # Scenario-3 : Check for social media activity used to manipulate insurance rates.
+            for issue in self.scenario_3_issues.keys():
+                if ethics_dict[issue] == True:
+                    if issue == "hasBehaviourData":
+                        self.scenario_3_issues[issue] = True
+                    else: # Tracking, neame & location need to be common to provide some linkage between the datasets.
+                        self.scenario_3_issues[issue] = self.quick_issue_checker(issue, dataset)
+
+
+            # Scenario-4 : Check for tailored reality/ filtered bubble issue caused by grouping of political opinions and other factors.
+            for issue in self.scenario_4_issues.keys():
+                if ethics_dict[issue] == True:
+                    if issue == "hasPoliticalOpinions":
+                        self.scenario_4_issues[issue] = True
+                    else: # Age, behaviour, ethnicity, income, location, religion need to be common to provide some linkage between the datasets.
+                        self.scenario_4_issues[issue] = self.quick_issue_checker(issue, dataset)
 
     def start_processing(self):
         self.load_dataset("output")
         self.querying_service()
+        self.check_integration_issue_scenarios()
+        self.report_generation_service()
 
 
 def start_execution():
@@ -352,7 +477,7 @@ def start_execution():
     ethics_ontology.parse("ontology/EthicsOntology.owl", format = rdflib.util.guess_format('/ontology/EthicsOntology.owl'))
 
     # Importing the input datasets
-    dataset_list = [f for f in os.listdir("Input") if not f.startswith(".")]
+    dataset_list = [f for f in os.listdir("Input") if not f.startswith(".") and f != "catalog-v001.xml"]
     dataset_objects_list = []
 
     for dataset in dataset_list:
@@ -381,8 +506,6 @@ def main():
     else:
         print("Wrong option. Aborting program!")
         sys.exit()
-
-    print(f"\n\nOutputDataset.ethics_dicts_dict: \n\n {OutputDataset.ethics_dicts_dict}")
 
     print("\nTool finished running.\n")
 

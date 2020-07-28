@@ -1,0 +1,59 @@
+
+
+ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
+
+hasAge : False
+hasBehaviourData : False
+hasChildData : False
+hasContactInformation : False
+hasCriminalActivity : False
+hasDataControllerName : ter
+hasEthnicityData : False
+hasFilesWithPIIAttached : True
+hasHealthData : True
+hasIncomeData : False
+hasLoanRecords : False
+hasLocationData : True
+hasName : False
+hasPhysicalCharacteristics : False
+hasPoliticalOpinions : False
+hasReligion : False
+hasSignedNDA : False
+hasTooManyDataPoints : False
+hasUserTrackingData : False
+isValidForProcessing : False
+representsGroups : True
+representsIndividuals : False
+
+ETHICS REPORT FOR INDIVIDUAL DATASET - TESTDATASET
+
+hasAge : True
+hasBehaviourData : True
+hasChildData : False
+hasContactInformation : True
+hasCriminalActivity : True
+hasDataControllerName : test
+hasEthnicityData : True
+hasFilesWithPIIAttached : False
+hasHealthData : True
+hasIncomeData : True
+hasLoanRecords : False
+hasLocationData : True
+hasName : True
+hasPhysicalCharacteristics : True
+hasPoliticalOpinions : False
+hasReligion : True
+hasSignedNDA : False
+hasTooManyDataPoints : True
+hasUserTrackingData : True
+isValidForProcessing : True
+representsGroups : False
+representsIndividuals : True
+
+
+
+ETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS
+ + Locations can be linked and certain races can be unethically claimed as more inclined to be criminals.
+ + Location can be linked and certain ethnic groups can be unethically claimed as more inclined to be criminals.
+ + Since locations can be linked and criminal data is involved, any datapoint from any of the datasets can be used to make ethically wrong assumptions. 
+ + Residents of certain localities might have to pay higher insurance rates due to unethical assumptions that link behaviour and location of people.
