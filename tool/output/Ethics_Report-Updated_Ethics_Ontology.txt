@@ -1,5 +1,30 @@
 
 
+ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
+
+hasAge : True
+hasBehaviourData : True
+hasChildData : False
+hasContactInformation : False
+hasCriminalActivity : False
+hasDataControllerName : yiu
+hasEthnicityData : True
+hasFilesWithPIIAttached : False
+hasHealthData : True
+hasIncomeData : True
+hasLoanRecords : True
+hasLocationData : True
+hasName : True
+hasPhysicalCharacteristics : False
+hasPoliticalOpinions : True
+hasReligion : True
+hasSignedNDA : False
+hasTooManyDataPoints : False
+hasUserTrackingData : True
+isValidForProcessing : False
+representsGroups : False
+representsIndividuals : True
+
 ETHICS REPORT FOR INDIVIDUAL DATASET - TESTDATASET
 
 hasAge : True
@@ -22,31 +47,6 @@ hasSignedNDA : False
 hasTooManyDataPoints : True
 hasUserTrackingData : True
 isValidForProcessing : True
-representsGroups : False
-representsIndividuals : True
-
-ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
-
-hasAge : True
-hasBehaviourData : True
-hasChildData : False
-hasContactInformation : False
-hasCriminalActivity : False
-hasDataControllerName : yet
-hasEthnicityData : True
-hasFilesWithPIIAttached : False
-hasHealthData : True
-hasIncomeData : True
-hasLoanRecords : True
-hasLocationData : True
-hasName : True
-hasPhysicalCharacteristics : False
-hasPoliticalOpinions : True
-hasReligion : True
-hasSignedNDA : False
-hasTooManyDataPoints : False
-hasUserTrackingData : True
-isValidForProcessing : False
 representsGroups : False
 representsIndividuals : True
 
