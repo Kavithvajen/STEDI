@@ -115,12 +115,6 @@
     
 
 
-    <!-- https://w3id.org/GConsent#OnlineTracker -->
-
-    <DatatypeProperty rdf:about="https://w3id.org/GConsent#OnlineTracker"/>
-    
-
-
     <!-- https://w3id.org/GConsent#ageBracket -->
 
     <DatatypeProperty rdf:about="https://w3id.org/GConsent#ageBracket"/>
@@ -130,18 +124,6 @@
     <!-- https://w3id.org/GConsent#behaviouralStatisticsPresent -->
 
     <DatatypeProperty rdf:about="https://w3id.org/GConsent#behaviouralStatisticsPresent"/>
-    
-
-
-    <!-- https://w3id.org/GConsent#hasLoanRecords -->
-
-    <DatatypeProperty rdf:about="https://w3id.org/GConsent#hasLoanRecords"/>
-    
-
-
-    <!-- https://w3id.org/GConsent#hasName -->
-
-    <DatatypeProperty rdf:about="https://w3id.org/GConsent#hasName"/>
     
 
 
@@ -200,12 +182,9 @@
     <NamedIndividual rdf:about="http://eventseer.net/e/5554/">
         <GConsent:EarningsData rdf:resource="http://colinda.org/resource/conference/WORLDCOMP/2008"/>
         <GConsent:hasEthnicDataIn rdf:resource="http://colinda.org/resource/conference/WORLDCOMP/2008"/>
-        <GConsent:Location rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</GConsent:Location>
-        <GConsent:OnlineTracker rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ijsijj890</GConsent:OnlineTracker>
+        <GConsent:Location rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</GConsent:Location>
         <GConsent:ageBracket>10-20</GConsent:ageBracket>
         <GConsent:behaviouralStatisticsPresent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</GConsent:behaviouralStatisticsPresent>
-        <GConsent:hasLoanRecords rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</GConsent:hasLoanRecords>
-        <GConsent:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tester</GConsent:hasName>
         <GConsent:hasReligion rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">Islam</GConsent:hasReligion>
     </NamedIndividual>
 </rdf:RDF>

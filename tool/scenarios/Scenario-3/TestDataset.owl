@@ -41,12 +41,6 @@
     
 
 
-    <!-- http://localhost:8080/belongsToRace -->
-
-    <owl:DatatypeProperty rdf:about="http://localhost:8080/belongsToRace"/>
-    
-
-
     <!-- http://localhost:8080/firstLanguage -->
 
     <owl:DatatypeProperty rdf:about="http://localhost:8080/firstLanguage">
@@ -60,27 +54,9 @@
     
 
 
-    <!-- http://localhost:8080/followsReligion -->
+    <!-- http://localhost:8080/hasAddress -->
 
-    <owl:DatatypeProperty rdf:about="http://localhost:8080/followsReligion"/>
-    
-
-
-    <!-- http://localhost:8080/hasBeenToJailInTheYear -->
-
-    <owl:DatatypeProperty rdf:about="http://localhost:8080/hasBeenToJailInTheYear"/>
-    
-
-
-    <!-- http://localhost:8080/livesIn -->
-
-    <owl:DatatypeProperty rdf:about="http://localhost:8080/livesIn"/>
-    
-
-
-    <!-- http://localhost:8080/politicallyInclinedTowards -->
-
-    <owl:DatatypeProperty rdf:about="http://localhost:8080/politicallyInclinedTowards"/>
+    <owl:DatatypeProperty rdf:about="http://localhost:8080/hasAddress"/>
     
 
 
@@ -114,9 +90,8 @@
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <adTrackingID>Amazon: OtL6cU1g1ee5i0dqPIUP</adTrackingID>
         <adTrackingID>Google: xT6mjzCpMTGuwgzkqgdK</adTrackingID>
-        <belongsToRace xml:lang="en">Asian</belongsToRace>
         <firstLanguage>English</firstLanguage>
-        <hasBeenToJailInTheYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2021</hasBeenToJailInTheYear>
+        <hasAddress xml:lang="en">Leinster, Dublin, Ireland</hasAddress>
         <foaf1:accountName>GP_Racer123</foaf1:accountName>
         <foaf1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</foaf1:age>
         <foaf1:birthday>02-03-2005</foaf1:birthday>
@@ -135,7 +110,6 @@
 
     <owl:NamedIndividual rdf:about="http://localhost:8080/JohnRamsay">
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
-        <livesIn xml:lang="en">Dublin</livesIn>
         <salary>40,000 EUR</salary>
         <foaf1:accountName>johnr_1989</foaf1:accountName>
         <foaf1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31</foaf1:age>
@@ -160,8 +134,6 @@
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <adTrackingID>Google: XYsa1JUIis9QRiFVY0ck</adTrackingID>
         <firstLanguage>Polish</firstLanguage>
-        <followsReligion xml:lang="en">Hinduism</followsReligion>
-        <politicallyInclinedTowards>Trump</politicallyInclinedTowards>
         <salary>70,000 EUR</salary>
         <foaf1:accountName>RachGG_95</foaf1:accountName>
         <foaf1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</foaf1:age>
