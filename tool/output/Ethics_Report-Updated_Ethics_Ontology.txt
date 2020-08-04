@@ -21,7 +21,7 @@ hasReligion : True
 hasSignedNDA : False
 hasTooManyDataPoints : True
 hasUserTrackingData : True
-isValidForProcessing : False
+isValidForProcessing : True
 representsGroups : False
 representsIndividuals : True
 
@@ -32,7 +32,7 @@ hasBehaviourData : True
 hasChildData : False
 hasContactInformation : False
 hasCriminalActivity : False
-hasDataControllerName : someone
+hasDataControllerName : hjn 
 hasEthnicityData : True
 hasFilesWithPIIAttached : True
 hasHealthData : True

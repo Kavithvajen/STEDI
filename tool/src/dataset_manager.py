@@ -67,7 +67,6 @@ class InputDataset(_Dataset):
                                 # "0.5" allowed a wider range of words to creep in as issues, so after trial and error I settled on "0.6".
                                 if (str(token).lower() == issue.lower()) or (token.has_vector and token.similarity(nlp(issue)) > 0.6) :
                                     data_property = [word_list[1]][0]
-                                    # print(f"Token : {str(token)} | Issue : {issue} | Property : {data_property}")
                                     self.ethics_ontology_dictionary[data_property] = True
 
     def check_individual_specific_issues(self):
@@ -101,37 +100,10 @@ class InputDataset(_Dataset):
         self.predicate_processor(word_lists_dict)
 
     def questionnaire(self, organisation_name, questionnaire_answers):
-        # print(f"\n* Please answer the following questionnaire about dataset - {self.number_of_datasets}.")
-        # data_controller = input("\nEnter the name of the data controller that the data subject originally agreed to share their data with: ")
-
         # To check if the data subject has provided the data controller consent to process their data.
         self.ethics_ontology_dictionary["hasDataControllerName"] = questionnaire_answers["data_controller"]
         if organisation_name.lower() == questionnaire_answers["data_controller"].lower():
             self.ethics_ontology_dictionary["isValidForProcessing"] = True
-
-
-        # while True:
-        #     attached_files = input("\nAre there any files attached in this database? [Y/N]: ")
-        #     if attached_files in yes:
-        #         file_name = input("\nEnter name of file or keyword(s) describing the file (E.g: \"resume\"): ")
-        #         file_name = file_name.lower()
-        #         file_name = re.sub("[^a-z ]+", " ", file_name)
-
-        #         issue_tokens = ("resume", "cv","photo", "scan", "finance", "doctor", "personal", "certificate", "proof", "record")
-
-        #         file_name_tokens = nlp(file_name)
-
-        #         for token in file_name_tokens:
-        #             for issue in issue_tokens:
-        #                 # To avoid checking similarity for empty vectors.
-        #                 if token.has_vector and token.similarity(nlp(issue)) > 0.5:
-        #                     self.ethics_ontology_dictionary["hasFilesWithPIIAttached"] = True
-        #         break
-
-        #     elif attached_files in no:
-        #         break
-        #     else:
-        #         print(f"{attached_files} is an invalid input. Try again!\n")
 
         # To check if any PII is present in attached files.
         if questionnaire_answers["files"] != "":
@@ -148,25 +120,11 @@ class InputDataset(_Dataset):
                     if token.has_vector and token.similarity(nlp(issue)) > 0.5:
                         self.ethics_ontology_dictionary["hasFilesWithPIIAttached"] = True
 
-
-        # while True:
-        #     data_subject = input("\nAre the data subjects individuals or groups? [I/G]: ")
-        #     if data_subject == "I" or data_subject == "i":
-        #         self.ethics_ontology_dictionary["representsIndividuals"] = True
-        #         break
-        #     elif data_subject == "G" or data_subject == "g":
-        #         self.ethics_ontology_dictionary["representsGroups"] = True
-        #         break
-        #     else:
-        #         print(f"{data_subject} is an invalid input. Try again!\n")
-
         # To identify the data subject type.
         if questionnaire_answers["data_subject_type"] == "i":
             self.ethics_ontology_dictionary["representsIndividuals"] = True
         else:
             self.ethics_ontology_dictionary["representsGroups"] = True
-
-
 
     def check_vocab(self):
         print(f"\n* Checking for potential ethics issues in the namespaces used for dataset - {self.number_of_datasets}")
@@ -175,9 +133,6 @@ class InputDataset(_Dataset):
         network_error = False
 
         for vocab in self.graph.namespace_manager.namespaces():
-            #ethics_ontology_dictionary = check_vocab(vocab[0], ethics_ontology_dictionary)
-            #ethics_ontology_dictionary, network_error = check_vocab(vocab[0], ethics_ontology_dictionary)
-
             PARAMS = {"vocab" : vocab[0]}
 
             try:
@@ -310,8 +265,6 @@ class InputDataset(_Dataset):
         self.fill_ethics_ontology(ethics_ontology)
         print(f"\nDONE PROCESSING DATASET - {self.number_of_datasets}: {self.dataset_name}\n")
 
-        #print(f"Ethics Ontology Dictionary for dataset - {Dataset.number_of_datasets}: {self.dataset_name}\n{self.ethics_ontology_dictionary}\n\n")
-
 
 class OutputDataset(_Dataset):
     def __init__(self, dataset_name):# Name of the ethics ontology itself. i.e., UPDATED_ETHICS_ONTOLOGY.OWL
@@ -438,8 +391,6 @@ class OutputDataset(_Dataset):
             dataset = individual_parts[-1]
 
             self.ethics_dicts_dict[dataset] = copy.deepcopy(self.ethics_ontology_dictionary)
-            # print(f"\n\nEthics ontology dictionary for {individual}:\n{self.ethics_ontology_dictionary}")
-            # self.report_generation_service(dataset)
             self.reset_ethics_ontology_dictionary()
 
     def quick_issue_checker(self, issue, dataset):
@@ -475,7 +426,6 @@ class OutputDataset(_Dataset):
                         self.scenario_3_issues[issue] = True
                     else: # Tracking, name & location need to be common to provide some linkage between the datasets.
                         self.scenario_3_issues[issue] = self.quick_issue_checker(issue, dataset)
-
 
             # Scenario-4 : Check for tailored reality/ filtered bubble issue caused by grouping of political opinions and other factors.
             for issue in self.scenario_4_issues.keys():
