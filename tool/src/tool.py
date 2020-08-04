@@ -26,27 +26,59 @@ def start_execution():
 def questionnaire(dataset_name):
     answers_objects = {} # A dictionary containing the objects of every answer field
 
-    tk.Label(window, text=f"Enter the name of the data controller (of {dataset_name}) that the data subject originally agreed to share their data with").pack()
+    lbl_data_controller = tk.Label(window, text=f"Enter the name of the data controller (of {dataset_name}) that the data subject originally agreed to share their data with")
+    lbl_data_controller.pack()
     ent_data_controller = tk.Entry()
     ent_data_controller.pack()
+    answers_objects["lbl_data_controller"] = lbl_data_controller
     answers_objects["data_controller"] = ent_data_controller
 
-    tk.Label(window, text=f"If any files are attached to the {dataset_name} dataset, then enter some keyword(s) describing the file. Otherwise, leave the entry blank.").pack()
+    lbl_files = tk.Label(window, text=f"If any files are attached to the {dataset_name} dataset, then enter some keyword(s) describing the file. Otherwise, leave the entry blank.")
+    lbl_files.pack()
     ent_files = tk.Entry()
     ent_files.pack()
+    answers_objects["lbl_files"] = lbl_files
     answers_objects["files"] = ent_files
 
-    tk.Label(window, text=f"Are the data subjects of the {dataset_name} dataset individuals or groups?").pack()
+    lbl_data_subject = tk.Label(window, text=f"Are the data subjects of the {dataset_name} dataset individuals or groups?")
+    lbl_data_subject.pack()
     rdo_data_subject = tk.StringVar(value="x")
-    individuals = tk.Radiobutton(window, text='Individuals', variable=rdo_data_subject, value="i").pack()
-    groups = tk.Radiobutton(window, text='Groups', variable=rdo_data_subject, value="g").pack()
+    rdo_individuals = tk.Radiobutton(window, text='Individuals', variable=rdo_data_subject, value="i")
+    rdo_groups = tk.Radiobutton(window, text='Groups', variable=rdo_data_subject, value="g")
+    rdo_individuals.pack()
+    rdo_groups.pack()
+    answers_objects["lbl_data_subject"] = lbl_data_subject
+    answers_objects["rdo_individuals"] = rdo_individuals
+    answers_objects["rdo_groups"] = rdo_groups
     answers_objects["data_subject_type"] = rdo_data_subject
 
     return answers_objects
 
 def select_file():
+    # Reading the text entry widget for the organisation's name.
+    global organisation_name
+    organisation_name = str(org_name.get())
+
+    # Making sure the entry is not empty or has just spaces.
+    if not organisation_name.strip():
+        messagebox.showerror("Invalid organisation name", "Please enter a valid organisation name!")
+        return
+
+    # Covering the corner case where the select dataset button is clicked again.
+    # Have to clear previous widgets
+    if dataset_answer_entry_objects:
+        for dataset, answers_objects in dataset_answer_entry_objects.items():
+            for key, answer_object in answers_objects.items():
+                if key != "data_subject_type":
+                    answer_object.destroy()
+        btn_done.pack_forget()
+
     window.filenames = filedialog.askopenfilenames(initialdir="/", title="Select Input Datasets", filetypes=(("XML Files", "*.xml"), ("RDF Files", "*.rdf"), ("OWL Files", "*.owl")))
-    filenames = ""
+
+    if lbl_files_chosen["text"].strip():
+        filenames = lbl_files_chosen["text"]
+    else:
+        filenames = ""
 
     for file in window.filenames:
         input_datasets_locations.append(file)
@@ -57,22 +89,30 @@ def select_file():
         else:
             filenames = file
 
-    global organisation_name
-    organisation_name = org_name.get()
-    print(f"Organisation: {organisation_name}")
-
     lbl_files_chosen["text"] = filenames
 
     for dataset in input_datasets_list:
         dataset_answer_entry_objects[dataset] = questionnaire(dataset)
 
-    btn_done.pack()
+    if input_datasets_list:
+        btn_done.pack()
 
 def done():
+
+    for dataset in dataset_answer_entry_objects.keys():
+        if not str(dataset_answer_entry_objects[dataset]["data_controller"].get()).strip():
+            messagebox.showerror("Invalid data controller", f"No data controller name entered for the dataset - {dataset}. If unknown, enter \"UNKNOWN\" in the entry field.")
+            return
+
+        if dataset_answer_entry_objects[dataset]["data_subject_type"].get() == "x":
+            messagebox.showerror("No data subject type chosen", f"No selection was made for the data subject type (individual or group) for the dataset - {dataset}")
+            return
+
     for dataset, answers_objects in dataset_answer_entry_objects.items():
         questionnaire_answers_dict[dataset] = {}
         for key, answer_object in answers_objects.items():
-            questionnaire_answers_dict[dataset][key] = str(answer_object.get())
+            if not key.startswith("lbl") and not key.startswith("rdo"):
+                questionnaire_answers_dict[dataset][key] = str(answer_object.get())
 
     print(f"Answers dictionary: {questionnaire_answers_dict}")
     start_execution()
@@ -98,11 +138,10 @@ tk.Label(window, text="Please input the name of your organisation: ").pack()
 org_name = tk.StringVar() # Stores the current organisation's name.
 ent_org_name = tk.Entry(master=window, textvariable=org_name).pack()
 lbl_files_chosen = tk.Label(master=window, text=" ")
-
+btn_done = tk.Button(master=window, text="Done", command=done)
 lbl_file_chosen_label = tk.Label(master=window, text="Chosen input datasets: ").pack()
 lbl_files_chosen.pack()
 btn_input = tk.Button(master=window, text="Select Input Datasets", command=select_file)
-btn_done = tk.Button(master=window, text="Done", command=done)
 btn_input.pack()
 
 window.mainloop()
