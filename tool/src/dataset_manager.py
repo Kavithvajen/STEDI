@@ -1,25 +1,19 @@
+import copy
+import json
+import re
+import os
+import spacy
+import requests
 import rdflib
 from rdflib.namespace import RDF, RDFS, OWL, XSD
-import requests
-import json
-import sys
-import os
-import logging
-import spacy
-import re
-import copy
-
-# Using these global lists for code simplification
-yes = ("Y", "y", "yes", "Yes", "YES")
-no = ("N", "n", "no", "No", "NO")
 
 # Globally loading the language model to avoid loading it everytime it's used
 nlp = spacy.load("en_core_web_md")
+
 # Ethics Ontology Namespace
 EONS = rdflib.Namespace("https://www.scss.tcd.ie/~kamarajk/EthicsOntology#")
 
-
-class Dataset():
+class _Dataset():
     # To be able to effectively ignore these common predictes and tokens while processing the dataset.
     common_schema_predicates = (RDF.type, RDFS.range, RDFS.domain, RDFS.label, OWL.imports)
     common_words_to_ignore = ["as", "the", "is", "of", "has"]
@@ -40,12 +34,12 @@ class Dataset():
         individuals = [subject for subject in self.graph.subjects(predicate=RDF.type, object=OWL.NamedIndividual)]
         return individuals
 
-    def load_dataset(self, folder):
-        self.graph.parse(f"{folder}/{self.dataset_name}", format=rdflib.util.guess_format(f"/{folder}/{self.dataset_name}"))
+    def load_dataset(self, file_location):
+        self.graph.parse(file_location, format=rdflib.util.guess_format(file_location))
         self.graph.serialize(format="xml")
 
 
-class InputDataset(Dataset):
+class InputDataset(_Dataset):
     number_of_datasets = 0
 
     def __init__(self, dataset_name):
@@ -54,7 +48,7 @@ class InputDataset(Dataset):
 
     def predicate_processor(self, word_lists_dict):
         for p in self.graph.predicates():
-            if p not in Dataset.common_schema_predicates:
+            if p not in _Dataset.common_schema_predicates:
                 predicate_parts = p.split("/")
                 predicate = predicate_parts[-1]
                 predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
@@ -65,7 +59,7 @@ class InputDataset(Dataset):
                 predicate_tokens = nlp(predicate)
 
                 for token in predicate_tokens:
-                    if token.text not in InputDataset.common_words_to_ignore:
+                    if token.text not in _Dataset.common_words_to_ignore:
                         for word_list in word_lists_dict.values():
                             for issue in word_list[0]:
                                 # 1st condition checks if its the same thing, this eliminates the unnecessary use of NLP.
@@ -83,7 +77,7 @@ class InputDataset(Dataset):
         for i in individuals:
             no_of_data_points = 0
             for p in self.graph.predicates(subject=i):
-                if p not in Dataset.common_schema_predicates:
+                if p not in _Dataset.common_schema_predicates:
                     no_of_data_points += 1
 
             # No reason why having 10 data points is high.
@@ -106,49 +100,73 @@ class InputDataset(Dataset):
 
         self.predicate_processor(word_lists_dict)
 
-    def questionnaire(self, organisation_name):
+    def questionnaire(self, organisation_name, questionnaire_answers):
+        # print(f"\n* Please answer the following questionnaire about dataset - {self.number_of_datasets}.")
+        # data_controller = input("\nEnter the name of the data controller that the data subject originally agreed to share their data with: ")
+
         # To check if the data subject has provided the data controller consent to process their data.
-        print(f"\n* Please answer the following questionnaire about dataset - {self.number_of_datasets}.")
-        data_controller = input("\nEnter the name of the data controller that the data subject originally agreed to share their data with: ")
-        self.ethics_ontology_dictionary["hasDataControllerName"] = data_controller
-        if organisation_name.lower() == data_controller.lower():
+        self.ethics_ontology_dictionary["hasDataControllerName"] = questionnaire_answers["data_controller"]
+        if organisation_name.lower() == questionnaire_answers["data_controller"].lower():
             self.ethics_ontology_dictionary["isValidForProcessing"] = True
 
+
+        # while True:
+        #     attached_files = input("\nAre there any files attached in this database? [Y/N]: ")
+        #     if attached_files in yes:
+        #         file_name = input("\nEnter name of file or keyword(s) describing the file (E.g: \"resume\"): ")
+        #         file_name = file_name.lower()
+        #         file_name = re.sub("[^a-z ]+", " ", file_name)
+
+        #         issue_tokens = ("resume", "cv","photo", "scan", "finance", "doctor", "personal", "certificate", "proof", "record")
+
+        #         file_name_tokens = nlp(file_name)
+
+        #         for token in file_name_tokens:
+        #             for issue in issue_tokens:
+        #                 # To avoid checking similarity for empty vectors.
+        #                 if token.has_vector and token.similarity(nlp(issue)) > 0.5:
+        #                     self.ethics_ontology_dictionary["hasFilesWithPIIAttached"] = True
+        #         break
+
+        #     elif attached_files in no:
+        #         break
+        #     else:
+        #         print(f"{attached_files} is an invalid input. Try again!\n")
+
         # To check if any PII is present in attached files.
-        while True:
-            attached_files = input("\nAre there any files attached in this database? [Y/N]: ")
-            if attached_files in yes:
-                file_name = input("\nEnter name of file or keyword(s) describing the file (E.g: \"resume\"): ")
-                file_name = file_name.lower()
-                file_name = re.sub("[^a-z ]+", " ", file_name)
+        if questionnaire_answers["files"] != "":
+            file_name = questionnaire_answers["files"].lower()
+            file_name = re.sub("[^a-z ]+", " ", file_name)
 
-                issue_tokens = ("resume", "cv","photo", "scan", "finance", "doctor", "personal", "certificate", "proof", "record")
+            issue_tokens = ("resume", "cv","photo", "scan", "finance", "doctor", "personal", "certificate", "proof", "record")
 
-                file_name_tokens = nlp(file_name)
+            file_name_tokens = nlp(file_name)
 
-                for token in file_name_tokens:
-                    for issue in issue_tokens:
-                        # To avoid checking similarity for empty vectors.
-                        if token.has_vector and token.similarity(nlp(issue)) > 0.5:
-                            self.ethics_ontology_dictionary["hasFilesWithPIIAttached"] = True
-                break
+            for token in file_name_tokens:
+                for issue in issue_tokens:
+                    # To avoid checking similarity for empty vectors.
+                    if token.has_vector and token.similarity(nlp(issue)) > 0.5:
+                        self.ethics_ontology_dictionary["hasFilesWithPIIAttached"] = True
 
-            elif attached_files in no:
-                break
-            else:
-                print(f"{attached_files} is an invalid input. Try again!\n")
+
+        # while True:
+        #     data_subject = input("\nAre the data subjects individuals or groups? [I/G]: ")
+        #     if data_subject == "I" or data_subject == "i":
+        #         self.ethics_ontology_dictionary["representsIndividuals"] = True
+        #         break
+        #     elif data_subject == "G" or data_subject == "g":
+        #         self.ethics_ontology_dictionary["representsGroups"] = True
+        #         break
+        #     else:
+        #         print(f"{data_subject} is an invalid input. Try again!\n")
 
         # To identify the data subject type.
-        while True:
-            data_subject = input("\nAre the data subjects individuals or groups? [I/G]: ")
-            if data_subject == "I" or data_subject == "i":
-                self.ethics_ontology_dictionary["representsIndividuals"] = True
-                break
-            elif data_subject == "G" or data_subject == "g":
-                self.ethics_ontology_dictionary["representsGroups"] = True
-                break
-            else:
-                print(f"{data_subject} is an invalid input. Try again!\n")
+        if questionnaire_answers["data_subject_type"] == "i":
+            self.ethics_ontology_dictionary["representsIndividuals"] = True
+        else:
+            self.ethics_ontology_dictionary["representsGroups"] = True
+
+
 
     def check_vocab(self):
         print(f"\n* Checking for potential ethics issues in the namespaces used for dataset - {self.number_of_datasets}")
@@ -283,10 +301,10 @@ class InputDataset(Dataset):
         for key, value in self.ethics_ontology_dictionary.items():
             ethics_ontology.add((EONS[dataset_name], EONS[key], rdflib.term.Literal(value)))
 
-    def start_processing(self, organisation_name, ethics_ontology):
-        self.load_dataset("input")
+    def start_processing(self, organisation_name, ethics_ontology, file_location, questionnaire_answers):
+        self.load_dataset(file_location)
         print(f"\nSUCCESSFULLY LOADED DATASET - {InputDataset.number_of_datasets}: {self.dataset_name}\n")
-        self.questionnaire(organisation_name)
+        self.questionnaire(organisation_name, questionnaire_answers)
         self.check_vocab()
         self.check_predicate_issues()
         self.fill_ethics_ontology(ethics_ontology)
@@ -295,7 +313,7 @@ class InputDataset(Dataset):
         #print(f"Ethics Ontology Dictionary for dataset - {Dataset.number_of_datasets}: {self.dataset_name}\n{self.ethics_ontology_dictionary}\n\n")
 
 
-class OutputDataset(Dataset):
+class OutputDataset(_Dataset):
     def __init__(self, dataset_name):# Name of the ethics ontology itself. i.e., UPDATED_ETHICS_ONTOLOGY.OWL
         super().__init__(dataset_name)
 
@@ -334,15 +352,15 @@ class OutputDataset(Dataset):
         }
 
         # Removing previous reports.
-        if os.path.exists(f"output/{self.ethics_report_name}"):
-            os.remove(f"output/{self.ethics_report_name}")
+        if os.path.exists(f"../output/{self.ethics_report_name}"):
+            os.remove(f"../output/{self.ethics_report_name}")
 
     def report_writer(self, scenario, text):
-        with open(f"output/{self.ethics_report_name}", "a") as writer:
+        with open(f"../output/{self.ethics_report_name}", "a") as writer:
             writer.write(f"\n + {scenario.upper()} : {text}\n")
 
     def report_generation_service(self):
-        with open(f"output/{self.ethics_report_name}", "a") as writer:
+        with open(f"../output/{self.ethics_report_name}", "a") as writer:
             for dataset, e_dict in self.ethics_dicts_dict.items():
                 writer.write(f"\n\nETHICS REPORT FOR INDIVIDUAL DATASET - {dataset.upper()}\n")
                 for key, value in e_dict.items():
@@ -415,7 +433,7 @@ class OutputDataset(Dataset):
                 self.ethics_ontology_dictionary["hasDataControllerName"] = str(self.graph.value(subject=individual, predicate=EONS.hasDataControllerName))
 
             # Extracting the name of the dataset from the individual URL
-            # (E.g.: www.scss.tcs.ie/~kamarajk/Vovab-Dataset) -> Vocab-Dataset
+            # (E.g.: www.scss.tcs.ie/~kamarajk#Vocab-Dataset) -> Vocab-Dataset
             individual_parts = individual.split("#")
             dataset = individual_parts[-1]
 
@@ -467,53 +485,8 @@ class OutputDataset(Dataset):
                     else: # Age, behaviour, ethnicity, income, location, religion need to be common to provide some linkage between the datasets.
                         self.scenario_4_issues[issue] = self.quick_issue_checker(issue, dataset)
 
-    def start_processing(self):
-        self.load_dataset("output")
+    def start_processing(self, file_location):
+        self.load_dataset(file_location)
         self.querying_service()
         self.check_integration_issue_scenarios()
         self.report_generation_service()
-
-
-def start_execution():
-    organisation_name = input("\nPlease input the name of your organisation: ")
-
-    # Importing the ethics ontology
-    ethics_ontology = rdflib.Graph()
-    ethics_ontology.parse("ontology/EthicsOntology.owl", format = rdflib.util.guess_format('/ontology/EthicsOntology.owl'))
-
-    # Importing the input datasets
-    dataset_list = [f for f in os.listdir("Input") if not f.startswith(".") and f != "catalog-v001.xml"]
-    dataset_objects_list = []
-
-    for dataset in dataset_list:
-        dataset_object = InputDataset(dataset)
-        dataset_object.start_processing(organisation_name, ethics_ontology)
-        dataset_objects_list.append(dataset_object)
-
-    output_ontology_name = "Updated_Ethics_Ontology.owl"
-    ethics_ontology.serialize(destination=f"output/{output_ontology_name}", format='xml')
-    print("\nOutput - Updated Ethics Ontology created")
-
-    output_ontology_object = OutputDataset(output_ontology_name)
-    output_ontology_object.start_processing()
-
-
-def main():
-    #The following line is to suppress a common warning message by the rdflib package.
-    logging.getLogger("rdflib").setLevel(logging.ERROR)
-
-    option = input("\nStarted the tool successfully.\n\nAre all the input datasets in the \"input\" folder? [Y/N]: ")
-    if option in yes:
-        start_execution()
-    elif option in no:
-        print("\nOkay! Make sure all the input datasets are in the \"input\" folder and then start the tool.")
-        sys.exit()
-    else:
-        print("Wrong option. Aborting program!")
-        sys.exit()
-
-    print("\nTool finished running.\n")
-
-
-if __name__ == "__main__":
-    main()
