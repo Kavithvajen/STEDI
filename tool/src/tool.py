@@ -37,7 +37,7 @@ def questionnaire(dataset_name):
     answers_objects["files"] = ent_files
 
     tk.Label(window, text=f"Are the data subjects of the {dataset_name} dataset individuals or groups?").pack()
-    rdo_data_subject = tk.StringVar()
+    rdo_data_subject = tk.StringVar(value="x")
     individuals = tk.Radiobutton(window, text='Individuals', variable=rdo_data_subject, value="i").pack()
     groups = tk.Radiobutton(window, text='Groups', variable=rdo_data_subject, value="g").pack()
     answers_objects["data_subject_type"] = rdo_data_subject
