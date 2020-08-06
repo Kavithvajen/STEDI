@@ -256,23 +256,35 @@ class InputDataset(_Dataset):
         for key, value in self.ethics_ontology_dictionary.items():
             ethics_ontology.add((EONS[dataset_name], EONS[key], rdflib.term.Literal(value)))
 
-    def start_processing(self, organisation_name, ethics_ontology, file_location, questionnaire_answers, logger):
+    def start_processing(self, organisation_name,
+            ethics_ontology, file_location, questionnaire_answers,
+            logger, progress_bar, progress_value):
         self.load_dataset(file_location)
         logger["text"] = f"SUCCESSFULLY LOADED {self.dataset_name}"
         logger.update()
+        progress_bar["value"] += progress_value
         # print(f"\nSUCCESSFULLY LOADED DATASET - {InputDataset.number_of_datasets}: {self.dataset_name}\n")
+
         self.questionnaire(organisation_name, questionnaire_answers)
+
         logger["text"] = f"CHECKING NAMESPACE OF {self.dataset_name}"
         logger.update()
         self.check_vocab()
+        progress_bar["value"] += progress_value
+
         logger["text"] = f"CHECKING PREDICATES OF {self.dataset_name}"
         logger.update()
         self.check_predicate_issues()
+        progress_bar["value"] += progress_value
+
         logger["text"] = f"FILLING ETHICS ONTOLOGY FOR {self.dataset_name}"
         logger.update()
         self.fill_ethics_ontology(ethics_ontology)
+        progress_bar["value"] += progress_value
+
         logger["text"] = f"DONE PROCESSING - {self.dataset_name}"
         logger.update()
+        progress_bar["value"] += progress_value
         # print(f"\nDONE PROCESSING DATASET - {self.number_of_datasets}: {self.dataset_name}\n")
 
 
@@ -445,19 +457,23 @@ class OutputDataset(_Dataset):
                     else: # Age, behaviour, ethnicity, income, location, religion need to be common to provide some linkage between the datasets.
                         self.scenario_4_issues[issue] = self.quick_issue_checker(issue, dataset)
 
-    def start_processing(self, file_location, logger):
+    def start_processing(self, file_location, logger, progress_bar, progress_value):
         self.load_dataset(file_location)
         logger["text"] = f"LOADED OUTPUT DATASET - {self.dataset_name}"
         logger.update()
+        progress_bar["value"] += progress_value
 
         logger["text"] = "QUERYING THE ONTOLOGY"
         logger.update()
         self.querying_service()
+        progress_bar["value"] += progress_value
 
         logger["text"] = "CHECKING FOR INTEGRATION ISSUE SCENARIOS"
         logger.update()
         self.check_integration_issue_scenarios()
+        progress_bar["value"] += progress_value
 
         logger["text"] = "GENERATING REPORT"
         logger.update()
         self.report_generation_service()
+        progress_bar["value"] += progress_value

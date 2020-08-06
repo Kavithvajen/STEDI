@@ -2,10 +2,10 @@ import os
 import rdflib
 import logging
 import tkinter as tk
-from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 from tkinter import simpledialog
+from tkinter import ttk, HORIZONTAL
 from dataset_manager import InputDataset, OutputDataset
 
 class GUI():
@@ -32,20 +32,23 @@ class GUI():
                 break
 
     def start_tool_execution(self):
+        progress_value = 100 / ((len(self.input_datasets_list) *  5) + 5)
         for dataset in self.input_datasets_list:
             dataset_name_without_ext = os.path.splitext(dataset)[0]
             dataset_object = InputDataset(dataset_name_without_ext)
             dataset_file_location = self.input_datasets_locations[self.input_datasets_list.index(dataset)]
-            dataset_object.start_processing(self.organisation_name, self.ethics_ontology, dataset_file_location, self.questionnaire_answers_dict[dataset], self.lbl_logger)
+            dataset_object.start_processing(self.organisation_name, self.ethics_ontology, dataset_file_location,
+                self.questionnaire_answers_dict[dataset], self.lbl_logger, self.progress_bar, progress_value)
 
         output_ontology_name = "Updated_Ethics_Ontology.owl"
         output_ontology_location = f"../output/{output_ontology_name}"
         self.ethics_ontology.serialize(destination=output_ontology_location, format='xml')
-        print("\nOutput - Updated Ethics Ontology created")
+        self.progress_bar["value"] += progress_value
+        # print("\nOutput - Updated Ethics Ontology created")
 
         output_ontology_object = OutputDataset(output_ontology_name)
-        output_ontology_object.start_processing(output_ontology_location, self.lbl_logger)
-        print("\n\nTool finished running. Report has been generated in the \"output\" folder.")
+        output_ontology_object.start_processing(output_ontology_location, self.lbl_logger, self.progress_bar, progress_value)
+        # print("\n\nTool finished running. Report has been generated in the \"output\" folder.")
         messagebox.showinfo("Tool finished running","The datasets have been processed and an ethics report has been generated in the \"output\" folder.")
 
     def questionnaire(self, dataset_name):
@@ -122,6 +125,10 @@ class GUI():
             self.btn_done.grid()
 
     def done(self, event=None):
+        # In case the done button is pressed again, the progressbar and the logger must be cleared
+        self.lbl_logger["text"] = ""
+        self.progress_bar["value"] = 0
+
         for dataset in self.dataset_answer_entry_objects.keys():
             if not str(self.dataset_answer_entry_objects[dataset]["data_controller"].get()).strip():
                 messagebox.showerror("Invalid data controller", f"No data controller name entered for the dataset - {dataset}. If unknown, enter \"UNKNOWN\" in the entry field.")
@@ -139,6 +146,7 @@ class GUI():
                 if not key.startswith(widgets_to_avoid):
                     self.questionnaire_answers_dict[dataset][key] = str(answer_object.get())
 
+        self.progress_bar.grid(pady=(20,5))
         self.lbl_logger.grid()
         self.start_tool_execution()
 
@@ -154,6 +162,7 @@ class GUI():
         self.lbl_files_chosen = tk.Label(master=self.frm_input_area, text=" ")
         self.btn_done = tk.Button(master=self.frm_main, text="Done", width = 10, height=2, command=self.done)
         self.btn_done.bind('<Return>', self.done)
+        self.progress_bar = ttk.Progressbar(master=self.frm_main, orient=HORIZONTAL, length=300, mode='determinate')
         self.lbl_logger = tk.Label(master=self.frm_main, text = "", font="Helvetica 12 bold", padx=10, pady=10)
 
         # Arranging the frames
@@ -190,4 +199,4 @@ if __name__ == "__main__":
     # The following line is to suppress a common warning message by the rdflib package.
     logging.getLogger("rdflib").setLevel(logging.ERROR)
     start_gui()
-    print("\nTool finished running.\n")
+    # print("\nTool finished running.\n")
