@@ -32,7 +32,7 @@ hasBehaviourData : True
 hasChildData : False
 hasContactInformation : False
 hasCriminalActivity : False
-hasDataControllerName : sad
+hasDataControllerName : jg
 hasEthnicityData : True
 hasFilesWithPIIAttached : True
 hasHealthData : True
