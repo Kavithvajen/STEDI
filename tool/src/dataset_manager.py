@@ -127,7 +127,7 @@ class InputDataset(_Dataset):
             self.ethics_ontology_dictionary["representsGroups"] = True
 
     def check_vocab(self):
-        print(f"\n* Checking for potential ethics issues in the namespaces used for dataset - {self.number_of_datasets}")
+        # print(f"\n* Checking for potential ethics issues in the namespaces used for dataset - {self.number_of_datasets}")
 
         URL = "https://lov.linkeddata.es/dataset/lov/api/v2/vocabulary/info?"
         network_error = False
@@ -177,7 +177,7 @@ class InputDataset(_Dataset):
                             self.ethics_ontology_dictionary[namespace[1]] = True
 
     def check_predicate_issues(self):
-        print(f"\n* Checking for potential ethics issues in the predicates of dataset - {self.number_of_datasets}")
+        # print(f"\n* Checking for potential ethics issues in the predicates of dataset - {self.number_of_datasets}")
 
         # Seperately checking for the individual specific ethics issues
         if self.ethics_ontology_dictionary["representsIndividuals"] == True:
@@ -231,7 +231,7 @@ class InputDataset(_Dataset):
         self.predicate_processor(word_lists_dict)
 
     def fill_ethics_ontology(self, ethics_ontology):
-        print(f"\n* Filling the ethics ontology for dataset - {self.number_of_datasets}")
+        # print(f"\n* Filling the ethics ontology for dataset - {self.number_of_datasets}")
 
         # Cleaning up dataset_name so the individuals of the ethics ontology follow a consistent naming convention.
         dataset_name = os.path.splitext(self.dataset_name)[0]
@@ -256,14 +256,24 @@ class InputDataset(_Dataset):
         for key, value in self.ethics_ontology_dictionary.items():
             ethics_ontology.add((EONS[dataset_name], EONS[key], rdflib.term.Literal(value)))
 
-    def start_processing(self, organisation_name, ethics_ontology, file_location, questionnaire_answers):
+    def start_processing(self, organisation_name, ethics_ontology, file_location, questionnaire_answers, logger):
         self.load_dataset(file_location)
-        print(f"\nSUCCESSFULLY LOADED DATASET - {InputDataset.number_of_datasets}: {self.dataset_name}\n")
+        logger["text"] = f"SUCCESSFULLY LOADED {self.dataset_name}"
+        logger.update()
+        # print(f"\nSUCCESSFULLY LOADED DATASET - {InputDataset.number_of_datasets}: {self.dataset_name}\n")
         self.questionnaire(organisation_name, questionnaire_answers)
+        logger["text"] = f"CHECKING NAMESPACE OF {self.dataset_name}"
+        logger.update()
         self.check_vocab()
+        logger["text"] = f"CHECKING PREDICATES OF {self.dataset_name}"
+        logger.update()
         self.check_predicate_issues()
+        logger["text"] = f"FILLING ETHICS ONTOLOGY FOR {self.dataset_name}"
+        logger.update()
         self.fill_ethics_ontology(ethics_ontology)
-        print(f"\nDONE PROCESSING DATASET - {self.number_of_datasets}: {self.dataset_name}\n")
+        logger["text"] = f"DONE PROCESSING - {self.dataset_name}"
+        logger.update()
+        # print(f"\nDONE PROCESSING DATASET - {self.number_of_datasets}: {self.dataset_name}\n")
 
 
 class OutputDataset(_Dataset):
@@ -370,7 +380,7 @@ class OutputDataset(_Dataset):
             self.ethics_ontology_dictionary[key] = False
 
     def querying_service(self):
-        print("\n* Querying the ethics ontology")
+        # print("\n* Querying the ethics ontology")
         individuals = self.list_individuals()
 
         for individual in individuals:
@@ -435,8 +445,19 @@ class OutputDataset(_Dataset):
                     else: # Age, behaviour, ethnicity, income, location, religion need to be common to provide some linkage between the datasets.
                         self.scenario_4_issues[issue] = self.quick_issue_checker(issue, dataset)
 
-    def start_processing(self, file_location):
+    def start_processing(self, file_location, logger):
         self.load_dataset(file_location)
+        logger["text"] = f"LOADED OUTPUT DATASET - {self.dataset_name}"
+        logger.update()
+
+        logger["text"] = "QUERYING THE ONTOLOGY"
+        logger.update()
         self.querying_service()
+
+        logger["text"] = "CHECKING FOR INTEGRATION ISSUE SCENARIOS"
+        logger.update()
         self.check_integration_issue_scenarios()
+
+        logger["text"] = "GENERATING REPORT"
+        logger.update()
         self.report_generation_service()
