@@ -1,19 +1,19 @@
 import os
 import rdflib
 import logging
+import platform
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
 from tkinter import simpledialog
-from tkinter import ttk, HORIZONTAL
+from tkinter import ttk, HORIZONTAL, VERTICAL
 from dataset_manager import InputDataset, OutputDataset
 
 class GUI():
-    def __init__(self, window, height, width):
+    def __init__(self, window, OS):
         # Initialising some common variables used across methods
         self.window = window
-        self.window_height = height
-        self.window_width = width
+        self.os = OS
         self.organisation_name = ""
         self.input_datasets_locations = [] # List containing input dataset's file locations.
         self.input_datasets_list = [] #  List containing input datasets' names.
@@ -150,9 +150,40 @@ class GUI():
         self.lbl_logger.grid()
         self.start_tool_execution()
 
+    def _on_mousewheel(self, event):
+        # Internal method to use mouse scroll for scrolling the window
+        if self.os == "Darwin":
+            self.main_canvas.yview_scroll(-1*(event.delta), "units")
+        else:
+            self.main_canvas.yview_scroll(-1*(event.delta/120), "units")
+
+
     def start(self):
-        # Initialising frames to be used inside the window
-        self.frm_main = tk.Frame(master=self.window)
+        # Initialising & configuring frames and canvases for the window to be scrollable
+        self.frm_outer = tk.Frame(self.window)
+        self.frm_outer.pack(fill=tk.BOTH, expand=1)
+
+        self.main_canvas = tk.Canvas(self.frm_outer)
+        self.main_canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
+
+        self.scroll_bar = ttk.Scrollbar(self.frm_outer, orient=VERTICAL, command=self.main_canvas.yview)
+        self.scroll_bar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.main_canvas.configure(yscrollcommand=self.scroll_bar.set)
+        self.main_canvas.bind("<Configure>", lambda e: self.main_canvas.configure(scrollregion=self.main_canvas.bbox("all")))
+
+        self.frm_main = tk.Frame(master=self.main_canvas)
+
+        self.main_canvas.create_window((0,0), window=self.frm_main, anchor="nw")
+
+        # Based on system OS, setting mouse scroll event to scroll the window
+        if self.os == "Linux":
+            self.main_canvas.bind_all("<4>", self._on_mousewheel)
+            self.main_canvas.bind_all("<5>", self._on_mousewheel)
+        else:
+            self.main_canvas.bind_all("<MouseWheel>", self._on_mousewheel)
+
+        # Initialising frames to be used inside the window by other widgets
         self.frm_input_area = tk.Frame(master=self.frm_main, highlightbackground="black", highlightthickness=1)
         self.frm_all_questionnaire_area = tk.Frame(master=self.frm_main)
 
@@ -166,7 +197,7 @@ class GUI():
         self.lbl_logger = tk.Label(master=self.frm_main, text = "", font="Helvetica 12 bold", padx=10, pady=10)
 
         # Arranging the frames
-        self.frm_main.pack()
+        # self.frm_main.pack()
         self.frm_input_area.grid(row=0, column=0, padx=10, pady=10)
         self.frm_all_questionnaire_area.grid(row=1, column=0, padx=10, pady=10)
 
@@ -183,6 +214,7 @@ class GUI():
 
 
 def start_gui():
+    OS = platform.system()
     # Initialising GUI
     window = tk.Tk()
     window.title("Ethics tool")
@@ -191,7 +223,7 @@ def start_gui():
     width = 1000
     height = 750
     window.geometry(f"{width}x{height}")
-    gui = GUI(window, height, width)
+    gui = GUI(window, OS)
     gui.start()
     window.mainloop()
 
