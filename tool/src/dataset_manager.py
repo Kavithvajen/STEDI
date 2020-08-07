@@ -289,12 +289,13 @@ class InputDataset(_Dataset):
 
 
 class OutputDataset(_Dataset):
-    def __init__(self, dataset_name):# Name of the ethics ontology itself. i.e., UPDATED_ETHICS_ONTOLOGY.OWL
+    def __init__(self, dataset_name, report_location):# Name of the ethics ontology itself. i.e., UPDATED_ETHICS_ONTOLOGY.OWL
         super().__init__(dataset_name)
 
         self.ethics_dicts_dict = {} # A master dictionary to hold all the ethics_dictionary values of every dataset
         dataset_name = os.path.splitext(self.dataset_name)[0]
-        self.ethics_report_name = f"Ethics_Report-{dataset_name}.txt"
+        self.ethics_report_name = "Ethics_Report.txt"
+        self.report_location = report_location
 
         self.scenario_1_issues = {
             "hasCriminalActivity":  False,
@@ -327,19 +328,33 @@ class OutputDataset(_Dataset):
         }
 
         # Removing previous reports.
-        if os.path.exists(f"../output/{self.ethics_report_name}"):
-            os.remove(f"../output/{self.ethics_report_name}")
+        if os.path.exists(f"{self.report_location}/{self.ethics_report_name}"):
+            os.remove(f"{self.report_location}/{self.ethics_report_name}")
 
     def report_writer(self, scenario, text):
-        with open(f"../output/{self.ethics_report_name}", "a") as writer:
+        with open(f"{self.report_location}/{self.ethics_report_name}", "a") as writer:
             writer.write(f"\n + {scenario.upper()} : {text}\n")
 
     def report_generation_service(self):
-        with open(f"../output/{self.ethics_report_name}", "a") as writer:
+        with open(f"{self.report_location}/{self.ethics_report_name}", "a") as writer:
             for dataset, e_dict in self.ethics_dicts_dict.items():
                 writer.write(f"\n\nETHICS REPORT FOR INDIVIDUAL DATASET - {dataset.upper()}\n")
-                for key, value in e_dict.items():
-                    writer.write(f"\n{key} : {value}")
+                for key, issue_status in e_dict.items():
+                    split_key = re.finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)',key)
+                    split_key_list = [i.group(0) for i in split_key]
+
+                    for word in split_key_list:
+                        if split_key_list.index(word) == 0:
+                            split_key_list[split_key_list.index(word)] = word.capitalize()
+
+                        elif word != "NDA" and word!= "PII":
+                            split_key_list[split_key_list.index(word)] = word.lower()
+
+                        else:
+                            pass
+
+                    issue = " ".join([str(element) for element in split_key_list])
+                    writer.write(f"\n{issue} : {issue_status}")
 
             writer.write(f"\n\n\n\nETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS\n\n")
 

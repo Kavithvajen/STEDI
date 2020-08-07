@@ -2,53 +2,53 @@
 
 ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
 
-hasAge : True
-hasBehaviourData : True
-hasChildData : False
-hasContactInformation : False
-hasCriminalActivity : False
-hasDataControllerName : asd
-hasEthnicityData : True
-hasFilesWithPIIAttached : False
-hasHealthData : True
-hasIncomeData : True
-hasLoanRecords : True
-hasLocationData : True
-hasName : True
-hasPhysicalCharacteristics : False
-hasPoliticalOpinions : True
-hasReligion : True
-hasSignedNDA : False
-hasTooManyDataPoints : False
-hasUserTrackingData : True
-isValidForProcessing : False
-representsGroups : False
-representsIndividuals : True
+Has age : True
+Has behaviour data : True
+Has child data : False
+Has contact information : False
+Has criminal activity : False
+Has data controller name : iuh
+Has ethnicity data : True
+Has files with PII attached : True
+Has health data : True
+Has income data : True
+Has loan records : True
+Has location data : True
+Has name : False
+Has physical characteristics : False
+Has political opinions : True
+Has religion : True
+Has signed NDA : False
+Has too many data points : False
+Has user tracking data : True
+Is valid for processing : False
+Represents groups : True
+Represents individuals : False
 
 ETHICS REPORT FOR INDIVIDUAL DATASET - TESTDATASET
 
-hasAge : True
-hasBehaviourData : True
-hasChildData : False
-hasContactInformation : True
-hasCriminalActivity : True
-hasDataControllerName : qws
-hasEthnicityData : True
-hasFilesWithPIIAttached : False
-hasHealthData : True
-hasIncomeData : True
-hasLoanRecords : False
-hasLocationData : True
-hasName : True
-hasPhysicalCharacteristics : True
-hasPoliticalOpinions : True
-hasReligion : True
-hasSignedNDA : False
-hasTooManyDataPoints : True
-hasUserTrackingData : True
-isValidForProcessing : False
-representsGroups : False
-representsIndividuals : True
+Has age : True
+Has behaviour data : True
+Has child data : False
+Has contact information : True
+Has criminal activity : True
+Has data controller name : test
+Has ethnicity data : True
+Has files with PII attached : False
+Has health data : True
+Has income data : True
+Has loan records : False
+Has location data : True
+Has name : True
+Has physical characteristics : True
+Has political opinions : True
+Has religion : True
+Has signed NDA : False
+Has too many data points : True
+Has user tracking data : True
+Is valid for processing : True
+Represents groups : False
+Represents individuals : True
 
 
 
@@ -70,8 +70,6 @@ ETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS
  + SCENARIO-3 : Unethical assumption can also be made about the activities of the user's connections (friends, family, followers) on social media accounts.
 
  + SCENARIO-3 : Online tracking details of a user is very sensitive. It can be combined with any other data about the individual to gain extra information that the user did not consent to originally.
-
- + SCENARIO-3 : A user's name & behaviour can be combined to accordingly hike insurance rates. Combined with other data like cross-site tracking, a lot of unethical assumptions can be made about the user and the people in their life.
 
  + SCENARIO-3 : Residents of certain localities might have to pay higher insurance rates due to unethical assumptions that link behaviour and location of people.
 

@@ -46,10 +46,13 @@ class GUI():
         self.progress_bar["value"] += progress_value
         # print("\nOutput - Updated Ethics Ontology created")
 
-        output_ontology_object = OutputDataset(output_ontology_name)
+        messagebox.showinfo("Choose report location", "The datasets have been processed. Choose a location to save the ethics report.")
+        report_location = filedialog.askdirectory(title="Choose location to save report")
+        output_ontology_object = OutputDataset(output_ontology_name, report_location)
         output_ontology_object.start_processing(output_ontology_location, self.lbl_logger, self.progress_bar, progress_value)
         # print("\n\nTool finished running. Report has been generated in the \"output\" folder.")
-        messagebox.showinfo("Tool finished running","The datasets have been processed and an ethics report has been generated in the \"output\" folder.")
+        messagebox.showinfo("Tool finished running","The ethics report has been generated in the chosen location.")
+
 
     def questionnaire(self, dataset_name):
         answers_objects = {} # A dictionary containing the objects of every answer field
@@ -156,7 +159,6 @@ class GUI():
             self.main_canvas.yview_scroll(-1*(event.delta), "units")
         else:
             self.main_canvas.yview_scroll(-1*(event.delta/120), "units")
-
 
     def start(self):
         # Initialising & configuring frames and canvases for the window to be scrollable
