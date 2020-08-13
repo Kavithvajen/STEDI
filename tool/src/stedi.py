@@ -219,9 +219,7 @@ def start_gui():
     OS = platform.system()
     # Initialising GUI
     window = tk.Tk()
-    window.title("Ethics tool")
-    # width  = int(window.winfo_screenwidth() * 0.75)
-    # height = int(window.winfo_screenheight() * 0.75)
+    window.title("STEDI (Support Tool for Ethical Data Integration)")
     width = 1000
     height = 750
     window.geometry(f"{width}x{height}")
@@ -233,4 +231,3 @@ if __name__ == "__main__":
     # The following line is to suppress a common warning message by the rdflib package.
     logging.getLogger("rdflib").setLevel(logging.ERROR)
     start_gui()
-    # print("\nTool finished running.\n")

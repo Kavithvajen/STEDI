@@ -1,56 +1,121 @@
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
-
-Has age : True
-Has behaviour data : True
-Has child data : False
-Has contact information : False
-Has criminal activity : False
-Has data controller name : iuh
-Has ethnicity data : True
-Has files with PII attached : True
-Has health data : True
-Has income data : True
-Has loan records : True
-Has location data : True
-Has name : False
-Has physical characteristics : False
-Has political opinions : True
-Has religion : True
-Has signed NDA : False
-Has too many data points : False
-Has user tracking data : True
-Is valid for processing : False
-Represents groups : True
-Represents individuals : False
-
 ETHICS REPORT FOR INDIVIDUAL DATASET - TESTDATASET
 
-Has age : True
-Has behaviour data : True
-Has child data : False
-Has contact information : True
-Has criminal activity : True
-Has data controller name : test
-Has ethnicity data : True
-Has files with PII attached : False
-Has health data : True
-Has income data : True
-Has loan records : False
-Has location data : True
-Has name : True
-Has physical characteristics : True
-Has political opinions : True
-Has religion : True
-Has signed NDA : False
-Has too many data points : True
-Has user tracking data : True
-Is valid for processing : True
-Represents groups : False
-Represents individuals : True
+Data controller: test
+Valid for processing: True
+This dataset represents individuals.
+
+Issues present in the dataset:
+
+HAS TOO MANY DATA POINTS
+
+HAS AGE
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/age, http://xmlns.com/foaf/0.1/birthday
 
 
+HAS BEHAVIOUR DATA
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/myersBriggs
+
+
+HAS CONTACT INFORMATION
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/skypeID
+
+
+HAS CRIMINAL ACTIVITY
+Predicates that triggered the issue: http://localhost:8080/hasBeenToJailInTheYear
+
+
+HAS ETHNICITY DATA
+Predicates that triggered the issue: http://localhost:8080/belongsToRace, http://localhost:8080/firstLanguage, http://localhost:8080/followsReligion
+
+
+HAS HEALTH DATA
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/dnaChecksum
+
+
+HAS INCOME DATA
+Predicates that triggered the issue: http://localhost:8080/salary
+
+
+HAS LOCATION DATA
+Predicates that triggered the issue: http://localhost:8080/livesIn
+
+
+HAS NAME
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/lastName, http://xmlns.com/foaf/0.1/givenName, http://xmlns.com/foaf/0.1/family_name, http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/firstName, http://xmlns.com/foaf/0.1/name, http://xmlns.com/foaf/0.1/familyName
+
+
+HAS PHYSICAL CHARACTERISTICS
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/gender
+
+
+HAS POLITICAL OPINIONS
+Predicates that triggered the issue: http://localhost:8080/followsReligion, http://localhost:8080/politicallyInclinedTowards
+
+
+HAS RELIGION
+Predicates that triggered the issue: http://localhost:8080/followsReligion
+
+
+HAS USER TRACKING DATA
+Predicates that triggered the issue: http://localhost:8080/adTrackingID
+
+----------------------------------------------------------------------------------------------------
+
+
+ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
+
+Data controller: jhgv
+Valid for processing: False
+This dataset represents groups.
+
+Issues present in the dataset:
+
+HAS FILES WITH PII ATTACHED
+
+HAS AGE
+Predicates that triggered the issue: https://w3id.org/GConsent#ageBracket
+
+
+HAS BEHAVIOUR DATA
+Predicates that triggered the issue: https://w3id.org/GConsent#behaviouralStatisticsPresent
+
+
+HAS ETHNICITY DATA
+Predicates that triggered the issue: https://w3id.org/GConsent#hasReligion
+
+
+HAS HEALTH DATA
+Vocabularies that triggered the issue: hosp
+
+
+HAS INCOME DATA
+Predicates that triggered the issue: https://w3id.org/GConsent#hasLoanRecords, https://w3id.org/GConsent#EarningsData
+
+
+HAS LOAN RECORDS
+Predicates that triggered the issue: https://w3id.org/GConsent#hasLoanRecords
+
+
+HAS LOCATION DATA
+Vocabularies that triggered the issue: geo
+Predicates that triggered the issue: https://w3id.org/GConsent#Location, http://swrc.ontoware.org/ontology#location
+
+
+HAS POLITICAL OPINIONS
+Predicates that triggered the issue: https://w3id.org/GConsent#hasReligion
+
+
+HAS RELIGION
+Predicates that triggered the issue: https://w3id.org/GConsent#hasReligion
+
+
+HAS USER TRACKING DATA
+Predicates that triggered the issue: https://w3id.org/GConsent#OnlineTracker
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 ETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS
 

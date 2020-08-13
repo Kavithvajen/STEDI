@@ -54,6 +54,12 @@
     
 
 
+    <!-- https://www.scss.tcd.ie/~kamarajk/EthicsOntology#triggeredByItems -->
+
+    <owl:AnnotationProperty rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#triggeredByItems"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -164,6 +170,7 @@
         <rdfs:comment xml:lang="en">Information about the data subject’s age is present. This data property was inspired by the &quot;dpv:Age&quot; class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
         <rdfs:label xml:lang="en">has age</rdfs:label>
         <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Age</rdfs:seeAlso>
+        <triggeredByItems></triggeredByItems>
     </owl:DatatypeProperty>
     
 
