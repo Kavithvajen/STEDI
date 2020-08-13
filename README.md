@@ -1,6 +1,6 @@
 # STEDI (Support Tool for Ethical Data Integration)
 
-A prototype tool to identify ethical issues that arise due to the integration of linked-data datasets.  
+A prototype tool to identify ethical issues that arise due to the integration of linked-data datasets.
 
 ## Steps to run STEDI on your machine:
 
@@ -33,12 +33,13 @@ First, navigate to where the STEDI application is stored and then type the follo
 pip install -r requirements.txt
 ```
 
-The "requirements.txt" file contains the names of all the packages the application depends on. Hence, using pip (the default Python package manager) we were able to install all the dependencies in one go! 
+The "requirements.txt" file contains the names of all the packages the application depends on. Hence, using pip (the default Python package manager) we were able to install all the dependencies in one go!
 
 ### Step 4. Run STEDI
 
-Now that the environment is all setup and ready to go, navigate into `tool/src` from the root directory of the application. Run the tool by typing the following in your terminal:
+Now that the environment is all setup and ready to go, run the tool by typing the following in your terminal:
 ```
+cd src
 python stedi.py
 ```
 

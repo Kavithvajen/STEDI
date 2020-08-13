@@ -1,74 +1,10 @@
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - TESTDATASET
-
-Data controller: test
-Valid for processing: True
-This dataset represents individuals.
-
-Issues present in the dataset:
-
-HAS TOO MANY DATA POINTS
-
-HAS AGE
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/age, http://xmlns.com/foaf/0.1/birthday
-
-
-HAS BEHAVIOUR DATA
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/myersBriggs
-
-
-HAS CONTACT INFORMATION
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/skypeID
-
-
-HAS CRIMINAL ACTIVITY
-Predicates that triggered the issue: http://localhost:8080/hasBeenToJailInTheYear
-
-
-HAS ETHNICITY DATA
-Predicates that triggered the issue: http://localhost:8080/belongsToRace, http://localhost:8080/firstLanguage, http://localhost:8080/followsReligion
-
-
-HAS HEALTH DATA
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/dnaChecksum
-
-
-HAS INCOME DATA
-Predicates that triggered the issue: http://localhost:8080/salary
-
-
-HAS LOCATION DATA
-Predicates that triggered the issue: http://localhost:8080/livesIn
-
-
-HAS NAME
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/lastName, http://xmlns.com/foaf/0.1/givenName, http://xmlns.com/foaf/0.1/family_name, http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/firstName, http://xmlns.com/foaf/0.1/name, http://xmlns.com/foaf/0.1/familyName
-
-
-HAS PHYSICAL CHARACTERISTICS
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/gender
-
-
-HAS POLITICAL OPINIONS
-Predicates that triggered the issue: http://localhost:8080/followsReligion, http://localhost:8080/politicallyInclinedTowards
-
-
-HAS RELIGION
-Predicates that triggered the issue: http://localhost:8080/followsReligion
-
-
-HAS USER TRACKING DATA
-Predicates that triggered the issue: http://localhost:8080/adTrackingID
-
-----------------------------------------------------------------------------------------------------
-
-
 ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
 
-Data controller: jhgv
+Data controller: ytfg
 Valid for processing: False
-This dataset represents groups.
+This dataset represents individuals.
 
 Issues present in the dataset:
 
@@ -100,7 +36,11 @@ Predicates that triggered the issue: https://w3id.org/GConsent#hasLoanRecords
 
 HAS LOCATION DATA
 Vocabularies that triggered the issue: geo
-Predicates that triggered the issue: https://w3id.org/GConsent#Location, http://swrc.ontoware.org/ontology#location
+Predicates that triggered the issue: http://swrc.ontoware.org/ontology#location, https://w3id.org/GConsent#Location
+
+
+HAS NAME
+Predicates that triggered the issue: https://w3id.org/GConsent#hasName
 
 
 HAS POLITICAL OPINIONS
@@ -113,6 +53,70 @@ Predicates that triggered the issue: https://w3id.org/GConsent#hasReligion
 
 HAS USER TRACKING DATA
 Predicates that triggered the issue: https://w3id.org/GConsent#OnlineTracker
+
+----------------------------------------------------------------------------------------------------
+
+
+ETHICS REPORT FOR INDIVIDUAL DATASET - TESTDATASET
+
+Data controller: test
+Valid for processing: True
+This dataset represents individuals.
+
+Issues present in the dataset:
+
+HAS TOO MANY DATA POINTS
+
+HAS AGE
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/birthday, http://xmlns.com/foaf/0.1/age
+
+
+HAS BEHAVIOUR DATA
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/myersBriggs
+
+
+HAS CONTACT INFORMATION
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/skypeID
+
+
+HAS CRIMINAL ACTIVITY
+Predicates that triggered the issue: http://localhost:8080/hasBeenToJailInTheYear
+
+
+HAS ETHNICITY DATA
+Predicates that triggered the issue: http://localhost:8080/followsReligion, http://localhost:8080/firstLanguage, http://localhost:8080/belongsToRace
+
+
+HAS HEALTH DATA
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/dnaChecksum
+
+
+HAS INCOME DATA
+Predicates that triggered the issue: http://localhost:8080/salary
+
+
+HAS LOCATION DATA
+Predicates that triggered the issue: http://localhost:8080/livesIn
+
+
+HAS NAME
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/givenName, http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/firstName, http://xmlns.com/foaf/0.1/name, http://xmlns.com/foaf/0.1/lastName, http://xmlns.com/foaf/0.1/family_name, http://xmlns.com/foaf/0.1/familyName
+
+
+HAS PHYSICAL CHARACTERISTICS
+Predicates that triggered the issue: http://xmlns.com/foaf/0.1/gender
+
+
+HAS POLITICAL OPINIONS
+Predicates that triggered the issue: http://localhost:8080/followsReligion, http://localhost:8080/politicallyInclinedTowards
+
+
+HAS RELIGION
+Predicates that triggered the issue: http://localhost:8080/followsReligion
+
+
+HAS USER TRACKING DATA
+Predicates that triggered the issue: http://localhost:8080/adTrackingID
 
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
@@ -135,6 +139,8 @@ ETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS
  + SCENARIO-3 : Unethical assumption can also be made about the activities of the user's connections (friends, family, followers) on social media accounts.
 
  + SCENARIO-3 : Online tracking details of a user is very sensitive. It can be combined with any other data about the individual to gain extra information that the user did not consent to originally.
+
+ + SCENARIO-3 : A user's name & behaviour can be combined to accordingly hike insurance rates. Combined with other data like cross-site tracking, a lot of unethical assumptions can be made about the user and the people in their life.
 
  + SCENARIO-3 : Residents of certain localities might have to pay higher insurance rates due to unethical assumptions that link behaviour and location of people.
 
