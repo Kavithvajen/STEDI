@@ -46,8 +46,12 @@ class GUI():
         self.progress_bar["value"] += progress_value
         # print("\nOutput - Updated Ethics Ontology created")
 
-        messagebox.showinfo("Choose report location", "The datasets have been processed. Choose a location to save the ethics report.")
-        report_location = filedialog.askdirectory(title="Choose location to save report")
+        report_location = ""
+
+        while not report_location:
+            messagebox.showinfo("Choose report location", "The datasets have been processed. Choose a location to save the ethics report.")
+            report_location = filedialog.askdirectory(title="Choose location to save report")
+
         output_ontology_object = OutputDataset(output_ontology_name, report_location)
         output_ontology_object.start_processing(output_ontology_location, self.lbl_logger, self.progress_bar, progress_value)
         # print("\n\nTool finished running. Report has been generated in the \"output\" folder.")
