@@ -37,7 +37,7 @@ The "requirements.txt" file contains the names of all the packages the applicati
 
 ### Step 4. Run STEDI
 
-Now that the environment is all setup and ready to go, run the tool by typing the following in your terminal:
+Now that the environment is all set up and ready to go, run the tool by typing the following in your terminal:
 ```
 cd src
 python stedi.py
