@@ -136,9 +136,9 @@ class InputDataset(_Dataset):
                 for tag in data["tags"]:
                     for namespace in sensitive_namespaces:
                         if tag == namespace[0]:
-                            # print(f"\nNOTE: This dataset probably contains {namespace} related data as it uses the {data['prefix']} namespace!")
                             self.ethics_ontology_dictionary[namespace[1]]["value"] = True
                             self.ethics_ontology_dictionary[namespace[1]]["trigger_items"]["VOCABULARIES"].append(vocab[0])
+                            print(f"\nVocab: {vocab[0]}")
 
     def predicate_processor(self, word_lists_dict):
         for p in self.graph.predicates():
@@ -164,6 +164,7 @@ class InputDataset(_Dataset):
                                     self.ethics_ontology_dictionary[data_property]["value"] = True
                                     if str(p) not in self.ethics_ontology_dictionary[data_property]["trigger_items"]["PREDICATES"]:
                                         self.ethics_ontology_dictionary[data_property]["trigger_items"]["PREDICATES"].append(str(p))
+                                        print(f"\nIssue detected: {data_property}")
 
     def check_individual_specific_issues(self):
         # Checking if any individual in the dataset has too many data points.
@@ -196,8 +197,6 @@ class InputDataset(_Dataset):
         self.predicate_processor(word_lists_dict)
 
     def check_predicate_issues(self):
-        # print(f"\n* Checking for potential ethics issues in the predicates of dataset - {self.number_of_datasets}")
-
         # Seperately checking for the individual specific ethics issues
         if self.ethics_ontology_dictionary["representsIndividuals"]["value"] == True:
             self.check_individual_specific_issues()
@@ -250,8 +249,6 @@ class InputDataset(_Dataset):
         self.predicate_processor(word_lists_dict)
 
     def fill_ethics_ontology(self, ethics_ontology):
-        # print(f"\n* Filling the ethics ontology for dataset - {self.number_of_datasets}")
-
         # Cleaning up dataset_name so the individuals of the ethics ontology follow a consistent naming convention.
         dataset_name = os.path.splitext(self.dataset_name)[0]
         dataset_name = re.sub("[^A-Za-z0-9 ]+", " ", dataset_name)
@@ -307,7 +304,6 @@ class InputDataset(_Dataset):
         logger["text"] = f"DONE PROCESSING - {self.dataset_name}"
         logger.update()
         progress_bar["value"] += progress_value
-        # print(f"\nDONE PROCESSING DATASET - {self.number_of_datasets}: {self.dataset_name}\n")
 
 
 class OutputDataset(_Dataset):
@@ -360,7 +356,6 @@ class OutputDataset(_Dataset):
                 self.ethics_ontology_dictionary[key]["trigger_items"] = {"VOCABULARIES": [], "PREDICATES": []}
 
     def querying_service(self):
-        # print("\n* Querying the ethics ontology")
         individuals = self.list_individuals()
 
         for individual in individuals:
@@ -437,17 +432,21 @@ class OutputDataset(_Dataset):
                 writer.write(f"\n\nETHICS REPORT FOR INDIVIDUAL DATASET - {dataset.upper()}\n")
                 writer.write(f"\nData controller: {e_dict['hasDataControllerName']['value']}")
                 writer.write(f"\nValid for processing: {e_dict['isValidForProcessing']['value']}")
+
                 if e_dict["representsGroups"]["value"] == True:
                     writer.write("\nThis dataset represents groups.")
                 else:
                     writer.write("\nThis dataset represents individuals.")
                 writer.write("\n\nIssues present in the dataset:\n")
+                ctr = 0
 
                 if e_dict["hasTooManyDataPoints"]["value"] == True:
-                    writer.write("\nHAS TOO MANY DATA POINTS\n")
+                    ctr += 1
+                    writer.write(f"\n{ctr}. HAS TOO MANY DATA POINTS\n")
 
                 if e_dict["hasFilesWithPIIAttached"]["value"] == True:
-                    writer.write("\nHAS FILES WITH PII ATTACHED\n")
+                    ctr += 1
+                    writer.write(f"\n{ctr}. HAS FILES WITH PII ATTACHED\n")
 
                 for key, issue_info in e_dict.items():
                     if key not in predicates_to_ignore and issue_info["value"] == True:
@@ -466,7 +465,8 @@ class OutputDataset(_Dataset):
 
                         issue = " ".join([str(element) for element in split_key_list])
 
-                        writer.write(f"\n{issue.upper()}")
+                        ctr += 1
+                        writer.write(f"\n{ctr}. {issue.upper()}")
 
                         if "trigger_items" in issue_info and issue_info["trigger_items"] != None:
                             if issue_info["trigger_items"]["VOCABULARIES"]:
@@ -477,11 +477,9 @@ class OutputDataset(_Dataset):
                                     writer.write(vocab_issue)
 
                             if issue_info["trigger_items"]["PREDICATES"]:
-                                writer.write("\nPredicates that triggered the issue: ")
-                                for i, pred_issue in enumerate(issue_info["trigger_items"]["PREDICATES"]):
-                                    if i:
-                                        writer.write(", ")
-                                    writer.write(pred_issue)
+                                writer.write("\nPredicates that triggered this issue:")
+                                for pred_issue in issue_info["trigger_items"]["PREDICATES"]:
+                                    writer.write(f"\n\t* {pred_issue}")
 
                         writer.write("\n\n")
 
@@ -537,23 +535,28 @@ class OutputDataset(_Dataset):
 
     def start_processing(self, file_location, logger, progress_bar, progress_value):
         self.load_dataset(file_location)
+        print(f"\nLOADED OUTPUT DATASET - {self.dataset_name}")
         logger["text"] = f"LOADED OUTPUT DATASET - {self.dataset_name}"
         logger.update()
         progress_bar["value"] += progress_value
 
+        print("\nQUERYING THE ONTOLOGY")
         logger["text"] = "QUERYING THE ONTOLOGY"
         logger.update()
         self.querying_service()
         progress_bar["value"] += progress_value
 
+        print("\nCHECKING FOR INTEGRATION ISSUE SCENARIOS")
         logger["text"] = "CHECKING FOR INTEGRATION ISSUE SCENARIOS"
         logger.update()
         self.check_integration_issue_scenarios()
         progress_bar["value"] += progress_value
 
+        print("\nGENERATING REPORT")
         logger["text"] = "GENERATING REPORT"
         logger.update()
         self.report_generation_service()
         progress_bar["value"] += progress_value
 
+        print("\nTool done!")
         logger["text"] = "DONE"

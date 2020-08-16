@@ -44,7 +44,6 @@ class GUI():
         output_ontology_location = f"../output/{output_ontology_name}"
         self.ethics_ontology.serialize(destination=output_ontology_location, format='xml')
         self.progress_bar["value"] += progress_value
-        # print("\nOutput - Updated Ethics Ontology created")
 
         report_location = ""
 
@@ -54,7 +53,6 @@ class GUI():
 
         output_ontology_object = OutputDataset(output_ontology_name, report_location)
         output_ontology_object.start_processing(output_ontology_location, self.lbl_logger, self.progress_bar, progress_value)
-        # print("\n\nTool finished running. Report has been generated in the \"output\" folder.")
         messagebox.showinfo("Tool finished running","The ethics report has been generated in the chosen location.")
 
 
@@ -107,7 +105,7 @@ class GUI():
                         answer_object.destroy()
             self.btn_done.grid_forget()
 
-        self.window.filenames = filedialog.askopenfilenames(initialdir="/", title="Select Input Datasets", filetypes=(("XML Files", "*.xml"), ("RDF Files", "*.rdf"), ("OWL Files", "*.owl")))
+        self.window.filenames = filedialog.askopenfilenames(initialdir="/", title="Select Input Datasets", filetypes=(("XML Files", "*.xml"), ("RDF Files", "*.rdf"), ("OWL Files", "*.owl"), ("TTL Files", "*.ttl")))
 
         if self.lbl_files_chosen["text"].strip():
             filenames = self.lbl_files_chosen["text"]

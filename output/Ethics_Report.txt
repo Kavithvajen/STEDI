@@ -1,122 +1,140 @@
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - VOCAB_TESTDATASET
+ETHICS REPORT FOR INDIVIDUAL DATASET - GARDA_STATION
 
-Data controller: ytfg
-Valid for processing: False
-This dataset represents individuals.
+Data controller: test
+Valid for processing: True
+This dataset represents groups.
 
 Issues present in the dataset:
 
-HAS FILES WITH PII ATTACHED
-
-HAS AGE
-Predicates that triggered the issue: https://w3id.org/GConsent#ageBracket
-
-
-HAS BEHAVIOUR DATA
-Predicates that triggered the issue: https://w3id.org/GConsent#behaviouralStatisticsPresent
-
-
-HAS ETHNICITY DATA
-Predicates that triggered the issue: https://w3id.org/GConsent#hasReligion
+1. HAS CRIMINAL ACTIVITY
+Predicates that triggered this issue:
+	* http://example.org/csv/robbery_extortion_and_hijacking_offences
+	* http://example.org/csv/attempts_or_threats_to_murder_assaults_harassments_and_related_offences
+	* http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime
+	* http://example.org/csv/fraud_deception_and_related_offences
+	* http://example.org/csv/burglary_and_related_offences
+	* http://example.org/csv/theft_and_related_offences
 
 
-HAS HEALTH DATA
-Vocabularies that triggered the issue: hosp
+2. HAS ETHNICITY DATA
+Predicates that triggered this issue:
+	* http://example.org/csv/public_order_and_other_social_code_offences
 
 
-HAS INCOME DATA
-Predicates that triggered the issue: https://w3id.org/GConsent#hasLoanRecords, https://w3id.org/GConsent#EarningsData
+3. HAS INCOME DATA
+Predicates that triggered this issue:
+	* http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime
 
 
-HAS LOAN RECORDS
-Predicates that triggered the issue: https://w3id.org/GConsent#hasLoanRecords
-
-
-HAS LOCATION DATA
-Vocabularies that triggered the issue: geo
-Predicates that triggered the issue: http://swrc.ontoware.org/ontology#location, https://w3id.org/GConsent#Location
-
-
-HAS NAME
-Predicates that triggered the issue: https://w3id.org/GConsent#hasName
-
-
-HAS POLITICAL OPINIONS
-Predicates that triggered the issue: https://w3id.org/GConsent#hasReligion
-
-
-HAS RELIGION
-Predicates that triggered the issue: https://w3id.org/GConsent#hasReligion
-
-
-HAS USER TRACKING DATA
-Predicates that triggered the issue: https://w3id.org/GConsent#OnlineTracker
+4. HAS LOCATION DATA
+Predicates that triggered this issue:
+	* http://example.org/csv/public_order_and_other_social_code_offences
 
 ----------------------------------------------------------------------------------------------------
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - TESTDATASET
+ETHICS REPORT FOR INDIVIDUAL DATASET - IRELAND_DEMOGRAPHIC
 
-Data controller: test
-Valid for processing: True
-This dataset represents individuals.
+Data controller: tg
+Valid for processing: False
+This dataset represents groups.
 
 Issues present in the dataset:
 
-HAS TOO MANY DATA POINTS
-
-HAS AGE
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/birthday, http://xmlns.com/foaf/0.1/age
-
-
-HAS BEHAVIOUR DATA
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/myersBriggs
-
-
-HAS CONTACT INFORMATION
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/skypeID
-
-
-HAS CRIMINAL ACTIVITY
-Predicates that triggered the issue: http://localhost:8080/hasBeenToJailInTheYear
-
-
-HAS ETHNICITY DATA
-Predicates that triggered the issue: http://localhost:8080/followsReligion, http://localhost:8080/firstLanguage, http://localhost:8080/belongsToRace
+1. HAS CHILD DATA
+Predicates that triggered this issue:
+	* http://example.org/csv/place_of_birth_total_2011
+	* http://example.org/csv/place_of_birth_uk_2011
+	* http://example.org/csv/perc_place_of_birth_ireland_2011
+	* http://example.org/csv/perc_place_of_birth_other_eu_28_2011
+	* http://example.org/csv/place_of_birth_lithuania_2011
+	* http://example.org/csv/perc_place_of_birth_rest_of_world_2011
+	* http://example.org/csv/perc_place_of_birth_poland_2011
+	* http://example.org/csv/place_of_birth_other_eu_28_2011
+	* http://example.org/csv/place_of_birth_poland_2011
+	* http://example.org/csv/perc_place_of_birth_uk_2011
+	* http://example.org/csv/place_of_birth_rest_of_world_2011
+	* http://example.org/csv/perc_place_of_birth_lithuania_2011
+	* http://example.org/csv/place_of_birth_ireland_2011
 
 
-HAS HEALTH DATA
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/dnaChecksum
+2. HAS ETHNICITY DATA
+Predicates that triggered this issue:
+	* http://example.org/csv/foreign_languages_polish_2011
+	* http://example.org/csv/perc_religion_catholic_2011
+	* http://example.org/csv/religion_catholic_2011
+	* http://example.org/csv/foreign_languages_total_2011
+	* http://example.org/csv/perc_foreign_languages_lithuanian_2011
+	* http://example.org/csv/foreign_languages_french_2011
+	* http://example.org/csv/perc_foreign_languages_polish_2011
+	* http://example.org/csv/religion_other_stated_religion_2011
+	* http://example.org/csv/perc_religion_no_religion_2011
+	* http://example.org/csv/religion_no_religion_2011
+	* http://example.org/csv/perc_foreign_languages_other_2011
+	* http://example.org/csv/religion_total_2011
+	* http://example.org/csv/foreign_languages_lithuanian_2011
+	* http://example.org/csv/perc_religion_other_stated_religion_2011
+	* http://example.org/csv/foreign_languages_other_2011
+	* http://example.org/csv/religion_not_stated_2011
+	* http://example.org/csv/perc_foreign_languages_french_2011
+	* http://example.org/csv/perc_religion_not_stated_2011
 
 
-HAS INCOME DATA
-Predicates that triggered the issue: http://localhost:8080/salary
+3. HAS LOCATION DATA
+Predicates that triggered this issue:
+	* http://example.org/csv/english_ability_not_well_2011
+	* http://example.org/csv/place_of_birth_total_2011
+	* http://example.org/csv/perc_english_ability_very_well_2011
+	* http://example.org/csv/place_of_birth_uk_2011
+	* http://example.org/csv/perc_place_of_birth_ireland_2011
+	* http://example.org/csv/perc_english_ability_well_2011
+	* http://example.org/csv/english_ability_very_well_2011
+	* http://example.org/csv/perc_place_of_birth_other_eu_28_2011
+	* http://example.org/csv/usual_residence_outside_ireland_2011
+	* http://example.org/csv/place_of_birth_lithuania_2011
+	* http://example.org/csv/electoral_division_cso_code
+	* http://example.org/csv/perc_place_of_birth_rest_of_world_2011
+	* http://example.org/csv/usual_residence_same_address_2011
+	* http://example.org/csv/perc_place_of_birth_poland_2011
+	* http://example.org/csv/place_of_birth_other_eu_28_2011
+	* http://example.org/csv/english_ability_well_2011
+	* http://example.org/csv/place_of_birth_poland_2011
+	* http://example.org/csv/planning_region
+	* http://example.org/csv/perc_usual_residence_same_address_2011
+	* http://example.org/csv/perc_place_of_birth_uk_2011
+	* http://example.org/csv/perc_english_ability_not_well_2011
+	* http://example.org/csv/place_of_birth_rest_of_world_2011
+	* http://example.org/csv/perc_usual_residence_outside_ireland_2011
+	* http://example.org/csv/perc_place_of_birth_lithuania_2011
+	* http://example.org/csv/place_of_birth_ireland_2011
 
 
-HAS LOCATION DATA
-Predicates that triggered the issue: http://localhost:8080/livesIn
+4. HAS POLITICAL OPINIONS
+Predicates that triggered this issue:
+	* http://example.org/csv/perc_religion_catholic_2011
+	* http://example.org/csv/religion_catholic_2011
+	* http://example.org/csv/religion_other_stated_religion_2011
+	* http://example.org/csv/perc_religion_no_religion_2011
+	* http://example.org/csv/religion_no_religion_2011
+	* http://example.org/csv/religion_total_2011
+	* http://example.org/csv/perc_religion_other_stated_religion_2011
+	* http://example.org/csv/religion_not_stated_2011
+	* http://example.org/csv/perc_religion_not_stated_2011
 
 
-HAS NAME
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/givenName, http://xmlns.com/foaf/0.1/accountName, http://xmlns.com/foaf/0.1/firstName, http://xmlns.com/foaf/0.1/name, http://xmlns.com/foaf/0.1/lastName, http://xmlns.com/foaf/0.1/family_name, http://xmlns.com/foaf/0.1/familyName
-
-
-HAS PHYSICAL CHARACTERISTICS
-Predicates that triggered the issue: http://xmlns.com/foaf/0.1/gender
-
-
-HAS POLITICAL OPINIONS
-Predicates that triggered the issue: http://localhost:8080/followsReligion, http://localhost:8080/politicallyInclinedTowards
-
-
-HAS RELIGION
-Predicates that triggered the issue: http://localhost:8080/followsReligion
-
-
-HAS USER TRACKING DATA
-Predicates that triggered the issue: http://localhost:8080/adTrackingID
+5. HAS RELIGION
+Predicates that triggered this issue:
+	* http://example.org/csv/perc_religion_catholic_2011
+	* http://example.org/csv/religion_catholic_2011
+	* http://example.org/csv/religion_other_stated_religion_2011
+	* http://example.org/csv/perc_religion_no_religion_2011
+	* http://example.org/csv/religion_no_religion_2011
+	* http://example.org/csv/religion_total_2011
+	* http://example.org/csv/perc_religion_other_stated_religion_2011
+	* http://example.org/csv/religion_not_stated_2011
+	* http://example.org/csv/perc_religion_not_stated_2011
 
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
@@ -130,28 +148,6 @@ ETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS
 
  + SCENARIO-1 : Since locations can be linked and criminal data is involved, any datapoint from any of the datasets can be used to make ethically wrong assumptions. 
 
- + SCENARIO-2 : By cross-site tracking a user, unethical assumptions can be made with regards to their loan repayment capabilities and their general interest/behaviour.
-
- + SCENARIO-2 : Cross-site tracking can be linked with the user's loan records to make any unethical assumption regarding the user.
-
- + SCENARIO-3 : Based on cross-site tracking data and the behavioural data of a user, unethical assumptions can be made about the user's activities thereby manipulating insurance rates.
-
- + SCENARIO-3 : Unethical assumption can also be made about the activities of the user's connections (friends, family, followers) on social media accounts.
-
- + SCENARIO-3 : Online tracking details of a user is very sensitive. It can be combined with any other data about the individual to gain extra information that the user did not consent to originally.
-
- + SCENARIO-3 : A user's name & behaviour can be combined to accordingly hike insurance rates. Combined with other data like cross-site tracking, a lot of unethical assumptions can be made about the user and the people in their life.
-
- + SCENARIO-3 : Residents of certain localities might have to pay higher insurance rates due to unethical assumptions that link behaviour and location of people.
-
- + SCENARIO-4 : Certain users can be unethically targeted with others' political opinions just because they belong to the same age group.
-
- + SCENARIO-4 : Certain users can be unethically targeted with others' political opinions just because they exhibit similar behaviour.
-
  + SCENARIO-4 : Certain users can be unethically targeted with others' political opinions just because they belong to the same ethnic group.
 
- + SCENARIO-4 : Certain users can be unethically targeted with others' political opinions just because they belong to the same income bracket.
-
  + SCENARIO-4 : Certain users can be unethically targeted with others' political opinions just because they reside in the same area.
-
- + SCENARIO-4 : Certain users can be unethically targeted with others' political opinions just because they believe in the same religion.

@@ -6,234 +6,207 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:terms="http://purl.org/dc/terms/"
 >
-  <rdf:Description rdf:about="https://w3id.org/GConsent#Consent">
-    <rdfs:isDefinedBy rdf:resource="https://w3id.org/GDPRtEXT#GivenConsent"/>
-    <rdfs:subClassOf rdf:nodeID="N443cd106e01445c6a4d6b961c7c62b32"/>
-    <rdfs:comment>As per Article 4(11) of the GDPR, ‘consent’ of the data subject means any freely given, specific, informed and unambiguous indication of the data subject’s wishes by which he or she, by a statement or by a clear affirmative action, signifies agreement to the processing of personal data relating to him or her; In the case of this ontology, 'Consent' is a concept as well as a tangible entity (something that has a provenance record). To separate this distinction with relation to the data subject, the Consent class represents the consent of the data subject in its entirely, including any history and annotations for it. To link the `Consent` instance with the `DataSubject` instance, use the `isConsentForDataSubject` and `hasConsent` properties.</rdfs:comment>
-    <rdfs:subClassOf rdf:nodeID="N5dc795362a064f46b3596c8ee6c7c5e8"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Consent</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#TestDataset">
-    <hasPoliticalOpinions rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasPoliticalOpinions>
-    <hasUserTrackingDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://localhost:8080/adTrackingID']}</hasUserTrackingDataTriggeredBy>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <isValidForProcessing rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isValidForProcessing>
-    <hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasAge>
-    <hasPhysicalCharacteristics rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasPhysicalCharacteristics>
-    <hasFilesWithPIIAttached rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasFilesWithPIIAttached>
-    <hasCriminalActivityTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://localhost:8080/hasBeenToJailInTheYear']}</hasCriminalActivityTriggeredBy>
-    <hasCriminalActivity rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasCriminalActivity>
-    <hasLoanRecords rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasLoanRecords>
-    <hasReligionTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://localhost:8080/followsReligion']}</hasReligionTriggeredBy>
-    <hasEthnicityDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://localhost:8080/firstLanguage', 'http://localhost:8080/followsReligion', 'http://localhost:8080/belongsToRace']}</hasEthnicityDataTriggeredBy>
-    <hasTooManyDataPoints rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasTooManyDataPoints>
-    <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasName>
-    <hasChildData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasChildData>
-    <hasEthnicityData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasEthnicityData>
-    <hasPhysicalCharacteristicsTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://xmlns.com/foaf/0.1/gender']}</hasPhysicalCharacteristicsTriggeredBy>
-    <hasHealthDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://xmlns.com/foaf/0.1/dnaChecksum']}</hasHealthDataTriggeredBy>
-    <hasBehaviourDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://xmlns.com/foaf/0.1/myersBriggs']}</hasBehaviourDataTriggeredBy>
-    <hasSignedNDA rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasSignedNDA>
-    <hasUserTrackingData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasUserTrackingData>
-    <hasBehaviourData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasBehaviourData>
-    <hasLocationData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasLocationData>
-    <hasNameTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://xmlns.com/foaf/0.1/givenName', 'http://xmlns.com/foaf/0.1/accountName', 'http://xmlns.com/foaf/0.1/family_name', 'http://xmlns.com/foaf/0.1/firstName', 'http://xmlns.com/foaf/0.1/name', 'http://xmlns.com/foaf/0.1/lastName', 'http://xmlns.com/foaf/0.1/familyName']}</hasNameTriggeredBy>
-    <hasAgeTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://xmlns.com/foaf/0.1/age', 'http://xmlns.com/foaf/0.1/birthday']}</hasAgeTriggeredBy>
-    <hasDataControllerName>test</hasDataControllerName>
-    <hasIncomeDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://localhost:8080/salary']}</hasIncomeDataTriggeredBy>
-    <hasIncomeData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasIncomeData>
-    <hasReligion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasReligion>
-    <hasHealthData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasHealthData>
-    <hasLocationDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://localhost:8080/livesIn']}</hasLocationDataTriggeredBy>
-    <hasPoliticalOpinionsTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://localhost:8080/followsReligion', 'http://localhost:8080/politicallyInclinedTowards']}</hasPoliticalOpinionsTriggeredBy>
-    <hasContactInformation rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasContactInformation>
-    <hasContactInformationTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://xmlns.com/foaf/0.1/accountName', 'http://xmlns.com/foaf/0.1/skypeID']}</hasContactInformationTriggeredBy>
-    <rdf:type rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual">
-    <rdfs:label>Individual</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment xml:lang="en">Describes the data subject when it is an individual, that is when the dataset represents specific people.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N84366f22027644cba98c2c465f3c7471">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N554ae61e5a9c4afda562414c7b7d6412">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology">
-    <terms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/GConsent#wasProvidedConsent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://w3id.org/GConsent#Consent"/>
-    <rdfs:label xml:lang="en">was provided consent</rdfs:label>
-    <rdfs:comment xml:lang="en">Indicates that the specified Person or Data Controller was provided the associated consent.</rdfs:comment>
-    <rdfs:domain rdf:resource="http://www.w3.org/ns/dpv#DataController"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Vocab_TestDataset">
-    <hasDataControllerName>yhfg</hasDataControllerName>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <hasPoliticalOpinions rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasPoliticalOpinions>
-    <hasContactInformation rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasContactInformation>
-    <hasUserTrackingDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#OnlineTracker']}</hasUserTrackingDataTriggeredBy>
-    <hasReligionTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#hasReligion']}</hasReligionTriggeredBy>
-    <hasChildData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasChildData>
-    <hasAgeTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#ageBracket']}</hasAgeTriggeredBy>
-    <hasEthnicityDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#hasReligion']}</hasEthnicityDataTriggeredBy>
-    <rdf:type rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-    <hasBehaviourData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasBehaviourData>
-    <isValidForProcessing rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isValidForProcessing>
-    <hasEthnicityData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasEthnicityData>
-    <hasPhysicalCharacteristics rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasPhysicalCharacteristics>
-    <hasCriminalActivity rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasCriminalActivity>
-    <hasLocationData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasLocationData>
-    <hasSignedNDA rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasSignedNDA>
-    <hasLoanRecordsTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#hasLoanRecords']}</hasLoanRecordsTriggeredBy>
-    <hasUserTrackingData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasUserTrackingData>
-    <hasFilesWithPIIAttached rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasFilesWithPIIAttached>
-    <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasName>
-    <hasTooManyDataPoints rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasTooManyDataPoints>
-    <hasIncomeDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#EarningsData', 'https://w3id.org/GConsent#hasLoanRecords']}</hasIncomeDataTriggeredBy>
-    <hasPoliticalOpinionsTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#hasReligion']}</hasPoliticalOpinionsTriggeredBy>
-    <hasLoanRecords rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasLoanRecords>
-    <hasReligion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasReligion>
-    <hasIncomeData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasIncomeData>
-    <hasHealthDataTriggeredBy>{'VOCABULARIES': ['hosp'], 'PREDICATES': []}</hasHealthDataTriggeredBy>
-    <hasBehaviourDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['https://w3id.org/GConsent#behaviouralStatisticsPresent']}</hasBehaviourDataTriggeredBy>
-    <hasLocationDataTriggeredBy>{'VOCABULARIES': ['geo'], 'PREDICATES': ['http://swrc.ontoware.org/ontology#location', 'https://w3id.org/GConsent#Location']}</hasLocationDataTriggeredBy>
-    <hasHealthData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasHealthData>
-    <hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasAge>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nba0d0f20917440aea871920f0bb9ab93">
-    <rdf:rest rdf:nodeID="Nb0c2ace59ac54a2bbe1e0fe60f24f56f"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N56e821f34c2d4e569b366cb51f129b60">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-    <rdf:rest rdf:nodeID="N554ae61e5a9c4afda562414c7b7d6412"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/GConsent#isConsentForDataSubject">
-    <rdfs:label xml:lang="en">is consent for data subject</rdfs:label>
-    <rdfs:comment xml:lang="en">Links a consent instance with the data subject it is associated with.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasStatus">
+    <rdfs:label xml:lang="en">has status</rdfs:label>
     <rdfs:domain rdf:resource="https://w3id.org/GConsent#Consent"/>
-    <rdfs:range rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
+    <rdfs:comment xml:lang="en">Denotes the state or status of consent.</rdfs:comment>
+    <rdfs:range rdf:resource="https://w3id.org/GConsent#Status"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#isStatusForConsent"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="N4d178023174c440f9abc5493745bf971">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-    <rdf:rest rdf:nodeID="Ne81b1e8ce33f41aead245cbd9dd4024f"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasReligion">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Religion</rdfs:seeAlso>
-    <rdfs:label xml:lang="en">has religion</rdfs:label>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasEthnicityData">
+    <rdfs:domain rdf:nodeID="N0b55ab2f802b44c688d8d87d429ca97c"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="N16e41fd8bc9c4663b3eecf341c3aa1ce"/>
-    <rdfs:comment xml:lang="en">Information about the data subject's religion, religious inclinations, and religious history is present. This data property was inspired by the "dpv:Religion" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasHealthData">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:MedicalHealth</rdfs:seeAlso>
+    <rdfs:label xml:lang="en">has ethnicity data</rdfs:label>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label xml:lang="en">has health data</rdfs:label>
-    <rdfs:comment xml:lang="en">Information about the data subject's health, medical conditions, doctor consultations or health care (medical history, test results, etc.) is present. This data property was inspired by the "dpv:MedicalHealth" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:domain rdf:nodeID="Na0b5edd4e7194e9e8c0cd68c90e85678"/>
+    <rdfs:comment xml:lang="en">Information about the data subject’s origins and lineage is present. This data property was inspired by the "dpv:Ethnicity" class in the Data Privacy Vocabulary (DPV).
+
+Ethicity data is any data that involves the data subject's ethnic origin, native language, race, caste, accent, dialect, or the immigration status of the data subject or their parents.</rdfs:comment>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Ethnicity</rdfs:seeAlso>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group">
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasContactInformation">
+    <rdfs:comment xml:lang="en">Information about the data subject's contact details is present. Example: telephone number or email address. This data property was inspired by the "dpv:Contact" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Contact</rdfs:seeAlso>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="en">has contact information</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na345a90d83ef413eb7d5e9c03c4aebaf">
+    <owl:unionOf rdf:nodeID="N23b6a57fa0a24cab84ebd57c75c85ce6"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
-    <rdfs:comment xml:lang="en">Describes the data subject when it is a group, that is when the dataset represents different races, religions, or people with a certain disability.</rdfs:comment>
-    <rdfs:label>Group</rdfs:label>
-    <owl:disjointWith rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://purl.org/dc/terms/description">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/GConsent#Status">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Status</rdfs:label>
-    <rdfs:comment>Represents the status of consent for the data subject. This allows persisting the determination of the validatity or suitability of consent (as an entity or instance) for use in processing and other activities. Examples: consent is given, consent is requested but not given, consent was withdrawn.</rdfs:comment>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasPhysicalCharacteristics">
+    <rdfs:label xml:lang="en">has physical characteristics</rdfs:label>
+    <rdfs:comment xml:lang="en">Information about the data subject's physical characteristics is present. Example: gender, physical disabilities, skin colour, hair colour, tattoos, piercings, body measurements. This data property was inspired by the "dpv:PhysicalCharacteristic" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:nodeID="Nb1b3a210a1ed4426a392159048f455f2"/>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:PhysicalCharacteristic</rdfs:seeAlso>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/ns/dpv#DataSubject">
-    <rdfs:isDefinedBy xml:lang="en">https://eur-lex.europa.eu/eli/reg/2016/679/art_4/par_1/pnt_g/oj</rdfs:isDefinedBy>
-    <terms:created>2019-04-04</terms:created>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Data Subject</rdfs:label>
-    <terms:date-accepted>2019-04-05</terms:date-accepted>
-    <rdfs:comment xml:lang="en">The class of Data Subject that this particular data handling applies to, any legal entity that is defined by article 4.1 of GDPR.</rdfs:comment>
-    <terms:creator>Axel Polleres, Javier Ferenandez</terms:creator>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/ns/dpv#DataController">
-    <terms:creator>Axel Polleres, Javier Ferenandez</terms:creator>
-    <terms:date-accepted>2019-04-05</terms:date-accepted>
-    <rdfs:comment xml:lang="en">The class of Data Controllers that control this particular data handling, any legal entity that is defined by article 4.7 of GDPR.</rdfs:comment>
-    <terms:created>2019-04-04</terms:created>
-    <rdfs:isDefinedBy rdf:resource="https://eur-lex.europa.eu/eli/reg/2016/679/art_4/par_7/pnt_g/oj"/>
-    <rdfs:label xml:lang="en">Data Controller</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N15f86d6dd3ac498b9419de0f08c17768">
-    <rdf:rest rdf:nodeID="N7d754469787446d999e796e42f2b239f"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N9a1ce66e7bb54d75bb70ee186804ea59">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+  <rdf:Description rdf:nodeID="N1a934139c2a84f8992fd40ef99aec41c">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nf4950d07e1c34996b1bcc085032f1577">
-    <owl:unionOf rdf:nodeID="N04fbffdc217d49e6bb10ef066be5d2f8"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nd69c01a12db341a1aec290c02fb83c82">
-    <rdf:rest rdf:nodeID="Nfd818029d6d14e01bf249c918eda3f16"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N0a04ffa0d0ba43b288808bd34c7d6d1c">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-    <rdf:rest rdf:nodeID="N43c01af5f3044832a593ba0053137bd7"/>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#isValidForProcessing">
+    <rdfs:domain rdf:resource="https://w3id.org/GConsent#Status"/>
+    <rdfs:seeAlso>https://w3id.org/GConsent#StatusValidForProcessing</rdfs:seeAlso>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment xml:lang="en">The given consent renders the data as valid for processing by the current data controller. This data property was inspired by the "Status valid for Processing" class in GConsent.</rdfs:comment>
+    <rdfs:label>is valid for processing</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasIncomeData">
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#income</rdfs:seeAlso>
+    <rdfs:domain rdf:nodeID="N7a7ec77080974b5c8d76b2f29b6a6036"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has income data</rdfs:label>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     <rdfs:comment xml:lang="en">Information about the data subject's income or the income bracket in which they fit is present. This data property was inspired by the "dpv:Income" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:label xml:lang="en">has income data</rdfs:label>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#income</rdfs:seeAlso>
-    <rdfs:domain rdf:nodeID="Na5dbee213fec455cbe122f542bbd7787"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/GConsent#isProvidedToController">
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#garda_station">
+    <hasPoliticalOpinions rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasPoliticalOpinions>
+    <hasLoanRecords rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasLoanRecords>
+    <hasDataControllerName>test</hasDataControllerName>
+    <hasIncomeDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime']}</hasIncomeDataTriggeredBy>
+    <hasSignedNDA rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasSignedNDA>
+    <hasContactInformation rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasContactInformation>
+    <hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasAge>
+    <hasUserTrackingData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasUserTrackingData>
+    <hasEthnicityData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasEthnicityData>
+    <hasLocationData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasLocationData>
+    <hasBehaviourData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasBehaviourData>
+    <hasFilesWithPIIAttached rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasFilesWithPIIAttached>
+    <rdf:type rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+    <isValidForProcessing rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isValidForProcessing>
+    <hasReligion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasReligion>
+    <hasCriminalActivityTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/robbery_extortion_and_hijacking_offences', 'http://example.org/csv/attempts_or_threats_to_murder_assaults_harassments_and_related_offences', 'http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime', 'http://example.org/csv/fraud_deception_and_related_offences', 'http://example.org/csv/burglary_and_related_offences', 'http://example.org/csv/theft_and_related_offences']}</hasCriminalActivityTriggeredBy>
+    <hasIncomeData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasIncomeData>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <hasLocationDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/public_order_and_other_social_code_offences']}</hasLocationDataTriggeredBy>
+    <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasName>
+    <hasChildData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasChildData>
+    <hasEthnicityDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/public_order_and_other_social_code_offences']}</hasEthnicityDataTriggeredBy>
+    <hasTooManyDataPoints rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasTooManyDataPoints>
+    <hasPhysicalCharacteristics rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasPhysicalCharacteristics>
+    <hasHealthData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasHealthData>
+    <hasCriminalActivity rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasCriminalActivity>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasLocationData">
+    <rdfs:comment xml:lang="en">Information about the data subject's location is present. This data property was inspired by the "dpv:Location" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Location</rdfs:seeAlso>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has location data</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:nodeID="N77e26d0002d8460ba1b9b6e50e3b3bea"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Ireland_demographic">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <hasPoliticalOpinions rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasPoliticalOpinions>
+    <hasEthnicityDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/foreign_languages_polish_2011', 'http://example.org/csv/perc_religion_catholic_2011', 'http://example.org/csv/religion_catholic_2011', 'http://example.org/csv/foreign_languages_total_2011', 'http://example.org/csv/perc_foreign_languages_lithuanian_2011', 'http://example.org/csv/foreign_languages_french_2011', 'http://example.org/csv/perc_foreign_languages_polish_2011', 'http://example.org/csv/religion_other_stated_religion_2011', 'http://example.org/csv/perc_religion_no_religion_2011', 'http://example.org/csv/religion_no_religion_2011', 'http://example.org/csv/perc_foreign_languages_other_2011', 'http://example.org/csv/religion_total_2011', 'http://example.org/csv/foreign_languages_lithuanian_2011', 'http://example.org/csv/perc_religion_other_stated_religion_2011', 'http://example.org/csv/foreign_languages_other_2011', 'http://example.org/csv/religion_not_stated_2011', 'http://example.org/csv/perc_foreign_languages_french_2011', 'http://example.org/csv/perc_religion_not_stated_2011']}</hasEthnicityDataTriggeredBy>
+    <hasTooManyDataPoints rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasTooManyDataPoints>
+    <hasDataControllerName>tg</hasDataControllerName>
+    <hasChildDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/place_of_birth_total_2011', 'http://example.org/csv/place_of_birth_uk_2011', 'http://example.org/csv/perc_place_of_birth_ireland_2011', 'http://example.org/csv/perc_place_of_birth_other_eu_28_2011', 'http://example.org/csv/place_of_birth_lithuania_2011', 'http://example.org/csv/perc_place_of_birth_rest_of_world_2011', 'http://example.org/csv/perc_place_of_birth_poland_2011', 'http://example.org/csv/place_of_birth_other_eu_28_2011', 'http://example.org/csv/place_of_birth_poland_2011', 'http://example.org/csv/perc_place_of_birth_uk_2011', 'http://example.org/csv/place_of_birth_rest_of_world_2011', 'http://example.org/csv/perc_place_of_birth_lithuania_2011', 'http://example.org/csv/place_of_birth_ireland_2011']}</hasChildDataTriggeredBy>
+    <hasUserTrackingData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasUserTrackingData>
+    <hasPhysicalCharacteristics rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasPhysicalCharacteristics>
+    <hasHealthData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasHealthData>
+    <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasName>
+    <hasChildData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasChildData>
+    <hasSignedNDA rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasSignedNDA>
+    <hasLocationData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasLocationData>
+    <hasFilesWithPIIAttached rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasFilesWithPIIAttached>
+    <hasLoanRecords rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasLoanRecords>
+    <isValidForProcessing rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isValidForProcessing>
+    <hasCriminalActivity rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasCriminalActivity>
+    <hasPoliticalOpinionsTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/perc_religion_catholic_2011', 'http://example.org/csv/religion_catholic_2011', 'http://example.org/csv/religion_other_stated_religion_2011', 'http://example.org/csv/perc_religion_no_religion_2011', 'http://example.org/csv/religion_no_religion_2011', 'http://example.org/csv/religion_total_2011', 'http://example.org/csv/perc_religion_other_stated_religion_2011', 'http://example.org/csv/religion_not_stated_2011', 'http://example.org/csv/perc_religion_not_stated_2011']}</hasPoliticalOpinionsTriggeredBy>
+    <hasContactInformation rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasContactInformation>
+    <hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasAge>
+    <hasIncomeData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasIncomeData>
+    <hasBehaviourData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasBehaviourData>
+    <hasLocationDataTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/english_ability_not_well_2011', 'http://example.org/csv/place_of_birth_total_2011', 'http://example.org/csv/perc_english_ability_very_well_2011', 'http://example.org/csv/place_of_birth_uk_2011', 'http://example.org/csv/perc_place_of_birth_ireland_2011', 'http://example.org/csv/perc_english_ability_well_2011', 'http://example.org/csv/english_ability_very_well_2011', 'http://example.org/csv/perc_place_of_birth_other_eu_28_2011', 'http://example.org/csv/usual_residence_outside_ireland_2011', 'http://example.org/csv/place_of_birth_lithuania_2011', 'http://example.org/csv/electoral_division_cso_code', 'http://example.org/csv/perc_place_of_birth_rest_of_world_2011', 'http://example.org/csv/usual_residence_same_address_2011', 'http://example.org/csv/perc_place_of_birth_poland_2011', 'http://example.org/csv/place_of_birth_other_eu_28_2011', 'http://example.org/csv/english_ability_well_2011', 'http://example.org/csv/place_of_birth_poland_2011', 'http://example.org/csv/planning_region', 'http://example.org/csv/perc_usual_residence_same_address_2011', 'http://example.org/csv/perc_place_of_birth_uk_2011', 'http://example.org/csv/perc_english_ability_not_well_2011', 'http://example.org/csv/place_of_birth_rest_of_world_2011', 'http://example.org/csv/perc_usual_residence_outside_ireland_2011', 'http://example.org/csv/perc_place_of_birth_lithuania_2011', 'http://example.org/csv/place_of_birth_ireland_2011']}</hasLocationDataTriggeredBy>
+    <hasEthnicityData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasEthnicityData>
+    <hasReligion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasReligion>
+    <hasReligionTriggeredBy>{'VOCABULARIES': [], 'PREDICATES': ['http://example.org/csv/perc_religion_catholic_2011', 'http://example.org/csv/religion_catholic_2011', 'http://example.org/csv/religion_other_stated_religion_2011', 'http://example.org/csv/perc_religion_no_religion_2011', 'http://example.org/csv/religion_no_religion_2011', 'http://example.org/csv/religion_total_2011', 'http://example.org/csv/perc_religion_other_stated_religion_2011', 'http://example.org/csv/religion_not_stated_2011', 'http://example.org/csv/perc_religion_not_stated_2011']}</hasReligionTriggeredBy>
+    <rdf:type rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#isStatusForConsent">
+    <rdfs:domain rdf:resource="https://w3id.org/GConsent#Status"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdfs:comment xml:lang="en">Indicates the Organisation the consent was provided to.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    <rdfs:comment xml:lang="en">Links a status to the consent that uses it.</rdfs:comment>
+    <rdfs:range rdf:resource="https://w3id.org/GConsent#Consent"/>
+    <rdfs:label xml:lang="en">is status for consent</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4f99174dd86b4edaa9424e97b97cb677">
+    <owl:unionOf rdf:nodeID="N04b42954646241d0a4b22ff3a751a844"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N19abf84e7be041f3b5b2aaa125d19007">
+    <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    <owl:onProperty rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasStatus"/>
+    <owl:onClass rdf:resource="https://w3id.org/GConsent#Status"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/GConsent#isConsentForDataSubject">
+    <rdfs:label xml:lang="en">is consent for data subject</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="https://w3id.org/GConsent#Consent"/>
-    <owl:inverseOf rdf:resource="https://w3id.org/GConsent#wasProvidedConsent"/>
-    <rdfs:range rdf:resource="http://www.w3.org/ns/dpv#DataController"/>
-    <rdfs:label xml:lang="en">is provided to controller</rdfs:label>
+    <rdfs:comment xml:lang="en">Links a consent instance with the data subject it is associated with.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasCriminalActivity">
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#criminal</rdfs:seeAlso>
-    <rdfs:comment xml:lang="en">Information about the data subject's criminal activity is present. Example: criminal convictions or jail time. This data property was inspired by the "dpv:Criminal" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:domain rdf:nodeID="N442a5ded3b5d4c7182fc5b8d3ac24bdd"/>
+  <rdf:Description rdf:about="http://www.w3.org/ns/dpv#DataSubject">
+    <rdfs:label xml:lang="en">Data Subject</rdfs:label>
+    <terms:creator>Axel Polleres, Javier Ferenandez</terms:creator>
+    <terms:date-accepted>2019-04-05</terms:date-accepted>
+    <terms:created>2019-04-04</terms:created>
+    <rdfs:comment xml:lang="en">The class of Data Subject that this particular data handling applies to, any legal entity that is defined by article 4.1 of GDPR.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy xml:lang="en">https://eur-lex.europa.eu/eli/reg/2016/679/art_4/par_1/pnt_g/oj</rdfs:isDefinedBy>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasUserTrackingData">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment xml:lang="en">Data that is related to tracking the data subject (online or offline) is present. This data property was inspired by the "dpv:Tracking" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdfs:domain rdf:nodeID="Nbe1e0017e7cd4d548cbad51aedd3332a"/>
+    <rdfs:label xml:lang="en">has user tracking data</rdfs:label>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Tracking</rdfs:seeAlso>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N0de395bf9a8d45f5a520b044ead7c10c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onClass rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
+    <owl:onProperty rdf:resource="https://w3id.org/GConsent#isConsentForDataSubject"/>
+    <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasPoliticalOpinions">
+    <rdfs:comment xml:lang="en">Information about the data subject's political opinions are present.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label xml:lang="en">has criminal activity</rdfs:label>
+    <rdfs:label xml:lang="en">has political opinions</rdfs:label>
+    <rdfs:domain rdf:nodeID="N73612fccbba44da7aa775df56772d967"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasBehaviourData">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasReligion">
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Religion</rdfs:seeAlso>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="Nd9e7d0dbdd334a3483f2ecd016ba03e5"/>
-    <rdfs:comment xml:lang="en">Information about the data subject's behaviour is present. This data property was inspired by the "dpv:Behavioral" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:label xml:lang="en">has behaviour data</rdfs:label>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Behavioral</rdfs:seeAlso>
+    <rdfs:domain rdf:nodeID="N550e584aa2e14a9282a2e52cf8efba6c"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="en">has religion</rdfs:label>
+    <rdfs:comment xml:lang="en">Information about the data subject's religion, religious inclinations, and religious history is present. This data property was inspired by the "dpv:Religion" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/GConsent#hasConsent">
+    <rdfs:comment xml:lang="en">Links a data subject to their consent.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
+    <rdfs:range rdf:resource="https://w3id.org/GConsent#Consent"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has consent</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/GDPRtEXT#Consent"/>
+    <owl:inverseOf rdf:resource="https://w3id.org/GConsent#isConsentForDataSubject"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasChildData">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:seeAlso xml:lang="en">https://www.w3.org/ns/dpv#dpv:Child</rdfs:seeAlso>
     <rdfs:comment xml:lang="en">Indicates that the dataset contains child-related data. This data property was inspired by the "dpv:Child" class in the Data Privacy Vocabulary (DPV).
 
 According to DPV:
@@ -241,302 +214,315 @@ According to DPV:
 - A 'child' is a natural legal person who is below a certain legal age depending on the legal jurisdiction.
 
 - A 'child' is distinct from a 'minor'. For example, the legal age for a 'minor' in most countries is 18, whereas a 'child' can be a minor below the age of 14.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="N022fe9d1834f480c80425058c54c5446"/>
-    <rdfs:seeAlso xml:lang="en">https://www.w3.org/ns/dpv#dpv:Child</rdfs:seeAlso>
+    <rdfs:domain rdf:nodeID="Na345a90d83ef413eb7d5e9c03c4aebaf"/>
     <rdfs:label xml:lang="en">has child data</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ne6624b07a06b418dacbc2103eb901232">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group">
+    <rdfs:comment xml:lang="en">Describes the data subject when it is a group, that is when the dataset represents different races, religions, or people with a certain disability.</rdfs:comment>
+    <rdfs:label>Group</rdfs:label>
+    <owl:disjointWith rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5157506828654bf1aef31a9e080b5c44">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N798ff31736b6443bab3ad2a642c622de">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+    <rdf:rest rdf:nodeID="Nc6232f267daa452c9c7f3a7234321d58"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N14ff4a45d77e473cb38f14c56e768207">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8773402ad51b4b1ab7a4059de77f2ba9">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasLoanRecords">
+    <rdfs:label xml:lang="en">has loan records</rdfs:label>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:LoanRecord</rdfs:seeAlso>
+    <rdfs:domain rdf:nodeID="Nde866d6cd3ca44c0967e5cf9e451416c"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:comment xml:lang="en">Information about the loans provided to the the data subject or other related information is present. This data property was inspired by the "dpv:LoanRecord" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:nodeID="Na85b3f7fbc094353b686d7d8a0b48255"/>
-    <rdfs:label xml:lang="en">has loan records</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:LoanRecord</rdfs:seeAlso>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasAge">
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Age</rdfs:seeAlso>
-    <rdfs:comment xml:lang="en">Information about the data subject’s age is present. This data property was inspired by the "dpv:Age" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label xml:lang="en">has age</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="Nfb4f084f8efb4c65998103db23bd13d4"/>
-    <triggeredByItems></triggeredByItems>
+  <rdf:Description rdf:nodeID="N1fd606184d754a8e95862da2a166d0ab">
+    <rdf:rest rdf:nodeID="N3f09caa6231b4b348edc8b3b4adeb379"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasLocationData">
-    <rdfs:comment xml:lang="en">Information about the data subject's location is present. This data property was inspired by the "dpv:Location" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Location</rdfs:seeAlso>
-    <rdfs:label xml:lang="en">has location data</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:nodeID="N912a117466554c46b47fb44418c10af2"/>
+  <rdf:Description rdf:nodeID="Nc6232f267daa452c9c7f3a7234321d58">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasEthnicityData">
-    <rdfs:domain rdf:nodeID="N5829774d8bf34473a99cdaa8b665aa5f"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:comment xml:lang="en">Information about the data subject’s origins and lineage is present. This data property was inspired by the "dpv:Ethnicity" class in the Data Privacy Vocabulary (DPV).
-
-Ethicity data is any data that involves the data subject's ethnic origin, native language, race, caste, accent, dialect, or the immigration status of the data subject or their parents.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">has ethnicity data</rdfs:label>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Ethnicity</rdfs:seeAlso>
+  <rdf:Description rdf:about="https://w3id.org/GConsent#isProvidedToController">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:label xml:lang="en">is provided to controller</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="en">Indicates the Organisation the consent was provided to.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/GConsent#Consent"/>
+    <owl:inverseOf rdf:resource="https://w3id.org/GConsent#wasProvidedConsent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/ns/dpv#DataController"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://purl.org/dc/terms/date-accepted">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  <rdf:Description rdf:nodeID="Nfacbdc4d05f0439db40158b27ad05f0a">
+    <rdf:rest rdf:nodeID="Nf7f5d20fb1374e9785fd84800d0e9d7d"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/GConsent#wasProvidedConsent">
+    <rdfs:label xml:lang="en">was provided consent</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates that the specified Person or Data Controller was provided the associated consent.</rdfs:comment>
+    <rdfs:range rdf:resource="https://w3id.org/GConsent#Consent"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/ns/dpv#DataController"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N9ebd0c849f1042c68e927b03fc7a9d5a">
+    <rdf:rest rdf:nodeID="Nb2c631d8e6574de2b4005043b62eb0e2"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N135b2a150f5b4c9497f6f0c38a5d5ee9">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N73612fccbba44da7aa775df56772d967">
+    <owl:unionOf rdf:nodeID="Nd53a2a21aebe4e688d494a5aa66ae571"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb2c631d8e6574de2b4005043b62eb0e2">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5d77c1a5ade947ba83b54f545969103a">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasName">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Name</rdfs:seeAlso>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Name</rdfs:seeAlso>
     <rdfs:comment xml:lang="en">Information about the data subject's name is present. This data property was inspired by the "dpv:Name" class in the Data Privacy Vocabulary (DPV).
 
 In some cases, an individual's name can be used to identify the caste, race, religion, or country the individual belongs too.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:label xml:lang="en">has name</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasStatus">
-    <rdfs:label xml:lang="en">has status</rdfs:label>
-    <rdfs:comment xml:lang="en">Denotes the state or status of consent.</rdfs:comment>
-    <rdfs:range rdf:resource="https://w3id.org/GConsent#Status"/>
-    <owl:inverseOf rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#isStatusForConsent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://w3id.org/GConsent#Consent"/>
+  <rdf:Description rdf:about="https://w3id.org/GConsent#Consent">
+    <rdfs:subClassOf rdf:nodeID="N19abf84e7be041f3b5b2aaa125d19007"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>As per Article 4(11) of the GDPR, ‘consent’ of the data subject means any freely given, specific, informed and unambiguous indication of the data subject’s wishes by which he or she, by a statement or by a clear affirmative action, signifies agreement to the processing of personal data relating to him or her; In the case of this ontology, 'Consent' is a concept as well as a tangible entity (something that has a provenance record). To separate this distinction with relation to the data subject, the Consent class represents the consent of the data subject in its entirely, including any history and annotations for it. To link the `Consent` instance with the `DataSubject` instance, use the `isConsentForDataSubject` and `hasConsent` properties.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/GDPRtEXT#GivenConsent"/>
+    <rdfs:subClassOf rdf:nodeID="N0de395bf9a8d45f5a520b044ead7c10c"/>
+    <rdfs:label>Consent</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nb72200ea149b41988e4f2c1001a7490c">
-    <rdf:rest rdf:nodeID="N84366f22027644cba98c2c465f3c7471"/>
+  <rdf:Description rdf:about="http://www.w3.org/ns/dpv#DataController">
+    <terms:creator>Axel Polleres, Javier Ferenandez</terms:creator>
+    <rdfs:label xml:lang="en">Data Controller</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="https://eur-lex.europa.eu/eli/reg/2016/679/art_4/par_7/pnt_g/oj"/>
+    <rdfs:comment xml:lang="en">The class of Data Controllers that control this particular data handling, any legal entity that is defined by article 4.7 of GDPR.</rdfs:comment>
+    <terms:created>2019-04-04</terms:created>
+    <terms:date-accepted>2019-04-05</terms:date-accepted>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasDataControllerName">
+    <rdfs:label xml:lang="en">has data controller name</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.w3.org/ns/dpv#DataController"/>
+    <rdfs:comment xml:lang="en">Indicates the name of the data controller.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N0b55ab2f802b44c688d8d87d429ca97c">
+    <owl:unionOf rdf:nodeID="N798ff31736b6443bab3ad2a642c622de"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd53a2a21aebe4e688d494a5aa66ae571">
     <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+    <rdf:rest rdf:nodeID="N14ff4a45d77e473cb38f14c56e768207"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasCriminalActivity">
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#criminal</rdfs:seeAlso>
+    <rdfs:domain rdf:nodeID="N4f99174dd86b4edaa9424e97b97cb677"/>
+    <rdfs:comment xml:lang="en">Information about the data subject's criminal activity is present. Example: criminal convictions or jail time. This data property was inspired by the "dpv:Criminal" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">has criminal activity</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N17d3146dbd834e169fa5f33b401f0fb6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="N1fd606184d754a8e95862da2a166d0ab"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N06b7014a64bb41d99e646b0e3f4e10ad">
+    <rdf:rest rdf:nodeID="N8773402ad51b4b1ab7a4059de77f2ba9"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasHealthData">
+    <rdfs:domain rdf:nodeID="N128a834c54ae494ba561b2eef56b4958"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Information about the data subject's health, medical conditions, doctor consultations or health care (medical history, test results, etc.) is present. This data property was inspired by the "dpv:MedicalHealth" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:MedicalHealth</rdfs:seeAlso>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="en">has health data</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4a63d9c5484c42df9be948b5bf25d0bf">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+    <rdf:rest rdf:nodeID="Ne6624b07a06b418dacbc2103eb901232"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nbe1e0017e7cd4d548cbad51aedd3332a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="N982a29fd15524b7dac2e11d46d6d3281"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N128a834c54ae494ba561b2eef56b4958">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="N42cb01b142d747ba8a800638ac4e9963"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasTooManyDataPoints">
+    <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdfs:comment xml:lang="en">Too much of the data subject's data is present in the dataset.</rdfs:comment>
+    <rdfs:label xml:lang="en">has too many data points</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">Describes the data subject when it is an individual, that is when the dataset represents specific people.</rdfs:comment>
+    <rdfs:label>Individual</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb1b3a210a1ed4426a392159048f455f2">
+    <owl:unionOf rdf:nodeID="Nf03e439c55994f749f05893357cad37f"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasFilesWithPIIAttached">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="en">has files with PII attached</rdfs:label>
+    <rdfs:comment xml:lang="en">Files with the data subject's personally identifiable information (PII) is attached to the dataset. Example: Resume, photos, scanned financial documents, scanned doctor's report, PDF containing sensitive details about the members of a group.</rdfs:comment>
+    <rdfs:domain rdf:nodeID="Nae0fe876a68949a88bd22294863a5fa9"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nde866d6cd3ca44c0967e5cf9e451416c">
+    <owl:unionOf rdf:nodeID="N4dd83494bed74019b6a08d3f026c2e05"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N07e3eb5fbe454ce684fd0092426b14a9">
+    <rdf:rest rdf:nodeID="Nbe1d21a1f9d44de99a13f2051019dcc4"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasAge">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Age</rdfs:seeAlso>
+    <rdfs:domain rdf:nodeID="N17d3146dbd834e169fa5f33b401f0fb6"/>
+    <rdfs:comment xml:lang="en">Information about the data subject’s age is present. This data property was inspired by the "dpv:Age" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdfs:label xml:lang="en">has age</rdfs:label>
+    <triggeredByItems></triggeredByItems>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/license">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasSignedNDA">
+    <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:NDA</rdfs:seeAlso>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment xml:lang="en">Information about any Non-disclosure agreements (NDA) that the data subject may have signed is present. This data property was inspired by the "dpv:NDA" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdfs:label xml:lang="en">has signed NDA</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N77e26d0002d8460ba1b9b6e50e3b3bea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="N06b7014a64bb41d99e646b0e3f4e10ad"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N7a7ec77080974b5c8d76b2f29b6a6036">
+    <owl:unionOf rdf:nodeID="N4a63d9c5484c42df9be948b5bf25d0bf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://purl.org/dc/terms/created">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasSignedNDA">
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:NDA</rdfs:seeAlso>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">has signed NDA</rdfs:label>
-    <rdfs:comment xml:lang="en">Information about any Non-disclosure agreements (NDA) that the data subject may have signed is present. This data property was inspired by the "dpv:NDA" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasUserTrackingData">
-    <rdfs:domain rdf:nodeID="Ne6f11ddb40904967970fb21b9627b29c"/>
-    <rdfs:label xml:lang="en">has user tracking data</rdfs:label>
-    <rdfs:comment xml:lang="en">Data that is related to tracking the data subject (online or offline) is present. This data property was inspired by the "dpv:Tracking" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Tracking</rdfs:seeAlso>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#isValidForProcessing">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label>is valid for processing</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:comment xml:lang="en">The given consent renders the data as valid for processing by the current data controller. This data property was inspired by the "Status valid for Processing" class in GConsent.</rdfs:comment>
-    <rdfs:seeAlso>https://w3id.org/GConsent#StatusValidForProcessing</rdfs:seeAlso>
-    <rdfs:domain rdf:resource="https://w3id.org/GConsent#Status"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Na0b5edd4e7194e9e8c0cd68c90e85678">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="N8deb98756d8844f4afd632092ff88875"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nd9e7d0dbdd334a3483f2ecd016ba03e5">
-    <owl:unionOf rdf:nodeID="N4b85a68131c14cd6b96d606772dc9a30"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Na85b3f7fbc094353b686d7d8a0b48255">
-    <owl:unionOf rdf:nodeID="N2413bf94dd3341d380ee39b74b17d6c6"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasFilesWithPIIAttached">
-    <rdfs:domain rdf:nodeID="Nd767ba25d05a402882696aa9f05e4509"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label xml:lang="en">has files with PII attached</rdfs:label>
-    <rdfs:comment xml:lang="en">Files with the data subject's personally identifiable information (PII) is attached to the dataset. Example: Resume, photos, scanned financial documents, scanned doctor's report, PDF containing sensitive details about the members of a group.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N136b9449f68c4160b0992fc4054e9a41">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-    <rdf:rest rdf:nodeID="Ned28e5678dfd44fa8b9e57f59dcbe0d4"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N443cd106e01445c6a4d6b961c7c62b32">
-    <owl:onProperty rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasStatus"/>
-    <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-    <owl:onClass rdf:resource="https://w3id.org/GConsent#Status"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N022fe9d1834f480c80425058c54c5446">
-    <owl:unionOf rdf:nodeID="N136b9449f68c4160b0992fc4054e9a41"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N1f6b8c7fc49c494685183aaaee30b752">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nbf7016e434f1485480c1b6c23e5af0f8">
-    <rdf:rest rdf:nodeID="Nf91baf945c8448068a3a24a994c86195"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N4b85a68131c14cd6b96d606772dc9a30">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-    <rdf:rest rdf:nodeID="N1f6b8c7fc49c494685183aaaee30b752"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasTooManyDataPoints">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label xml:lang="en">has too many data points</rdfs:label>
-    <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:comment xml:lang="en">Too much of the data subject's data is present in the dataset.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nfb4f084f8efb4c65998103db23bd13d4">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="Nb72200ea149b41988e4f2c1001a7490c"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasPoliticalOpinions">
-    <rdfs:domain rdf:nodeID="Neadd2cb193db4fffb47bb7effff600d3"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label xml:lang="en">has political opinions</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:comment xml:lang="en">Information about the data subject's political opinions are present.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N2413bf94dd3341d380ee39b74b17d6c6">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-    <rdf:rest rdf:nodeID="N22b07882c43748f781646c88d5087861"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasContactInformation">
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Contact</rdfs:seeAlso>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:comment xml:lang="en">Information about the data subject's contact details is present. Example: telephone number or email address. This data property was inspired by the "dpv:Contact" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:label xml:lang="en">has contact information</rdfs:label>
-    <rdfs:domain rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nb0c2ace59ac54a2bbe1e0fe60f24f56f">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Ne81b1e8ce33f41aead245cbd9dd4024f">
+  <rdf:Description rdf:nodeID="N1d39b7997f534756b3403b830a608912">
     <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/GConsent#hasConsent">
-    <rdfs:domain rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
-    <owl:inverseOf rdf:resource="https://w3id.org/GConsent#isConsentForDataSubject"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:isDefinedBy rdf:resource="https://w3id.org/GDPRtEXT#Consent"/>
-    <rdfs:comment xml:lang="en">Links a data subject to their consent.</rdfs:comment>
-    <rdfs:range rdf:resource="https://w3id.org/GConsent#Consent"/>
-    <rdfs:label xml:lang="en">has consent</rdfs:label>
+  <rdf:Description rdf:nodeID="N982a29fd15524b7dac2e11d46d6d3281">
+    <rdf:rest rdf:nodeID="N7332e0b93b484fb987d9db7ffa97ca65"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nd767ba25d05a402882696aa9f05e4509">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="N56e821f34c2d4e569b366cb51f129b60"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N43c01af5f3044832a593ba0053137bd7">
+  <rdf:Description rdf:nodeID="Nf7f5d20fb1374e9785fd84800d0e9d7d">
     <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N3f09caa6231b4b348edc8b3b4adeb379">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N42cb01b142d747ba8a800638ac4e9963">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+    <rdf:rest rdf:nodeID="N135b2a150f5b4c9497f6f0c38a5d5ee9"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/GConsent#Status">
+    <rdfs:comment>Represents the status of consent for the data subject. This allows persisting the determination of the validatity or suitability of consent (as an entity or instance) for use in processing and other activities. Examples: consent is given, consent is requested but not given, consent was withdrawn.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Status</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology">
+    <terms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N550e584aa2e14a9282a2e52cf8efba6c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="Nfacbdc4d05f0439db40158b27ad05f0a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf03e439c55994f749f05893357cad37f">
+    <rdf:rest rdf:nodeID="N1d39b7997f534756b3403b830a608912"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasBehaviourData">
+    <rdfs:comment xml:lang="en">Information about the data subject's behaviour is present. This data property was inspired by the "dpv:Behavioral" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:nodeID="Nfeee38a87b70417e805d1127a201bb0c"/>
+    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:Behavioral</rdfs:seeAlso>
+    <rdfs:label xml:lang="en">has behaviour data</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4dd83494bed74019b6a08d3f026c2e05">
+    <rdf:rest rdf:nodeID="N5d77c1a5ade947ba83b54f545969103a"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nbe1d21a1f9d44de99a13f2051019dcc4">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N23b6a57fa0a24cab84ebd57c75c85ce6">
+    <rdf:rest rdf:nodeID="N5157506828654bf1aef31a9e080b5c44"/>
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfeee38a87b70417e805d1127a201bb0c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="N07e3eb5fbe454ce684fd0092426b14a9"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://purl.org/dc/terms/creator">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="N22b07882c43748f781646c88d5087861">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:nodeID="N7332e0b93b484fb987d9db7ffa97ca65">
     <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Ne6f11ddb40904967970fb21b9627b29c">
-    <owl:unionOf rdf:nodeID="N15f86d6dd3ac498b9419de0f08c17768"/>
+  <rdf:Description rdf:nodeID="N04b42954646241d0a4b22ff3a751a844">
+    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
+    <rdf:rest rdf:nodeID="N1a934139c2a84f8992fd40ef99aec41c"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nae0fe876a68949a88bd22294863a5fa9">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="N9ebd0c849f1042c68e927b03fc7a9d5a"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Ne8d644b21d5a4ccbbed84d452a5d5584">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasDataControllerName">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://www.w3.org/ns/dpv#DataController"/>
-    <rdfs:comment xml:lang="en">Indicates the name of the data controller.</rdfs:comment>
-    <rdfs:label xml:lang="en">has data controller name</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N8deb98756d8844f4afd632092ff88875">
-    <rdf:rest rdf:nodeID="Ne8d644b21d5a4ccbbed84d452a5d5584"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nb2f359bb672a43c38ffee72bd949071e">
-    <rdf:rest rdf:nodeID="Nf56e71be46db4415b4584cb6c33771ee"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N04fbffdc217d49e6bb10ef066be5d2f8">
-    <rdf:rest rdf:nodeID="N9a1ce66e7bb54d75bb70ee186804ea59"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Group"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#isStatusForConsent">
-    <rdfs:label xml:lang="en">is status for consent</rdfs:label>
-    <rdfs:domain rdf:resource="https://w3id.org/GConsent#Status"/>
-    <rdfs:range rdf:resource="https://w3id.org/GConsent#Consent"/>
-    <rdfs:comment xml:lang="en">Links a status to the consent that uses it.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Ned28e5678dfd44fa8b9e57f59dcbe0d4">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N5829774d8bf34473a99cdaa8b665aa5f">
-    <owl:unionOf rdf:nodeID="N0a04ffa0d0ba43b288808bd34c7d6d1c"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nfd818029d6d14e01bf249c918eda3f16">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#hasPhysicalCharacteristics">
-    <rdfs:comment xml:lang="en">Information about the data subject's physical characteristics is present. Example: gender, physical disabilities, skin colour, hair colour, tattoos, piercings, body measurements. This data property was inspired by the "dpv:PhysicalCharacteristic" class in the Data Privacy Vocabulary (DPV).</rdfs:comment>
-    <rdfs:seeAlso>https://www.w3.org/ns/dpv#dpv:PhysicalCharacteristic</rdfs:seeAlso>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:nodeID="Nf4950d07e1c34996b1bcc085032f1577"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">has physical characteristics</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#triggeredByItems">
+  <rdf:Description rdf:about="http://purl.org/dc/terms/date-accepted">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nf91baf945c8448068a3a24a994c86195">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N16e41fd8bc9c4663b3eecf341c3aa1ce">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="Nd69c01a12db341a1aec290c02fb83c82"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Neadd2cb193db4fffb47bb7effff600d3">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="N4d178023174c440f9abc5493745bf971"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N7d754469787446d999e796e42f2b239f">
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N5dc795362a064f46b3596c8ee6c7c5e8">
-    <owl:onClass rdf:resource="http://www.w3.org/ns/dpv#DataSubject"/>
-    <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-    <owl:onProperty rdf:resource="https://w3id.org/GConsent#isConsentForDataSubject"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N912a117466554c46b47fb44418c10af2">
-    <owl:unionOf rdf:nodeID="Nb2f359bb672a43c38ffee72bd949071e"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nf56e71be46db4415b4584cb6c33771ee">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#Individual"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N442a5ded3b5d4c7182fc5b8d3ac24bdd">
-    <owl:unionOf rdf:nodeID="Nbf7016e434f1485480c1b6c23e5af0f8"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Na5dbee213fec455cbe122f542bbd7787">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="Nba0d0f20917440aea871920f0bb9ab93"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://purl.org/dc/terms/license">
+  <rdf:Description rdf:about="https://www.scss.tcd.ie/~kamarajk/EthicsOntology#triggeredByItems">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
 </rdf:RDF>
