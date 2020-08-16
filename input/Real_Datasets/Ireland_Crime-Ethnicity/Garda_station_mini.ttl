@@ -1,0 +1,112 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://example.org/csv/attempts_or_threats_to_murder_assaults_harassments_and_related_offences
+<http://example.org/csv/attempts_or_threats_to_murder_assaults_harassments_and_related_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/burglary_and_related_offences
+<http://example.org/csv/burglary_and_related_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/controlled_drug_offences
+<http://example.org/csv/controlled_drug_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/damage_to_property_and_to_the_environment
+<http://example.org/csv/damage_to_property_and_to_the_environment> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/dangerous_or_negligent_acts
+<http://example.org/csv/dangerous_or_negligent_acts> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/divisions
+<http://example.org/csv/divisions> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/fraud_deception_and_related_offences
+<http://example.org/csv/fraud_deception_and_related_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/kidnapping_and_related_offences
+<http://example.org/csv/kidnapping_and_related_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime
+<http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/public_order_and_other_social_code_offences
+<http://example.org/csv/public_order_and_other_social_code_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/robbery_extortion_and_hijacking_offences
+<http://example.org/csv/robbery_extortion_and_hijacking_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/station
+<http://example.org/csv/station> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/theft_and_related_offences
+<http://example.org/csv/theft_and_related_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/weapons_and_explosives_offences
+<http://example.org/csv/weapons_and_explosives_offences> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/x
+<http://example.org/csv/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/y
+<http://example.org/csv/y> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/csv/Record
+<http://example.org/csv/Record> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.example.org/record/201
+<http://www.example.org/record/201> rdf:type owl:NamedIndividual ,
+                                             <http://example.org/csv/Record> ;
+                                    <http://example.org/csv/attempts_or_threats_to_murder_assaults_harassments_and_related_offences> "551" ;
+                                    <http://example.org/csv/burglary_and_related_offences> "579" ;
+                                    <http://example.org/csv/controlled_drug_offences> "294" ;
+                                    <http://example.org/csv/damage_to_property_and_to_the_environment> "585" ;
+                                    <http://example.org/csv/dangerous_or_negligent_acts> "92" ;
+                                    <http://example.org/csv/divisions> "D.M.R. South Central Division" ;
+                                    <http://example.org/csv/fraud_deception_and_related_offences> "271" ;
+                                    <http://example.org/csv/kidnapping_and_related_offences> "1" ;
+                                    <http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime> "139" ;
+                                    <http://example.org/csv/public_order_and_other_social_code_offences> "2851" ;
+                                    <http://example.org/csv/robbery_extortion_and_hijacking_offences> "165" ;
+                                    <http://example.org/csv/station> "Pearse Street" ;
+                                    <http://example.org/csv/theft_and_related_offences> "4595" ;
+                                    <http://example.org/csv/weapons_and_explosives_offences> "125" ;
+                                    <http://example.org/csv/x> "316180" ;
+                                    <http://example.org/csv/y> "234222" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

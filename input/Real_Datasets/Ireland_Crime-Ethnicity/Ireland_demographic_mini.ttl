@@ -1,0 +1,477 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://example.org/csv/county
+<http://example.org/csv/county> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/electoral_division_cso_code
+<http://example.org/csv/electoral_division_cso_code> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/electoral_division_name
+<http://example.org/csv/electoral_division_name> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/english_ability_not_at_all_2011
+<http://example.org/csv/english_ability_not_at_all_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/english_ability_not_stated_2011
+<http://example.org/csv/english_ability_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/english_ability_not_well_2011
+<http://example.org/csv/english_ability_not_well_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/english_ability_total_2011
+<http://example.org/csv/english_ability_total_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/english_ability_very_well_2011
+<http://example.org/csv/english_ability_very_well_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/english_ability_well_2011
+<http://example.org/csv/english_ability_well_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_asian_2011
+<http://example.org/csv/ethnic_cultural_background_asian_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_black_or_black_irish_2011
+<http://example.org/csv/ethnic_cultural_background_black_or_black_irish_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_not_stated_2011
+<http://example.org/csv/ethnic_cultural_background_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_other_2011
+<http://example.org/csv/ethnic_cultural_background_other_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_other_white_2011
+<http://example.org/csv/ethnic_cultural_background_other_white_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_total_2011
+<http://example.org/csv/ethnic_cultural_background_total_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_white_irish_2011
+<http://example.org/csv/ethnic_cultural_background_white_irish_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/ethnic_cultural_background_white_irish_traveller_2011
+<http://example.org/csv/ethnic_cultural_background_white_irish_traveller_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/foreign_languages_french_2011
+<http://example.org/csv/foreign_languages_french_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/foreign_languages_lithuanian_2011
+<http://example.org/csv/foreign_languages_lithuanian_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/foreign_languages_other_2011
+<http://example.org/csv/foreign_languages_other_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/foreign_languages_polish_2011
+<http://example.org/csv/foreign_languages_polish_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/foreign_languages_total_2011
+<http://example.org/csv/foreign_languages_total_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/geogid
+<http://example.org/csv/geogid> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_ireland_2011
+<http://example.org/csv/nationality_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_lithuania_2011
+<http://example.org/csv/nationality_lithuania_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_not_stated_2011
+<http://example.org/csv/nationality_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_other_eu_27_2011
+<http://example.org/csv/nationality_other_eu_27_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_poland_2011
+<http://example.org/csv/nationality_poland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_rest_of_world_2011
+<http://example.org/csv/nationality_rest_of_world_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_total_2011
+<http://example.org/csv/nationality_total_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nationality_uk_2011
+<http://example.org/csv/nationality_uk_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nuts_ii
+<http://example.org/csv/nuts_ii> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/nuts_iii
+<http://example.org/csv/nuts_iii> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_english_ability_not_at_all_2011
+<http://example.org/csv/perc_english_ability_not_at_all_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_english_ability_not_stated_2011
+<http://example.org/csv/perc_english_ability_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_english_ability_not_well_2011
+<http://example.org/csv/perc_english_ability_not_well_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_english_ability_very_well_2011
+<http://example.org/csv/perc_english_ability_very_well_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_english_ability_well_2011
+<http://example.org/csv/perc_english_ability_well_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_ethnic_cultural_background_asian_or_asian_irish_2011
+<http://example.org/csv/perc_ethnic_cultural_background_asian_or_asian_irish_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_ethnic_cultural_background_black_or_black_irish_2011
+<http://example.org/csv/perc_ethnic_cultural_background_black_or_black_irish_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_ethnic_cultural_background_not_stated_2011
+<http://example.org/csv/perc_ethnic_cultural_background_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_ethnic_cultural_background_other_2011
+<http://example.org/csv/perc_ethnic_cultural_background_other_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_ethnic_cultural_background_other_white_2011
+<http://example.org/csv/perc_ethnic_cultural_background_other_white_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_ethnic_cultural_background_white_irish_2011
+<http://example.org/csv/perc_ethnic_cultural_background_white_irish_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_ethnic_cultural_background_white_irish_traveller_2011
+<http://example.org/csv/perc_ethnic_cultural_background_white_irish_traveller_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_foreign_languages_french_2011
+<http://example.org/csv/perc_foreign_languages_french_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_foreign_languages_lithuanian_2011
+<http://example.org/csv/perc_foreign_languages_lithuanian_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_foreign_languages_other_2011
+<http://example.org/csv/perc_foreign_languages_other_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_foreign_languages_polish_2011
+<http://example.org/csv/perc_foreign_languages_polish_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_nationality_ireland_2011
+<http://example.org/csv/perc_nationality_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_nationality_lithuania_2011
+<http://example.org/csv/perc_nationality_lithuania_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_nationality_not_stated_2011
+<http://example.org/csv/perc_nationality_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_nationality_other_eu_28_2011
+<http://example.org/csv/perc_nationality_other_eu_28_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_nationality_poland_2011
+<http://example.org/csv/perc_nationality_poland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_nationality_rest_of_world_2011
+<http://example.org/csv/perc_nationality_rest_of_world_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_nationality_uk_2011
+<http://example.org/csv/perc_nationality_uk_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_place_of_birth_ireland_2011
+<http://example.org/csv/perc_place_of_birth_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_place_of_birth_lithuania_2011
+<http://example.org/csv/perc_place_of_birth_lithuania_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_place_of_birth_other_eu_28_2011
+<http://example.org/csv/perc_place_of_birth_other_eu_28_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_place_of_birth_poland_2011
+<http://example.org/csv/perc_place_of_birth_poland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_place_of_birth_rest_of_world_2011
+<http://example.org/csv/perc_place_of_birth_rest_of_world_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_place_of_birth_uk_2011
+<http://example.org/csv/perc_place_of_birth_uk_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_religion_catholic_2011
+<http://example.org/csv/perc_religion_catholic_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_religion_no_religion_2011
+<http://example.org/csv/perc_religion_no_religion_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_religion_not_stated_2011
+<http://example.org/csv/perc_religion_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_religion_other_stated_religion_2011
+<http://example.org/csv/perc_religion_other_stated_religion_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_usual_residence_elsewhere_in_county_2011
+<http://example.org/csv/perc_usual_residence_elsewhere_in_county_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_usual_residence_elsewhere_in_ireland_2011
+<http://example.org/csv/perc_usual_residence_elsewhere_in_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_usual_residence_outside_ireland_2011
+<http://example.org/csv/perc_usual_residence_outside_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/perc_usual_residence_same_address_2011
+<http://example.org/csv/perc_usual_residence_same_address_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/place_of_birth_ireland_2011
+<http://example.org/csv/place_of_birth_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/place_of_birth_lithuania_2011
+<http://example.org/csv/place_of_birth_lithuania_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/place_of_birth_other_eu_28_2011
+<http://example.org/csv/place_of_birth_other_eu_28_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/place_of_birth_poland_2011
+<http://example.org/csv/place_of_birth_poland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/place_of_birth_rest_of_world_2011
+<http://example.org/csv/place_of_birth_rest_of_world_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/place_of_birth_total_2011
+<http://example.org/csv/place_of_birth_total_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/place_of_birth_uk_2011
+<http://example.org/csv/place_of_birth_uk_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/planning_region
+<http://example.org/csv/planning_region> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/religion_catholic_2011
+<http://example.org/csv/religion_catholic_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/religion_no_religion_2011
+<http://example.org/csv/religion_no_religion_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/religion_not_stated_2011
+<http://example.org/csv/religion_not_stated_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/religion_other_stated_religion_2011
+<http://example.org/csv/religion_other_stated_religion_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/religion_total_2011
+<http://example.org/csv/religion_total_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/sa_name
+<http://example.org/csv/sa_name> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/usual_residence_elsewhere_in_county_2011
+<http://example.org/csv/usual_residence_elsewhere_in_county_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/usual_residence_elsewhere_in_ireland_2011
+<http://example.org/csv/usual_residence_elsewhere_in_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/usual_residence_outside_ireland_2011
+<http://example.org/csv/usual_residence_outside_ireland_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/usual_residence_same_address_2011
+<http://example.org/csv/usual_residence_same_address_2011> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/csv/usual_residence_total_2011
+<http://example.org/csv/usual_residence_total_2011> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/csv/Record
+<http://example.org/csv/Record> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.example.org/record/1
+<http://www.example.org/record/1> rdf:type owl:NamedIndividual ,
+                                           <http://example.org/csv/Record> ;
+                                  <http://example.org/csv/county> "Carlow" ;
+                                  <http://example.org/csv/electoral_division_cso_code> "1001" ;
+                                  <http://example.org/csv/electoral_division_name> "001 Carlow Urban" ;
+                                  <http://example.org/csv/english_ability_not_at_all_2011> "3" ;
+                                  <http://example.org/csv/english_ability_not_stated_2011> "0" ;
+                                  <http://example.org/csv/english_ability_not_well_2011> "14" ;
+                                  <http://example.org/csv/english_ability_total_2011> "30" ;
+                                  <http://example.org/csv/english_ability_very_well_2011> "0" ;
+                                  <http://example.org/csv/english_ability_well_2011> "13" ;
+                                  <http://example.org/csv/ethnic_cultural_background_asian_2011> "11" ;
+                                  <http://example.org/csv/ethnic_cultural_background_black_or_black_irish_2011> "3" ;
+                                  <http://example.org/csv/ethnic_cultural_background_not_stated_2011> "1" ;
+                                  <http://example.org/csv/ethnic_cultural_background_other_2011> "0" ;
+                                  <http://example.org/csv/ethnic_cultural_background_other_white_2011> "19" ;
+                                  <http://example.org/csv/ethnic_cultural_background_total_2011> "99" ;
+                                  <http://example.org/csv/ethnic_cultural_background_white_irish_2011> "65" ;
+                                  <http://example.org/csv/ethnic_cultural_background_white_irish_traveller_2011> "0" ;
+                                  <http://example.org/csv/foreign_languages_french_2011> "2" ;
+                                  <http://example.org/csv/foreign_languages_lithuanian_2011> "0" ;
+                                  <http://example.org/csv/foreign_languages_other_2011> "20" ;
+                                  <http://example.org/csv/foreign_languages_polish_2011> "8" ;
+                                  <http://example.org/csv/foreign_languages_total_2011> "30" ;
+                                  <http://example.org/csv/geogid> "A017011001" ;
+                                  <http://example.org/csv/nationality_ireland_2011> "65" ;
+                                  <http://example.org/csv/nationality_lithuania_2011> "0" ;
+                                  <http://example.org/csv/nationality_not_stated_2011> "1" ;
+                                  <http://example.org/csv/nationality_other_eu_27_2011> "6" ;
+                                  <http://example.org/csv/nationality_poland_2011> "8" ;
+                                  <http://example.org/csv/nationality_rest_of_world_2011> "16" ;
+                                  <http://example.org/csv/nationality_total_2011> "99" ;
+                                  <http://example.org/csv/nationality_uk_2011> "3" ;
+                                  <http://example.org/csv/nuts_ii> "SE" ;
+                                  <http://example.org/csv/nuts_iii> "South-East" ;
+                                  <http://example.org/csv/perc_english_ability_not_at_all_2011> "10" ;
+                                  <http://example.org/csv/perc_english_ability_not_stated_2011> "0" ;
+                                  <http://example.org/csv/perc_english_ability_not_well_2011> "46.67" ;
+                                  <http://example.org/csv/perc_english_ability_very_well_2011> "0" ;
+                                  <http://example.org/csv/perc_english_ability_well_2011> "43.33" ;
+                                  <http://example.org/csv/perc_ethnic_cultural_background_asian_or_asian_irish_2011> "11.11" ;
+                                  <http://example.org/csv/perc_ethnic_cultural_background_black_or_black_irish_2011> "3.03" ;
+                                  <http://example.org/csv/perc_ethnic_cultural_background_not_stated_2011> "1.01" ;
+                                  <http://example.org/csv/perc_ethnic_cultural_background_other_2011> "0" ;
+                                  <http://example.org/csv/perc_ethnic_cultural_background_other_white_2011> "19.19" ;
+                                  <http://example.org/csv/perc_ethnic_cultural_background_white_irish_2011> "65.66" ;
+                                  <http://example.org/csv/perc_ethnic_cultural_background_white_irish_traveller_2011> "0" ;
+                                  <http://example.org/csv/perc_foreign_languages_french_2011> "6.67" ;
+                                  <http://example.org/csv/perc_foreign_languages_lithuanian_2011> "0" ;
+                                  <http://example.org/csv/perc_foreign_languages_other_2011> "66.67" ;
+                                  <http://example.org/csv/perc_foreign_languages_polish_2011> "26.67" ;
+                                  <http://example.org/csv/perc_nationality_ireland_2011> "65.66" ;
+                                  <http://example.org/csv/perc_nationality_lithuania_2011> "0" ;
+                                  <http://example.org/csv/perc_nationality_not_stated_2011> "1.01" ;
+                                  <http://example.org/csv/perc_nationality_other_eu_28_2011> "6.06" ;
+                                  <http://example.org/csv/perc_nationality_poland_2011> "8.08" ;
+                                  <http://example.org/csv/perc_nationality_rest_of_world_2011> "16.16" ;
+                                  <http://example.org/csv/perc_nationality_uk_2011> "3.03" ;
+                                  <http://example.org/csv/perc_place_of_birth_ireland_2011> "63.64" ;
+                                  <http://example.org/csv/perc_place_of_birth_lithuania_2011> "0" ;
+                                  <http://example.org/csv/perc_place_of_birth_other_eu_28_2011> "6.06" ;
+                                  <http://example.org/csv/perc_place_of_birth_poland_2011> "8.08" ;
+                                  <http://example.org/csv/perc_place_of_birth_rest_of_world_2011> "17.17" ;
+                                  <http://example.org/csv/perc_place_of_birth_uk_2011> "5.05" ;
+                                  <http://example.org/csv/perc_religion_catholic_2011> "63.37" ;
+                                  <http://example.org/csv/perc_religion_no_religion_2011> "19.8" ;
+                                  <http://example.org/csv/perc_religion_not_stated_2011> "2.97" ;
+                                  <http://example.org/csv/perc_religion_other_stated_religion_2011> "13.86" ;
+                                  <http://example.org/csv/perc_usual_residence_elsewhere_in_county_2011> "12.24" ;
+                                  <http://example.org/csv/perc_usual_residence_elsewhere_in_ireland_2011> "15.31" ;
+                                  <http://example.org/csv/perc_usual_residence_outside_ireland_2011> "8.16" ;
+                                  <http://example.org/csv/perc_usual_residence_same_address_2011> "64.29" ;
+                                  <http://example.org/csv/place_of_birth_ireland_2011> "63" ;
+                                  <http://example.org/csv/place_of_birth_lithuania_2011> "0" ;
+                                  <http://example.org/csv/place_of_birth_other_eu_28_2011> "6" ;
+                                  <http://example.org/csv/place_of_birth_poland_2011> "8" ;
+                                  <http://example.org/csv/place_of_birth_rest_of_world_2011> "17" ;
+                                  <http://example.org/csv/place_of_birth_total_2011> "99" ;
+                                  <http://example.org/csv/place_of_birth_uk_2011> "5" ;
+                                  <http://example.org/csv/planning_region> "Southern" ;
+                                  <http://example.org/csv/religion_catholic_2011> "64" ;
+                                  <http://example.org/csv/religion_no_religion_2011> "20" ;
+                                  <http://example.org/csv/religion_not_stated_2011> "3" ;
+                                  <http://example.org/csv/religion_other_stated_religion_2011> "14" ;
+                                  <http://example.org/csv/religion_total_2011> "101" ;
+                                  <http://example.org/csv/sa_name> "17011001" ;
+                                  <http://example.org/csv/usual_residence_elsewhere_in_county_2011> "12" ;
+                                  <http://example.org/csv/usual_residence_elsewhere_in_ireland_2011> "15" ;
+                                  <http://example.org/csv/usual_residence_outside_ireland_2011> "8" ;
+                                  <http://example.org/csv/usual_residence_same_address_2011> "63" ;
+                                  <http://example.org/csv/usual_residence_total_2011> "98" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
