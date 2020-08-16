@@ -95,15 +95,24 @@ class GUI():
 
         return answers_objects
 
+    def quick_remove_widgets(self):
+        for dataset, answers_objects in self.dataset_answer_entry_objects.items():
+            for key, answer_object in answers_objects.items():
+                if key != "data_subject_type":
+                    answer_object.destroy()
+            self.btn_done.grid_forget()
+
+    def remove_chosen_files(self):
+        self.lbl_files_chosen["text"] = " "
+        self.input_datasets_locations = []
+        self.input_datasets_list = []
+        self.quick_remove_widgets()
+
     def select_file(self):
         # Covering the corner case where the select dataset button is clicked again.
         # Have to clear previous widgets.
         if self.dataset_answer_entry_objects:
-            for dataset, answers_objects in self.dataset_answer_entry_objects.items():
-                for key, answer_object in answers_objects.items():
-                    if key != "data_subject_type":
-                        answer_object.destroy()
-            self.btn_done.grid_forget()
+            self.quick_remove_widgets()
 
         self.window.filenames = filedialog.askopenfilenames(initialdir="/", title="Select Input Datasets", filetypes=(("XML Files", "*.xml"), ("RDF Files", "*.rdf"), ("OWL Files", "*.owl"), ("TTL Files", "*.ttl")))
 
@@ -195,6 +204,7 @@ class GUI():
         self.btn_input = tk.Button(master=self.frm_input_area, text="Select input datasets", width=30, height=2, command=self.select_file)
         self.lbl_file_chosen_label = tk.Label(master=self.frm_input_area, text="Chosen input datasets: ")
         self.lbl_files_chosen = tk.Label(master=self.frm_input_area, text=" ")
+        self.btn_cancel_chosen_files = tk.Button(master=self.frm_input_area, text=" X ", command=self.remove_chosen_files)
         self.btn_done = tk.Button(master=self.frm_main, text="Done", width = 10, height=2, command=self.done)
         self.btn_done.bind('<Return>', self.done)
         self.progress_bar = ttk.Progressbar(master=self.frm_main, orient=HORIZONTAL, length=300, mode='determinate')
@@ -209,6 +219,7 @@ class GUI():
         self.btn_input.grid(row=0, column=0, padx=10, pady=10)
         self.lbl_file_chosen_label.grid(row=0, column=1, padx=10, pady=10)
         self.lbl_files_chosen.grid(row=0, column=2, padx=10, pady=10)
+        self.btn_cancel_chosen_files.grid(row=0, column=3, padx=10, pady=10)
 
         # Importing the Ethics Ontology
         self.ethics_ontology = rdflib.Graph()
