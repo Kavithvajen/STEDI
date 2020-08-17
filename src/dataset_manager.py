@@ -211,8 +211,8 @@ class InputDataset(_Dataset):
             "behaviour_words" : (["behaviour", "behavioural", "myers", "opinion", "personality"],
                             "hasBehaviourData"),
 
-            "child_words" : (["baby", "child", "juvenile", "kid", "minor", "teenager", "youngster"],
-                            "hasChildData"),
+            # "child_words" : (["baby", "child", "juvenile", "kid", "minor", "teenager", "youngster"],
+            #                 "hasChildData"),
 
             "criminal_words" : (["criminal", "felony", "jail", "prison"],
                             "hasCriminalActivity"),
@@ -223,21 +223,22 @@ class InputDataset(_Dataset):
             "health_words" : (["DNA", "consult", "doctor", "health", "medical"],
                             "hasHealthData"),
 
-            "income_words" : (["earning", "economic", "financial", "income", "salary"],
+            "income_words" : (["earning", "income", "salary"],
                             "hasIncomeData"),
 
             "loan_words" : (["debt", "loan"],
                             "hasLoanRecords"),
 
-            "location_words" : (["address", "area", "city", "lives, ""location", "postal", "resident", "zip-code"],
+            "location_words" : (["address", "area", "city", "county", "lives", "location", "postal", "resident",
+                                    "station", "zip-code", "x", "y"],
                             "hasLocationData"),
 
             "physical_words" : (["body", "colour", "disability", "gender", "hair", "height", "piercings",
                                     "size", "skin", "tattoos", "weight"],
                             "hasPhysicalCharacteristics"),
 
-            "politics_words" : (["politics"],
-                            "hasPoliticalOpinions"),
+            # "politics_words" : (["politics"],
+            #                "hasPoliticalOpinions"),
 
             "religion_words" : (["divinity", "faith", "religion", "worship"],
                             "hasReligion"),

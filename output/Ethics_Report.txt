@@ -1,58 +1,92 @@
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - TRACKED_USER_DATA
+ETHICS REPORT FOR INDIVIDUAL DATASET - GARDA_STATION_MINI
 
 Data controller: test
 Valid for processing: True
-This dataset represents individuals.
+This dataset represents groups.
 
 Issues present in the dataset:
 
-1. HAS AGE
+1. HAS CRIMINAL ACTIVITY
 Predicates that triggered this issue:
-	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasAge
+	* http://example.org/csv/attempts_or_threats_to_murder_assaults_harassments_and_related_offences
+	* http://example.org/csv/robbery_extortion_and_hijacking_offences
+	* http://example.org/csv/burglary_and_related_offences
+	* http://example.org/csv/fraud_deception_and_related_offences
+	* http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime
+	* http://example.org/csv/theft_and_related_offences
 
 
-2. HAS LOAN RECORDS
+2. HAS ETHNICITY DATA
 Predicates that triggered this issue:
-	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasInterest
+	* http://example.org/csv/public_order_and_other_social_code_offences
 
 
-3. HAS USER TRACKING DATA
+3. HAS LOCATION DATA
 Predicates that triggered this issue:
-	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasInterest
-	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasAge
-	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#isUserSince
-	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasAdTrackingID
+	* http://example.org/csv/x
+	* http://example.org/csv/station
+	* http://example.org/csv/public_order_and_other_social_code_offences
+	* http://example.org/csv/y
 
 ----------------------------------------------------------------------------------------------------
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - BANK_LOAN_DATA
+ETHICS REPORT FOR INDIVIDUAL DATASET - IRELAND_DEMOGRAPHIC_MINI
 
 Data controller: test
 Valid for processing: True
-This dataset represents individuals.
+This dataset represents groups.
 
 Issues present in the dataset:
 
-1. HAS INCOME DATA
+1. HAS ETHNICITY DATA
 Predicates that triggered this issue:
-	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasDefaultedInThePast
-	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasWebTrackerId
-	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasBorrowedLoanAmount
+	* http://example.org/csv/perc_religion_catholic_2011
+	* http://example.org/csv/perc_foreign_languages_lithuanian_2011
+	* http://example.org/csv/foreign_languages_french_2011
+	* http://example.org/csv/foreign_languages_polish_2011
+	* http://example.org/csv/perc_religion_not_stated_2011
+	* http://example.org/csv/perc_religion_other_stated_religion_2011
+	* http://example.org/csv/religion_catholic_2011
+	* http://example.org/csv/religion_not_stated_2011
+	* http://example.org/csv/perc_religion_no_religion_2011
+	* http://example.org/csv/religion_other_stated_religion_2011
+	* http://example.org/csv/foreign_languages_other_2011
+	* http://example.org/csv/religion_no_religion_2011
+	* http://example.org/csv/foreign_languages_lithuanian_2011
+	* http://example.org/csv/perc_foreign_languages_polish_2011
+	* http://example.org/csv/foreign_languages_total_2011
+	* http://example.org/csv/perc_foreign_languages_french_2011
+	* http://example.org/csv/perc_foreign_languages_other_2011
+	* http://example.org/csv/religion_total_2011
 
 
-2. HAS LOAN RECORDS
+2. HAS LOCATION DATA
 Predicates that triggered this issue:
-	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasDefaultedInThePast
-	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasWebTrackerId
-	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasBorrowedLoanAmount
+	* http://example.org/csv/county
+	* http://example.org/csv/usual_residence_same_address_2011
+	* http://example.org/csv/perc_usual_residence_elsewhere_in_county_2011
+	* http://example.org/csv/perc_usual_residence_outside_ireland_2011
+	* http://example.org/csv/electoral_division_cso_code
+	* http://example.org/csv/planning_region
+	* http://example.org/csv/perc_usual_residence_same_address_2011
+	* http://example.org/csv/usual_residence_elsewhere_in_county_2011
+	* http://example.org/csv/usual_residence_outside_ireland_2011
 
 
-3. HAS USER TRACKING DATA
+3. HAS RELIGION
 Predicates that triggered this issue:
-	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasWebTrackerId
+	* http://example.org/csv/perc_religion_catholic_2011
+	* http://example.org/csv/perc_religion_not_stated_2011
+	* http://example.org/csv/perc_religion_other_stated_religion_2011
+	* http://example.org/csv/religion_catholic_2011
+	* http://example.org/csv/religion_not_stated_2011
+	* http://example.org/csv/perc_religion_no_religion_2011
+	* http://example.org/csv/religion_other_stated_religion_2011
+	* http://example.org/csv/religion_no_religion_2011
+	* http://example.org/csv/religion_total_2011
 
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
@@ -60,4 +94,8 @@ Predicates that triggered this issue:
 ETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS
 
 
- + SCENARIO-2 : Cross-site tracking can be linked with the user's loan records to make any unethical assumption regarding the user.
+ + SCENARIO-1 : Locations can be linked and certain races can be unethically claimed as more inclined to be criminals.
+
+ + SCENARIO-1 : Location can be linked and certain ethnic groups can be unethically claimed as more inclined to be criminals.
+
+ + SCENARIO-1 : Since locations can be linked and criminal data is involved, any datapoint from any of the datasets can be used to make ethically wrong assumptions. 
