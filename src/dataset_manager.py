@@ -146,7 +146,7 @@ class InputDataset(_Dataset):
                 predicate_parts = p.split("/")
                 predicate = predicate_parts[-1]
                 predicate = re.sub("[^A-Za-z0-9 ]+", " ", predicate)
-                # To split camel case
+                # To split camelCase
                 predicate = re.sub(r"([A-Z])", r" \1", predicate)
                 predicate = predicate.lower()
 
@@ -156,7 +156,7 @@ class InputDataset(_Dataset):
                     if token.text not in _Dataset.common_words_to_ignore:
                         for word_list in word_lists_dict.values():
                             for issue in word_list[0]:
-                                # 1st condition checks if its the same thing, this eliminates the unnecessary use of NLP.
+                                # 1st condition checks if it's the same thing, this eliminates the unnecessary use of NLP.
                                 # 2nd condition avoids checking similarity for empty vectors first and then does the similarity check.
                                 # "0.5" allowed a wider range of words to creep in as issues, so after trial and error I settled on "0.6".
                                 if (str(token).lower() == issue.lower()) or (token.has_vector and token.similarity(nlp(issue)) > 0.6) :
@@ -184,7 +184,7 @@ class InputDataset(_Dataset):
 
         # Checking if the individual has signed an NDA, or if their name or contact information is present in the dataset.
         word_lists_dict = {
-            "contact_words" : (["contact", "phone", "email", "account", "skype", ],
+            "contact_words" : (["account", "contact", "email", "phone", "skype"],
                             "hasContactInformation"),
 
             "name_words" : (["name"],
@@ -208,11 +208,11 @@ class InputDataset(_Dataset):
             "age_words" : (["age", "birthday", "dob"],
                             "hasAge"),
 
-            "behaviour_words" : (["behaviour", "behavioural", "myers", "opinion", "personality"],
+            "behaviour_words" : (["behaviour", "interest", "myers", "opinion", "personality"],
                             "hasBehaviourData"),
 
-            # "child_words" : (["baby", "child", "juvenile", "kid", "minor", "teenager", "youngster"],
-            #                 "hasChildData"),
+            "child_words" : (["baby", "child", "juvenile", "kid", "minor", "teenager", "youngster"],
+                            "hasChildData"),
 
             "criminal_words" : (["criminal", "felony", "jail", "prison"],
                             "hasCriminalActivity"),
@@ -237,8 +237,8 @@ class InputDataset(_Dataset):
                                     "size", "skin", "tattoos", "weight"],
                             "hasPhysicalCharacteristics"),
 
-            # "politics_words" : (["politics"],
-            #                "hasPoliticalOpinions"),
+            "politics_words" : (["politics"],
+                           "hasPoliticalOpinions"),
 
             "religion_words" : (["divinity", "faith", "religion", "worship"],
                             "hasReligion"),
@@ -259,7 +259,7 @@ class InputDataset(_Dataset):
         # Creates a named individual with the name of the dataset
         ethics_ontology.add((EONS[dataset_name], RDF.type, OWL.NamedIndividual))
 
-        # Identifying data subject type and removing that data from the dictionary
+        # Identifying data-subject type and removing that information from the dictionary
         if self.ethics_ontology_dictionary["representsIndividuals"]["value"] == True:
             ethics_ontology.add((EONS[dataset_name], RDF.type, EONS.Individual))
             del self.ethics_ontology_dictionary["representsIndividuals"]
@@ -414,7 +414,7 @@ class OutputDataset(_Dataset):
                     else: # Tracking, name & location need to be common to provide some linkage between the datasets.
                         self.scenario_3_issues[issue] = self.quick_issue_checker(issue, dataset)
 
-            # Scenario-4 : Check for tailored reality/ filtered bubble issue caused by grouping of political opinions and other factors.
+            # Scenario-4 : Check for tailored reality/ filter bubble issue caused by grouping of political opinions and other factors.
             for issue in self.scenario_4_issues.keys():
                 if ethics_dict[issue]["value"] == True:
                     if issue == "hasPoliticalOpinions":
