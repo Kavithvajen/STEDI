@@ -1,92 +1,63 @@
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - GARDA_STATION_MINI
+ETHICS REPORT FOR INDIVIDUAL DATASET - TRACKED_USER_DATA
 
-Data controller: tcd
-Valid for processing: True
-This dataset represents groups.
+Data controller: test
+Valid for processing: False
+This dataset represents individuals.
 
 Issues present in the dataset:
 
-1. HAS CRIMINAL ACTIVITY
+1. HAS AGE
 Predicates that triggered this issue:
-	* http://example.org/csv/robbery_extortion_and_hijacking_offences
-	* http://example.org/csv/theft_and_related_offences
-	* http://example.org/csv/fraud_deception_and_related_offences
-	* http://example.org/csv/offences_against_government_justice_procedures_and_organisation_of_crime
-	* http://example.org/csv/attempts_or_threats_to_murder_assaults_harassments_and_related_offences
-	* http://example.org/csv/burglary_and_related_offences
+	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasAge
 
 
-2. HAS ETHNICITY DATA
+2. HAS BEHAVIOUR DATA
 Predicates that triggered this issue:
-	* http://example.org/csv/public_order_and_other_social_code_offences
+	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasInterest
 
 
-3. HAS LOCATION DATA
+3. HAS LOAN RECORDS
 Predicates that triggered this issue:
-	* http://example.org/csv/public_order_and_other_social_code_offences
-	* http://example.org/csv/x
-	* http://example.org/csv/station
-	* http://example.org/csv/y
+	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasInterest
+
+
+4. HAS USER TRACKING DATA
+Predicates that triggered this issue:
+	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasAge
+	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasInterest
+	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#isUserSince
+	* http://www.semanticweb.org/kavith/ontologies/tracked-user-data#hasAdTrackingID
 
 ----------------------------------------------------------------------------------------------------
 
 
-ETHICS REPORT FOR INDIVIDUAL DATASET - IRELAND_DEMOGRAPHIC_MINI
+ETHICS REPORT FOR INDIVIDUAL DATASET - BANK_LOAN_DATA
 
-Data controller: tcd
+Data controller: TCD
 Valid for processing: True
-This dataset represents groups.
+This dataset represents individuals.
 
 Issues present in the dataset:
 
-1. HAS ETHNICITY DATA
+1. HAS BEHAVIOUR DATA
 Predicates that triggered this issue:
-	* http://example.org/csv/perc_religion_not_stated_2011
-	* http://example.org/csv/foreign_languages_lithuanian_2011
-	* http://example.org/csv/perc_foreign_languages_other_2011
-	* http://example.org/csv/perc_religion_catholic_2011
-	* http://example.org/csv/religion_not_stated_2011
-	* http://example.org/csv/foreign_languages_total_2011
-	* http://example.org/csv/religion_no_religion_2011
-	* http://example.org/csv/religion_catholic_2011
-	* http://example.org/csv/religion_total_2011
-	* http://example.org/csv/perc_religion_no_religion_2011
-	* http://example.org/csv/religion_other_stated_religion_2011
-	* http://example.org/csv/foreign_languages_polish_2011
-	* http://example.org/csv/perc_foreign_languages_french_2011
-	* http://example.org/csv/perc_religion_other_stated_religion_2011
-	* http://example.org/csv/foreign_languages_other_2011
-	* http://example.org/csv/perc_foreign_languages_polish_2011
-	* http://example.org/csv/perc_foreign_languages_lithuanian_2011
-	* http://example.org/csv/foreign_languages_french_2011
+	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasBorrowedLoanAmount
+	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasDefaultedInThePast
+	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasWebTrackerId
 
 
-2. HAS LOCATION DATA
+2. HAS LOAN RECORDS
 Predicates that triggered this issue:
-	* http://example.org/csv/perc_usual_residence_same_address_2011
-	* http://example.org/csv/usual_residence_outside_ireland_2011
-	* http://example.org/csv/county
-	* http://example.org/csv/perc_usual_residence_elsewhere_in_county_2011
-	* http://example.org/csv/usual_residence_elsewhere_in_county_2011
-	* http://example.org/csv/usual_residence_same_address_2011
-	* http://example.org/csv/electoral_division_cso_code
-	* http://example.org/csv/planning_region
-	* http://example.org/csv/perc_usual_residence_outside_ireland_2011
+	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasBorrowedLoanAmount
+	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasDefaultedInThePast
+	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasWebTrackerId
 
 
-3. HAS RELIGION
+3. HAS USER TRACKING DATA
 Predicates that triggered this issue:
-	* http://example.org/csv/perc_religion_not_stated_2011
-	* http://example.org/csv/perc_religion_catholic_2011
-	* http://example.org/csv/religion_not_stated_2011
-	* http://example.org/csv/religion_no_religion_2011
-	* http://example.org/csv/religion_catholic_2011
-	* http://example.org/csv/religion_total_2011
-	* http://example.org/csv/perc_religion_no_religion_2011
-	* http://example.org/csv/religion_other_stated_religion_2011
-	* http://example.org/csv/perc_religion_other_stated_religion_2011
+	* http://www.semanticweb.org/kavith/ontologies/bank-loan#hasWebTrackerId
 
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
@@ -94,8 +65,12 @@ Predicates that triggered this issue:
 ETHICS REPORT FOR DATA INTEGRATION OF ALL DATASETS
 
 
- + SCENARIO-1 : Locations can be linked and certain races can be unethically claimed as more inclined to be criminals.
+ + SCENARIO-2 : By cross-site tracking a user, unethical assumptions can be made with regards to their loan repayment capabilities and their general interest/behaviour.
 
- + SCENARIO-1 : Location can be linked and certain ethnic groups can be unethically claimed as more inclined to be criminals.
+ + SCENARIO-2 : Cross-site tracking can be linked with the user's loan records to make any unethical assumption regarding the user.
 
- + SCENARIO-1 : Since locations can be linked and criminal data is involved, any datapoint from any of the datasets can be used to make ethically wrong assumptions. 
+ + SCENARIO-3 : Based on cross-site tracking data and the behavioural data of a user, unethical assumptions can be made about the user's activities thereby manipulating insurance rates.
+
+ + SCENARIO-3 : Unethical assumption can also be made about the activities of the user's connections (friends, family, followers) on social media accounts.
+
+ + SCENARIO-3 : Online tracking details of a user is very sensitive. It can be combined with any other data about the individual to gain extra information that the user did not consent to originally.
